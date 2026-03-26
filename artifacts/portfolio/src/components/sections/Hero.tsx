@@ -70,11 +70,11 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <div className="relative w-full max-w-[500px] rounded-2xl overflow-hidden bg-secondary/30">
+            <div className="relative w-full max-w-[500px] rounded-2xl overflow-hidden">
               <img
                 src={`${import.meta.env.BASE_URL}images/${hero.image}`}
                 alt={hero.imageAlt}
-                className="object-contain w-full h-auto drop-shadow-xl"
+                className="w-80 h-auto"
               />
             </div>
           </motion.div>

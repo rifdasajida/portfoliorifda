@@ -26,7 +26,7 @@ export const hero = {
   cta1: { label: "View My Work", href: "#work" },
   cta2: { label: "Get to Know Me", href: "#about" },
   /** Replace with your own illustration filename inside public/images/ */
-  image: "hero-illustration.png",
+  image: "Hero-portofolio-image.png ",
   imageAlt: "Product Designer Illustration",
 };
 
@@ -114,7 +114,7 @@ export const caseStudies = [
     description:
       "Redesigning the checkout flow to reduce cart abandonment rate by 24% for a mid-sized fashion retailer.",
     tags: ["Conversion", "A/B Testing", "Mobile UI"],
-    image: "case-study-2.png",
+    image: "case-study-surplus.png",
     color: "bg-orange-50",
     overview:
       "Partnered with an online fashion retailer to diagnose and redesign a checkout experience that was costing them significant revenue through high abandonment rates.",
@@ -153,7 +153,7 @@ export const caseStudies = [
     description:
       "Simplifying complex data visualization to help marketing managers make faster, more confident decisions.",
     tags: ["Data Viz", "Design System", "B2B SaaS"],
-    image: "case-study-3.png",
+    image: "case-study-aman.png",
     color: "bg-green-50",
     overview:
       "A B2B SaaS client needed their analytics dashboard redesigned — their power users loved the depth, but new users churned within the first two weeks because the interface was overwhelming.",
@@ -202,7 +202,7 @@ export const galleryItems = [
   {
     title: "Mobile App Screens",
     tag: "Mobile UI",
-    image: "gallery-2.png",
+    image: "galery-dipay.png",
   },
   {
     title: "Data Visualization",
