@@ -1,40 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const posts = [
-  {
-    date: "Oct 24, 2024",
-    readTime: "5 min read",
-    title: "The Role of Data in Design Decisions",
-    excerpt: "How to balance qualitative user research with quantitative analytics to make better product design choices."
-  },
-  {
-    date: "Sep 12, 2024",
-    readTime: "8 min read",
-    title: "Building Design Systems That Scale",
-    excerpt: "A practical guide to architecting a design system that developers and designers actually want to use."
-  },
-  {
-    date: "Aug 05, 2024",
-    readTime: "4 min read",
-    title: "User Research in Agile Environments",
-    excerpt: "Strategies for integrating continuous user discovery into rapid two-week development sprints."
-  },
-  {
-    date: "Jul 18, 2024",
-    readTime: "6 min read",
-    title: "The Psychology of Onboarding",
-    excerpt: "Why the first 5 minutes define your product's retention rate, and how to optimize for the 'Aha!' moment."
-  }
-];
+import { blogPosts } from "@/data/portfolio";
 
 export function Blog() {
   return (
     <section id="blog" className="py-24 bg-secondary/20">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="mb-16 max-w-2xl">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -42,7 +16,7 @@ export function Blog() {
           >
             Latest Thoughts
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -54,9 +28,9 @@ export function Blog() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {posts.map((post, index) => (
+          {blogPosts.map((post, index) => (
             <motion.a
-              href="#"
+              href={post.href}
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -67,19 +41,21 @@ export function Blog() {
               <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground mb-4">
                 <span>{post.date}</span>
                 <span className="w-1 h-1 rounded-full bg-border" />
-                <span className="flex items-center"><Clock className="w-3 h-3 mr-1"/> {post.readTime}</span>
+                <span className="flex items-center">
+                  <Clock className="w-3 h-3 mr-1" /> {post.readTime}
+                </span>
               </div>
-              
+
               <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
                 {post.title}
               </h3>
-              
+
               <p className="text-sm text-muted-foreground mb-6 line-clamp-3 flex-grow">
                 {post.excerpt}
               </p>
-              
+
               <div className="mt-auto flex items-center text-sm font-semibold text-primary">
-                Read More 
+                Read More
                 <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </motion.a>

@@ -4,6 +4,22 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## Portfolio (artifacts/portfolio)
+
+React + Vite personal portfolio site for Rifda.
+
+### Content editing
+All content (text, image filenames, case studies, blog posts, socials) lives in one file:
+  `artifacts/portfolio/src/data/portfolio.ts`
+
+### Images
+All images live in: `artifacts/portfolio/public/images/`
+To swap an image: copy the new file into that folder and update the filename in `portfolio.ts`.
+
+### Case study detail pages
+Each case study in `caseStudies[]` automatically gets a detail page at `/case-study/<slug>`.
+Add a new case study by appending a new object to the `caseStudies` array in `portfolio.ts`.
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces
