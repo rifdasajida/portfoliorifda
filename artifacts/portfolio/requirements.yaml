@@ -1,0 +1,35 @@
+packages:
+  "framer-motion": "For elegant page transitions and scroll-triggered animations essential for a premium portfolio."
+  "clsx": "For conditional class name merging."
+  "tailwind-merge": "For merging tailwind classes safely."
+
+images:
+  - path: "artifacts/portfolio/public/images/hero-illustration.png"
+    description: "Clean, minimal, modern flat vector illustration of a professional female product designer working thoughtfully on a laptop. Elegant color palette with soft beige, white, and dark charcoal. Transparent or white background."
+    aspect_ratio: "4:3"
+  - path: "artifacts/portfolio/public/images/avatar.png"
+    description: "Minimalist, professional illustrated avatar of a female product designer. Soft lighting, clean background, modern flat vector style."
+    aspect_ratio: "1:1"
+  - path: "artifacts/portfolio/public/images/case-study-1.png"
+    description: "Abstract, elegant 3D geometric composition representing a smart web application and product strategy. Soft lighting, minimal, premium corporate design in neutral tones with a subtle accent color."
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/case-study-2.png"
+    description: "Abstract UI UX conceptual illustration representing e-commerce checkout optimization. Wireframe elements floating in a clean, minimal 3D space. Soft monochromatic styling."
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/case-study-3.png"
+    description: "Abstract data visualization concept with elegant floating charts and graphs in a minimal environment. Clean, modern, sophisticated light theme."
+    aspect_ratio: "16:9"
+  - path: "artifacts/portfolio/public/images/gallery-1.png"
+    description: "Clean, beautiful dashboard UI components collage in a minimal layout. Premium SaaS aesthetic, light mode."
+    aspect_ratio: "4:3"
+  - path: "artifacts/portfolio/public/images/gallery-2.png"
+    description: "Mobile app screen wireframes and UI components floating elegantly. Minimalist, high-end design presentation."
+    aspect_ratio: "4:3"
+  - path: "artifacts/portfolio/public/images/gallery-3.png"
+    description: "Data visualization UI kit elements. Clean charts, sophisticated typography, minimal layout on a light background."
+    aspect_ratio: "4:3"
+
+notes:
+  - This is a static, single-page portfolio application.
+  - Sections are linked via anchor tags for smooth scrolling.
+  - No backend interactions are required.
