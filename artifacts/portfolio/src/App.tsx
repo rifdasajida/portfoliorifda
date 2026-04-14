@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import CaseStudy from "@/pages/CaseStudy";
 import SmartMurojaahCaseStudy from "@/pages/SmartMurojaahCaseStudy";
+import EcommerceCheckoutCaseStudy from "@/pages/EcommerceCheckoutCaseStudy";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +22,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/case-study/smart-murojaah" component={SmartMurojaahCaseStudy} />
+      <Route path="/case-study/ecommerce-checkout" component={EcommerceCheckoutCaseStudy} />
       <Route path="/case-study/:slug" component={CaseStudy} />
       <Route component={NotFound} />
     </Switch>

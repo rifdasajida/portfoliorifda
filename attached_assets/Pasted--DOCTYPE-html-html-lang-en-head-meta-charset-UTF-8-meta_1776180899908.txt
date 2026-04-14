@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decreasing Order Cancellation Rate by 76% — Surplus App Case Study</title>
+<meta name="description" content="How a deep dive into analytics revealed that users weren't canceling because of slow delivery—they were missing critical pickup time information. A UX case study on data-driven problem solving.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6FB;
+  --bg-hero:#E8F5E9;
+  --card:#FFFFFF;
+  --card-alt:#FAFBFD;
+  --ink:#0F1A2E;
+  --ink-soft:#2B3648;
+  --ink-body:#4A5568;
+  --ink-mute:#8591A3;
+  --ink-faint:#B8C0CC;
+  --accent:#2E7D32;
+  --accent-light:#4CAF50;
+  --accent-soft:#E8F5E9;
+  --rule:#E4E8F0;
+  --rule-soft:#EEF1F7;
+  --ok:#1F9B6E;
+  --ok-soft:#DFF4EB;
+  --err:#C54545;
+  --err-soft:#FBE4E4;
+  --warn:#E67E22;
+  --warn-soft:#FFF3E0;
+  --pill:#F0F3FA;
+  --pill-border:#E0E5EF;
+  --sh-sm:0 1px 2px rgba(15,26,46,.04);
+  --sh-md:0 4px 16px rgba(15,26,46,.06);
+  --sh-lg:0 20px 48px rgba(15,26,46,.08);
+  --sans:'Plus Jakarta Sans',-apple-system,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink-body);
+  font-size:16px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── Layout ── */
+.container{max-width:760px;margin:0 auto;padding:0 28px;position:relative}
+.container-wide{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* ── Nav ── */
+nav.top{
+  position:sticky;top:0;z-index:100;
+  background:rgba(244,246,251,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule-soft);padding:18px 0;
+}
+nav.top .container-wide{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.brand span{color:var(--ink-mute);font-weight:500}
+.nav-meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.05em;text-transform:uppercase}
+.nav-meta b{color:var(--ink);font-weight:700}
+
+/* ── Hero ── */
+.hero-wrap{
+  background:var(--bg-hero);
+  padding:72px 0 0;
+  position:relative;
+}
+.hero{padding-bottom:48px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.pill{
+  display:inline-flex;align-items:center;
+  padding:7px 16px;border-radius:100px;
+  background:var(--card);border:1px solid var(--pill-border);
+  font-size:12px;font-weight:600;color:var(--ink-soft);letter-spacing:-.01em;
+  box-shadow:var(--sh-sm);
+}
+.pill.real{background:var(--accent);color:#fff;border-color:var(--accent)}
+h1.hero-title{
+  font-size:clamp(36px,5.5vw,56px);font-weight:800;
+  line-height:1.1;letter-spacing:-.028em;color:var(--ink);
+  margin-bottom:20px;max-width:680px;
+}
+.hero-lede{
+  font-size:18px;line-height:1.55;color:var(--ink-body);
+  max-width:620px;margin-bottom:40px;font-weight:400;
+}
+
+/* Hero visual card */
+.hero-visual{
+  background:linear-gradient(135deg,#2E7D32 0%,#1B5E20 60%,#0D3311 100%);
+  border-radius:20px;overflow:hidden;
+  aspect-ratio:16/10;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;box-shadow:var(--sh-lg);
+  margin-bottom:0;
+}
+.hero-visual::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 30% 40%,rgba(255,255,255,.06) 0,transparent 50%),
+    radial-gradient(circle at 70% 60%,rgba(100,180,130,.08) 0,transparent 50%);
+}
+.hero-visual-inner{
+  position:relative;z-index:1;text-align:center;padding:40px;
+}
+.hero-icon{
+  font-size:clamp(64px,12vw,100px);
+  margin-bottom:20px;
+  filter:drop-shadow(0 8px 40px rgba(0,0,0,.2));
+}
+.hero-text{
+  font-family:var(--sans);
+  font-size:clamp(28px,5vw,42px);
+  font-weight:800;color:rgba(255,255,255,.96);
+  line-height:1.2;margin-bottom:12px;letter-spacing:-.02em;
+  text-shadow:0 4px 20px rgba(0,0,0,.2);
+}
+.hero-sub{
+  font-family:var(--mono);font-size:11px;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.5);
+}
+/* Decorative shapes */
+.shape{position:absolute;border-radius:12px}
+.shape-1{top:18%;left:10%;width:48px;height:48px;background:linear-gradient(135deg,#4CAF50,#2E7D32);transform:rotate(-12deg);box-shadow:0 6px 20px rgba(0,0,0,.3);border-radius:50%}
+.shape-2{top:22%;right:14%;width:38px;height:38px;border-radius:8px;background:linear-gradient(135deg,#81C784,#4CAF50)}
+.shape-3{bottom:20%;left:15%;width:56px;height:56px;border-radius:8px;background:linear-gradient(135deg,#A5D6A7,#66BB6A);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.shape-4{bottom:16%;right:18%;width:42px;height:42px;background:linear-gradient(135deg,#C8E6C9,#81C784);transform:rotate(18deg);box-shadow:0 6px 20px rgba(0,0,0,.3);border-radius:50%}
+@media(max-width:720px){
+  .shape{display:none}
+}
+
+/* ── Content sections ── */
+.content{padding:72px 0}
+section.block{margin-bottom:64px}
+section.block:last-child{margin-bottom:0}
+
+h2{
+  font-size:26px;font-weight:800;color:var(--ink);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:18px;
+}
+h2.lg{font-size:32px}
+h3{
+  font-size:18px;font-weight:700;color:var(--ink);
+  letter-spacing:-.01em;line-height:1.3;margin:32px 0 10px;
+}
+p{margin-bottom:1.1em;color:var(--ink-body);font-size:16px;line-height:1.7}
+p:last-child{margin-bottom:0}
+p strong{color:var(--ink);font-weight:600}
+p em{color:var(--ink-soft);font-style:italic}
+ul{margin:12px 0 20px 20px}
+li{color:var(--ink-body);line-height:1.75;margin-bottom:6px;font-size:15.5px}
+code{
+  font-family:var(--mono);font-size:13px;
+  background:var(--accent-soft);color:var(--ink-soft);
+  padding:2px 6px;border-radius:4px;
+}
+
+/* ── Callout card ── */
+.callout{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:28px 32px;margin:28px 0;
+  box-shadow:var(--sh-sm);
+}
+.callout h3{margin:0 0 10px;font-size:18px}
+.callout p{margin:0;font-size:15.5px}
+.callout.warm{background:#FFF9F0;border-color:#F5E4C5}
+.callout.danger{background:#FFF5F5;border-color:#F5D4D4}
+.callout.success{background:#F0FAF5;border-color:#C9E8D7}
+
+/* ── TL;DR card ── */
+.tldr{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:28px 32px;margin:24px 0;
+  box-shadow:var(--sh-sm);
+}
+.tldr-lbl{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.15em;color:var(--ink-mute);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.tldr-row{
+  display:grid;grid-template-columns:100px 1fr;gap:16px;
+  padding:12px 0;border-top:1px solid var(--rule-soft);
+}
+.tldr-row:first-of-type{border-top:none}
+.tldr-k{font-size:13px;font-weight:700;color:var(--ink)}
+.tldr-v{font-size:14.5px;line-height:1.6;color:var(--ink-body)}
+
+/* ── Metric cards ── */
+.metrics{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin:28px 0;
+}
+.metric{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:24px;text-align:center;
+  box-shadow:var(--sh-sm);
+}
+.metric-value{
+  font-size:36px;font-weight:800;color:var(--accent);
+  letter-spacing:-.03em;line-height:1;margin-bottom:8px;
+}
+.metric-value.danger{color:var(--err)}
+.metric-value.success{color:var(--ok)}
+.metric-label{
+  font-size:13px;font-weight:600;color:var(--ink-mute);
+  text-transform:uppercase;letter-spacing:.05em;
+}
+@media(max-width:640px){
+  .metrics{grid-template-columns:1fr}
+}
+
+/* ── Numbered steps ── */
+.steps{margin:24px 0}
+.step{
+  display:grid;grid-template-columns:42px 1fr;gap:20px;
+  padding:20px 0;border-top:1px solid var(--rule-soft);
+}
+.step:first-child{border-top:none;padding-top:8px}
+.step-n{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--card);border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--ink);
+  font-feature-settings:"tnum";
+}
+.step-body h3{margin:0 0 6px;font-size:16px;font-weight:700}
+.step-body p{margin:0;font-size:15px;color:var(--ink-body);line-height:1.65}
+
+/* ── Quote card ── */
+.quote-card{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:28px 32px;margin:24px 0;
+  box-shadow:var(--sh-sm);
+  display:grid;gap:16px;
+}
+.quote-item{
+  padding:16px 0;border-top:1px solid var(--rule-soft);
+  font-size:15px;line-height:1.6;color:var(--ink-body);
+  font-style:italic;
+}
+.quote-item:first-child{border-top:none;padding-top:0}
+.quote-item::before{
+  content:'"';font-size:24px;font-weight:800;color:var(--accent);
+  margin-right:4px;
+}
+.quote-label{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.15em;color:var(--ink-mute);
+  text-transform:uppercase;margin-bottom:8px;
+}
+
+/* ── Insight box ── */
+.insight{
+  background:linear-gradient(135deg,var(--accent-soft) 0%,#fff 100%);
+  border:2px solid var(--accent);
+  border-radius:16px;padding:32px;margin:32px 0;
+  position:relative;
+}
+.insight::before{
+  content:'💡';font-size:28px;position:absolute;top:-14px;left:24px;
+  background:var(--bg);padding:0 8px;
+}
+.insight h3{margin:0 0 12px;font-size:20px;color:var(--accent)}
+.insight p{margin:0;font-size:15.5px}
+
+/* ── Problem list ── */
+.problems{margin:28px 0;counter-reset:p}
+.problem{
+  counter-increment:p;padding:22px 0;
+  border-top:1px solid var(--rule-soft);
+  display:grid;grid-template-columns:42px 1fr;gap:20px;
+}
+.problem:first-child{border-top:none;padding-top:6px}
+.problem::before{
+  content:counter(p,decimal-leading-zero);
+  width:32px;height:32px;border-radius:50%;
+  background:var(--card);border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--ink);
+}
+.problem h3{margin:0 0 6px;font-size:16px}
+.problem p{margin:0;font-size:15px}
+
+/* ── Before / after ── */
+.ba{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;overflow:hidden;margin:20px 0;
+  box-shadow:var(--sh-sm);
+}
+.ba-head{
+  padding:20px 28px 12px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.ba-num{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--ink-mute);letter-spacing:.12em;
+  background:var(--pill);padding:4px 10px;border-radius:100px;
+  border:1px solid var(--pill-border);
+}
+.ba-title{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.ba-body{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--rule-soft);
+}
+.ba-col{padding:20px 28px}
+.ba-col.before{background:var(--card-alt);border-right:1px solid var(--rule-soft)}
+.ba-col h4{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;
+  display:flex;align-items:center;gap:6px;
+}
+.ba-col.before h4{color:var(--err)}
+.ba-col.before h4::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--err)}
+.ba-col.after h4{color:var(--ok)}
+.ba-col.after h4::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.ba-col p{margin:0;font-size:14px;line-height:1.65;color:var(--ink-body)}
+@media(max-width:640px){
+  .ba-body{grid-template-columns:1fr}
+  .ba-col.before{border-right:none;border-bottom:1px solid var(--rule-soft)}
+}
+
+/* ── Journey map ── */
+.journey{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:32px;margin:28px 0;
+  box-shadow:var(--sh-sm);
+}
+.journey-title{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.15em;color:var(--ink-mute);
+  text-transform:uppercase;margin-bottom:24px;
+}
+.journey-steps{
+  display:flex;gap:0;overflow-x:auto;padding-bottom:8px;
+}
+.journey-step{
+  flex:1;min-width:140px;text-align:center;padding:16px 12px;
+  position:relative;
+}
+.journey-step::after{
+  content:'→';position:absolute;right:-8px;top:50%;
+  transform:translateY(-50%);color:var(--ink-faint);font-size:18px;
+}
+.journey-step:last-child::after{display:none}
+.journey-icon{font-size:28px;margin-bottom:8px}
+.journey-label{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4}
+.journey-desc{font-size:11px;color:var(--ink-mute);margin-top:4px}
+.journey-step.problem{background:var(--err-soft);border-radius:12px}
+.journey-step.problem .journey-label{color:var(--err)}
+
+/* ── Stack pills ── */
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+.stack-pill{
+  padding:8px 16px;border-radius:100px;
+  background:var(--card);border:1px solid var(--rule);
+  font-size:13px;font-weight:600;color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:var(--sh-sm);
+}
+.stack-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--ok)}
+
+/* ── Lessons ── */
+.lessons{margin:24px 0}
+.lesson{
+  display:grid;grid-template-columns:48px 1fr;gap:20px;
+  padding:24px 0;border-top:1px solid var(--rule-soft);
+}
+.lesson:first-child{border-top:none;padding-top:8px}
+.lesson-n{
+  font-size:32px;font-weight:800;color:var(--ink);
+  letter-spacing:-.03em;line-height:1;opacity:.2;
+  font-feature-settings:"tnum";
+}
+.lesson-body h3{margin:0 0 6px;font-size:16px}
+.lesson-body p{margin:0;font-size:15px;line-height:1.65}
+
+/* ── Result highlight ── */
+.result{
+  background:linear-gradient(135deg,#1B5E20 0%,#2E7D32 50%,#388E3C 100%);
+  border-radius:20px;padding:48px;margin:40px 0;
+  text-align:center;color:#fff;
+  box-shadow:var(--sh-lg);
+  position:relative;overflow:hidden;
+}
+.result::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);
+  background-size:20px 20px;pointer-events:none;
+}
+.result-inner{position:relative}
+.result-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px;
+}
+.result-value{
+  font-size:clamp(56px,10vw,80px);font-weight:800;
+  letter-spacing:-.04em;line-height:1;margin-bottom:16px;
+}
+.result-desc{
+  font-size:18px;color:rgba(255,255,255,.85);max-width:400px;margin:0 auto;
+}
+
+/* ── CTA ── */
+.cta{
+  background:var(--ink);color:#fff;
+  padding:72px 0;margin-top:48px;text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.03) 1px,transparent 0);
+  background-size:24px 24px;pointer-events:none;
+}
+.cta-inner{position:relative}
+.cta h2{color:#fff;font-size:clamp(30px,4.5vw,44px);margin-bottom:14px;letter-spacing:-.025em}
+.cta p{color:rgba(255,255,255,.7);font-size:16px;max-width:480px;margin:0 auto 32px}
+
+/* ── Footer ── */
+footer{
+  padding:40px 0;text-align:center;
+  color:var(--ink-mute);font-size:13px;
+  border-top:1px solid var(--rule-soft);
+}
+footer b{color:var(--ink);font-weight:700}
+
+/* ── Reveal anim ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:720px){
+  .container{padding:0 22px}
+  .container-wide{padding:0 22px}
+  .hero-wrap{padding-top:56px}
+  .content{padding:56px 0}
+  section.block{margin-bottom:48px}
+  .callout{padding:22px 24px}
+  .tldr-row{grid-template-columns:1fr;gap:8px}
+  .journey-steps{flex-direction:column}
+  .journey-step::after{display:none}
+  .result{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="top">
+  <div class="container-wide">
+    <div class="brand">Rifda Sajida <span>/ Portfolio</span></div>
+    <div class="nav-meta">Case Study · <b>02</b></div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero-wrap">
+  <div class="container">
+    <div class="hero reveal">
+      <div class="pills">
+        <span class="pill real">Real Project</span>
+        <span class="pill">Data Analysis</span>
+        <span class="pill">UX Research</span>
+        <span class="pill">UI Design</span>
+        <span class="pill">Concept Testing</span>
+      </div>
+      <h1 class="hero-title">Decreasing Order Cancellation Rate by 76%</h1>
+      <p class="hero-lede">How a deep dive into analytics revealed that users weren't canceling because of slow delivery—they were missing critical pickup time information hidden in plain sight.</p>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="hero-visual-inner">
+        <div class="hero-icon">🛒</div>
+        <div class="hero-text">Surplus App</div>
+        <div class="hero-sub">January – June 2023</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content">
+  <div class="container">
+
+    <!-- ── Overview ── -->
+    <section class="block reveal">
+      <h2>Overview</h2>
+      <p>In the early period of joining Surplus, I was tasked by the CEO to explore and analyze existing data across Google Analytics, Mixpanel, and the Surplus Dashboard. The goal: understand user growth, transaction trends, funneling patterns, and merchant activation.</p>
+      <p>One metric immediately stood out — <strong>the high number of canceled orders</strong>. These cancellations occurred right at the end of the main process, after users had gone through the effort of browsing, selecting, and paying. These weren't casual window shoppers; they had strong purchase intent. Yet we were losing them at the finish line.</p>
+    </section>
+
+    <!-- ── TL;DR ── -->
+    <section class="block reveal">
+      <div class="tldr">
+        <div class="tldr-lbl">TL;DR</div>
+        <div class="tldr-row">
+          <div class="tldr-k">Problem</div>
+          <div class="tldr-v">~30% of completed orders were being canceled. Users blamed "slow delivery" but the real issue was something else entirely.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Discovery</div>
+          <div class="tldr-v">86% of cancellations were due to perceived long delivery time. But user interviews revealed users were missing the pickup time information — they ordered food for lunch that wasn't available until dinner.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Solution</div>
+          <div class="tldr-v">Redesigned the menu card to prominently display pickup time and added a confirmation popup before checkout to ensure users understood when their order would be ready.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Result</div>
+          <div class="tldr-v">Cancellation rate dropped from ~30% to ~6% — a 76% reduction in canceled orders without impacting total order volume.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The Data ── -->
+    <section class="block reveal">
+      <h2>📊 Deep Dive into The Data</h2>
+      <p>The data revealed that over the past six months, our cancellation rate had averaged around <strong>30%</strong>. This means that out of every 1,000 customers who completed a purchase, we were losing around 300 of them in the end.</p>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value danger">~30%</div>
+          <div class="metric-label">Cancellation Rate</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value">6 months</div>
+          <div class="metric-label">Data Period</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value danger">300/1000</div>
+          <div class="metric-label">Orders Lost</div>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <h3>Revenue Impact</h3>
+        <p>This undoubtedly has a significant impact on revenue. If this issue isn't fixed, we will always lose sales — not from lack of interest, but from a breakdown somewhere in the experience.</p>
+      </div>
+    </section>
+
+    <!-- ── Gathering Insight ── -->
+    <section class="block reveal">
+      <h2>🔍 Gathering Insight</h2>
+      
+      <div class="insight">
+        <h3>86% of cancellations are due to perceived long delivery time</h3>
+        <p>We gathered feedback from the dashboard of refund requests and customer service complaints. The primary reason users cited for canceling was that delivery was taking too long.</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-label">User Complaints (Translated)</div>
+        <div class="quote-item">Hungry... waiting too long</div>
+        <div class="quote-item">Takes too long to be delivered :(</div>
+        <div class="quote-item">Hasn't been delivered yet, even though the shipping method said 1-2 hours. I'm already leaving the office this afternoon</div>
+        <div class="quote-item">Not delivered since 3 PM!!!</div>
+        <div class="quote-item">I thought it would be delivered now, turns out it's at 6 PM</div>
+      </div>
+
+      <p>However, understanding this issue prompted us to delve deeper. <strong>Is it solely an issue with the delivery process, or could there be third-party factors at play?</strong></p>
+    </section>
+
+    <!-- ── Deep Dive into The Problem ── -->
+    <section class="block reveal">
+      <h2>🎯 Deep Dive into The Problem</h2>
+      <p>As we continued our in-depth research through <strong>user interviews and examining transaction details</strong>, we were surprised to find that the cancellation orders were not primarily due to delivery delays.</p>
+
+      <div class="callout success">
+        <h3>The Real Discovery</h3>
+        <p>Users were missing the "pickup time" information, leading to cancellations. They weren't aware that the food they ordered wouldn't be available until hours later.</p>
+      </div>
+
+      <p>From that missing information, we found a critical gap: the time between when users ordered and when the merchant's pickup time was set. For example:</p>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">EXAMPLE 1</span>
+          <span class="ba-title">Order placed at 11:44 AM</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>User Expectation</h4>
+            <p>Food arrives around lunchtime (12:00 - 1:00 PM)</p>
+          </div>
+          <div class="ba-col after">
+            <h4>Reality</h4>
+            <p>Pickup window was 6:00 PM - 10:00 PM (dinner time)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">EXAMPLE 2</span>
+          <span class="ba-title">Order placed at 1:19 PM</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>User Expectation</h4>
+            <p>Quick afternoon delivery</p>
+          </div>
+          <div class="ba-col after">
+            <h4>Reality</h4>
+            <p>Pickup window was 8:30 PM - 9:30 PM (late evening)</p>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>Note:</strong> <em>Order Date</em> = The time when the user ordered; <em>Pickup Time</em> = The time set by the merchant as a mark when the menu can be picked up (almost the same as the store open time).</p>
+    </section>
+
+    <!-- ── User Journey ── -->
+    <section class="block reveal">
+      <h2>🗺️ Case Story: The Cancellation Journey</h2>
+      <p>Based on this discovery, we conducted a UI/UX audit on the checkout flow and created a case story illustration to understand the problem from the user's perspective.</p>
+
+      <div class="journey">
+        <div class="journey-title">User Journey Map</div>
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="journey-icon">😊</div>
+            <div class="journey-label">Excited to find menu</div>
+            <div class="journey-desc">User opens app for lunch</div>
+          </div>
+          <div class="journey-step problem">
+            <div class="journey-icon">👀</div>
+            <div class="journey-label">Doesn't notice pickup time</div>
+            <div class="journey-desc">Menu is for dinner</div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-icon">💳</div>
+            <div class="journey-label">Makes payment</div>
+            <div class="journey-desc">Successfully checks out</div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-icon">🤔</div>
+            <div class="journey-label">Excited to wait</div>
+            <div class="journey-desc">Expecting quick delivery</div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-icon">❓</div>
+            <div class="journey-label">Questioning delay</div>
+            <div class="journey-desc">Why is it taking so long?</div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-icon">📱</div>
+            <div class="journey-label">Checks app</div>
+            <div class="journey-desc">Discovers 5+ hour wait</div>
+          </div>
+          <div class="journey-step">
+            <div class="journey-icon">😞</div>
+            <div class="journey-label">Feels disappointed</div>
+            <div class="journey-desc">Won't be in same place</div>
+          </div>
+          <div class="journey-step problem">
+            <div class="journey-icon">❌</div>
+            <div class="journey-label">Cancels order</div>
+            <div class="journey-desc">Bad overall experience</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warm">
+        <h3>Key Questions We Raised</h3>
+        <p>Why does our app's system rely on the pickup time? Could we streamline the process by only displaying menus available for immediate order and processing? Is this akin to a pre-order system?</p>
+      </div>
+
+      <p>Before proceeding, we initiated <strong>discussions with stakeholders and other teams to gain clarity on the concept of pickup time</strong> and validated our hypothesis about the root cause.</p>
+    </section>
+
+    <!-- ── The Design Solution ── -->
+    <section class="block reveal">
+      <h2>🎨 The Design Solution</h2>
+      <p>We were certain that we'd outlined our issues clearly and were keen to address them swiftly. Our goal: <strong>make users more aware of the pickup time</strong> to prevent misunderstandings and avoid disappointing users with what they've chosen.</p>
+
+      <h3>Solution 1: Redesigned Menu Card</h3>
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">CHANGE 01</span>
+          <span class="ba-title">Menu Card Information Hierarchy</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Pickup time information was buried or barely visible. Users focused on food images and prices, missing the critical timing information.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Pickup time prominently displayed at the top of the card with clear visual styling. Relayout prioritizes timing information alongside the menu details.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Solution 2: Confirmation Popup</h3>
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">CHANGE 02</span>
+          <span class="ba-title">Pre-Checkout Confirmation</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Users could proceed directly to payment without any confirmation of the pickup time. No friction meant no awareness.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Added a popup confirmation that highlights the pickup time information with a clear message. Users must acknowledge they understand when their order will be ready before proceeding.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>Based on our internal testing, we were confident that this card design could better accommodate user needs and prevent the misunderstanding that led to cancellations.</p>
+    </section>
+
+    <!-- ── The Outcome ── -->
+    <section class="block reveal">
+      <h2>🚀 The Outcome</h2>
+      <p>We collected data again after <strong>3 months post-release</strong>. The results were quite satisfying.</p>
+
+      <div class="result">
+        <div class="result-inner">
+          <div class="result-label">Reduction in Cancellation Rate</div>
+          <div class="result-value">~76%</div>
+          <div class="result-desc">Cancellation rate dropped from ~30% to ~6% every month, without impacting total order volume.</div>
+        </div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value danger">~30%</div>
+          <div class="metric-label">Before</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value success">~6%</div>
+          <div class="metric-label">After</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value success">3 mo.</div>
+          <div class="metric-label">Time to Results</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Lessons Learned ── -->
+    <section class="block reveal">
+      <h2>📝 Lessons Learned</h2>
+      <p>This project reinforced several important principles about product design and problem-solving.</p>
+
+      <div class="lessons">
+        <div class="lesson">
+          <div class="lesson-n">01</div>
+          <div class="lesson-body">
+            <h3>Simple improvements can have massive impact</h3>
+            <p>This may seem like a simple improvement, but this case taught me the importance of being aware of issues in our app. The fix wasn't a complete redesign — it was making critical information visible at the right moment.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">02</div>
+          <div class="lesson-body">
+            <h3>Small changes, significant results</h3>
+            <p>Sometimes we don't always need groundbreaking improvements. Even small changes can have a significant impact when they address the right problem. A popup and a relayout solved what seemed like a complex delivery issue.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">03</div>
+          <div class="lesson-body">
+            <h3>User complaints reveal symptoms, not causes</h3>
+            <p>Users blamed "slow delivery" but the real problem was information architecture. If we had taken their feedback at face value and focused on speeding up delivery, we would have missed the actual issue entirely.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">04</div>
+          <div class="lesson-body">
+            <h3>Data analysis is the starting point, not the answer</h3>
+            <p>The data told us <em>what</em> was happening (high cancellations). User interviews and transaction analysis told us <em>why</em>. Both were essential to finding the right solution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Scope & Role ── -->
+    <section class="block reveal">
+      <h2>Scope & My Role</h2>
+      <p>This project covered the full product design cycle from discovery to validation.</p>
+      
+      <div class="stack">
+        <span class="stack-pill"><span class="dot"></span>Data Analysis</span>
+        <span class="stack-pill"><span class="dot"></span>UX Research</span>
+        <span class="stack-pill"><span class="dot"></span>User Interviews</span>
+        <span class="stack-pill"><span class="dot"></span>UI Design</span>
+        <span class="stack-pill"><span class="dot"></span>Concept Testing</span>
+        <span class="stack-pill"><span class="dot"></span>Stakeholder Collaboration</span>
+      </div>
+
+      <p>I led the investigation from initial data analysis through to the final design solution, working closely with the CEO, customer service team, and development team to ship the improvement.</p>
+    </section>
+
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <h2>Want to see more?</h2>
+      <p>This case study demonstrates how data-driven design thinking can uncover hidden problems and create measurable business impact.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    Designed & documented by <b>Rifda Sajida</b> · 2026 · Case Study 02
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
