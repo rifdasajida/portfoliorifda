@@ -34,10 +34,12 @@ export function Navbar() {
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg group-hover:scale-105 transition-transform">
-            R
-          </div>
-          <span className="font-bold text-xl tracking-tight">Rifda.</span>
+          <img 
+            src="/images/logo-rif.png"
+            alt="Rifda Logo"
+            className="w-16 h-auto object-contain"
+          />
+          <span className="font-bold text-xl tracking-tight"></span>
         </a>
 
         {/* Desktop Nav */}

@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Murajaah Web App to Solve My Problem — Case Study</title>
+<meta name="description" content="How a personal struggle with Quran memorization became a shipped product. A deep-dive case study on product thinking, UX iteration, and technical builder journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6FB;
+  --bg-hero:#E8ECF4;
+  --card:#FFFFFF;
+  --card-alt:#FAFBFD;
+  --ink:#0F1A2E;
+  --ink-soft:#2B3648;
+  --ink-body:#4A5568;
+  --ink-mute:#8591A3;
+  --ink-faint:#B8C0CC;
+  --accent:#0F1A2E;
+  --accent-soft:#E8ECF4;
+  --rule:#E4E8F0;
+  --rule-soft:#EEF1F7;
+  --ok:#1F9B6E;
+  --ok-soft:#DFF4EB;
+  --err:#C54545;
+  --err-soft:#FBE4E4;
+  --pill:#F0F3FA;
+  --pill-border:#E0E5EF;
+  --sh-sm:0 1px 2px rgba(15,26,46,.04);
+  --sh-md:0 4px 16px rgba(15,26,46,.06);
+  --sh-lg:0 20px 48px rgba(15,26,46,.08);
+  --sans:'Plus Jakarta Sans',-apple-system,system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink-body);
+  font-size:16px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── Layout ── */
+.container{max-width:760px;margin:0 auto;padding:0 28px;position:relative}
+.container-wide{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* ── Nav ── */
+nav.top{
+  position:sticky;top:0;z-index:100;
+  background:rgba(244,246,251,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule-soft);padding:18px 0;
+}
+nav.top .container-wide{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.brand span{color:var(--ink-mute);font-weight:500}
+.nav-meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.05em;text-transform:uppercase}
+.nav-meta b{color:var(--ink);font-weight:700}
+
+/* ── Hero top area on blue-grey bg ── */
+.hero-wrap{
+  background:var(--bg-hero);
+  padding:72px 0 0;
+  position:relative;
+}
+.hero{padding-bottom:48px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.pill{
+  display:inline-flex;align-items:center;
+  padding:7px 16px;border-radius:100px;
+  background:var(--card);border:1px solid var(--pill-border);
+  font-size:12px;font-weight:600;color:var(--ink-soft);letter-spacing:-.01em;
+  box-shadow:var(--sh-sm);
+}
+h1.hero-title{
+  font-size:clamp(36px,5.5vw,56px);font-weight:800;
+  line-height:1.1;letter-spacing:-.028em;color:var(--ink);
+  margin-bottom:20px;max-width:680px;
+}
+.hero-lede{
+  font-size:18px;line-height:1.55;color:var(--ink-body);
+  max-width:620px;margin-bottom:40px;font-weight:400;
+}
+
+/* Hero visual card */
+.hero-visual{
+  background:linear-gradient(135deg,#2C3344 0%,#1A2030 60%,#0F1525 100%);
+  border-radius:20px;overflow:hidden;
+  aspect-ratio:16/10;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;box-shadow:var(--sh-lg);
+  margin-bottom:0;
+}
+.hero-visual::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 30% 40%,rgba(255,255,255,.04) 0,transparent 50%),
+    radial-gradient(circle at 70% 60%,rgba(100,130,180,.06) 0,transparent 50%);
+}
+.hero-visual-inner{
+  position:relative;z-index:1;text-align:center;padding:40px;
+}
+.hero-arabic{
+  font-family:'Amiri','Fraunces',serif;
+  font-size:clamp(64px,12vw,128px);
+  font-weight:700;color:rgba(255,255,255,.96);
+  line-height:1;margin-bottom:20px;letter-spacing:.02em;
+  text-shadow:0 8px 40px rgba(100,150,200,.15);
+}
+.hero-arabic-sub{
+  font-family:var(--mono);font-size:11px;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.4);
+}
+/* Decorative shapes */
+.shape{position:absolute;border-radius:12px}
+.shape-1{top:18%;left:10%;width:48px;height:48px;background:linear-gradient(135deg,#3D4A60,#1F2736);transform:rotate(-12deg);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.shape-2{top:22%;right:14%;width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#E8A96B,#C47B3A)}
+.shape-3{bottom:20%;left:15%;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#4A5568,#2D3748);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.shape-4{bottom:16%;right:18%;width:42px;height:42px;background:linear-gradient(135deg,#5A6578,#2D3748);transform:rotate(18deg);box-shadow:0 6px 20px rgba(0,0,0,.3)}
+@media(max-width:720px){
+  .shape{display:none}
+}
+
+/* ── Content sections ── */
+.content{padding:72px 0}
+section.block{margin-bottom:64px}
+section.block:last-child{margin-bottom:0}
+
+h2{
+  font-size:26px;font-weight:800;color:var(--ink);
+  letter-spacing:-.02em;line-height:1.2;margin-bottom:18px;
+}
+h2.lg{font-size:32px}
+h3{
+  font-size:18px;font-weight:700;color:var(--ink);
+  letter-spacing:-.01em;line-height:1.3;margin:32px 0 10px;
+}
+p{margin-bottom:1.1em;color:var(--ink-body);font-size:16px;line-height:1.7}
+p:last-child{margin-bottom:0}
+p strong{color:var(--ink);font-weight:600}
+p em{color:var(--ink-soft);font-style:italic}
+ul{margin:12px 0 20px 20px}
+li{color:var(--ink-body);line-height:1.75;margin-bottom:6px;font-size:15.5px}
+code{
+  font-family:var(--mono);font-size:13px;
+  background:var(--accent-soft);color:var(--ink-soft);
+  padding:2px 6px;border-radius:4px;
+}
+
+/* ── Callout card (like The Problem) ── */
+.callout{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:28px 32px;margin:28px 0;
+  box-shadow:var(--sh-sm);
+}
+.callout h3{margin:0 0 10px;font-size:18px}
+.callout p{margin:0;font-size:15.5px}
+.callout.warm{background:#FFF9F0;border-color:#F5E4C5}
+.callout.danger{background:#FFF5F5;border-color:#F5D4D4}
+.callout.success{background:#F0FAF5;border-color:#C9E8D7}
+
+/* ── Numbered steps (like Process) ── */
+.steps{margin:24px 0}
+.step{
+  display:grid;grid-template-columns:42px 1fr;gap:20px;
+  padding:20px 0;border-top:1px solid var(--rule-soft);
+}
+.step:first-child{border-top:none;padding-top:8px}
+.step-n{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--card);border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--ink);
+  font-feature-settings:"tnum";
+}
+.step-body h3{margin:0 0 6px;font-size:16px;font-weight:700}
+.step-body p{margin:0;font-size:15px;color:var(--ink-body);line-height:1.65}
+
+/* ── Decision rows ── */
+.decisions{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:8px 28px;margin:24px 0;
+  box-shadow:var(--sh-sm);
+}
+.decision{
+  padding:22px 0;border-top:1px solid var(--rule-soft);
+}
+.decision:first-child{border-top:none}
+.decision-q{
+  font-size:15px;font-weight:700;color:var(--ink);
+  margin-bottom:6px;letter-spacing:-.01em;
+}
+.decision-a{font-size:14.5px;line-height:1.65;color:var(--ink-body)}
+.decision-a strong{color:var(--ink);font-weight:600}
+
+/* ── Before / after ── */
+.ba{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;overflow:hidden;margin:20px 0;
+  box-shadow:var(--sh-sm);
+}
+.ba-head{
+  padding:20px 28px 12px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.ba-num{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--ink-mute);letter-spacing:.12em;
+  background:var(--pill);padding:4px 10px;border-radius:100px;
+  border:1px solid var(--pill-border);
+}
+.ba-title{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.ba-body{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--rule-soft);
+}
+.ba-col{padding:20px 28px}
+.ba-col.before{background:var(--card-alt);border-right:1px solid var(--rule-soft)}
+.ba-col h4{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;
+  display:flex;align-items:center;gap:6px;
+}
+.ba-col.before h4{color:var(--err)}
+.ba-col.before h4::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--err)}
+.ba-col.after h4{color:var(--ok)}
+.ba-col.after h4::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.ba-col p{margin:0;font-size:14px;line-height:1.65;color:var(--ink-body)}
+@media(max-width:640px){
+  .ba-body{grid-template-columns:1fr}
+  .ba-col.before{border-right:none;border-bottom:1px solid var(--rule-soft)}
+}
+
+/* ── Stack pills ── */
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+.stack-pill{
+  padding:8px 16px;border-radius:100px;
+  background:var(--card);border:1px solid var(--rule);
+  font-size:13px;font-weight:600;color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:var(--sh-sm);
+}
+.stack-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--ok)}
+
+/* ── Code block ── */
+.code{
+  background:var(--ink);color:#D6DBE5;
+  font-family:var(--mono);font-size:12.5px;line-height:1.75;
+  padding:20px 24px;border-radius:12px;overflow-x:auto;margin:20px 0;
+  box-shadow:var(--sh-md);
+}
+.code .c{color:#6B7488;font-style:italic}
+.code .k{color:#E8B86D}
+.code .s{color:#9BC49B}
+.code .f{color:#C8CFD9}
+
+/* ── Pull quote ── */
+.quote{
+  font-size:22px;line-height:1.4;letter-spacing:-.01em;
+  color:var(--ink);font-weight:600;
+  margin:36px 0;padding:4px 0 4px 24px;
+  border-left:3px solid var(--ink);
+}
+.quote cite{
+  display:block;margin-top:12px;
+  font-size:13px;font-style:normal;font-weight:500;
+  color:var(--ink-mute);
+}
+
+/* ── TL;DR card ── */
+.tldr{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:28px 32px;margin:24px 0;
+  box-shadow:var(--sh-sm);
+}
+.tldr-lbl{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.15em;color:var(--ink-mute);
+  text-transform:uppercase;margin-bottom:16px;
+}
+.tldr-row{
+  display:grid;grid-template-columns:100px 1fr;gap:16px;
+  padding:12px 0;border-top:1px solid var(--rule-soft);
+}
+.tldr-row:first-of-type{border-top:none}
+.tldr-k{font-size:13px;font-weight:700;color:var(--ink)}
+.tldr-v{font-size:14.5px;line-height:1.6;color:var(--ink-body)}
+
+/* ── Lessons numbered list ── */
+.lessons{margin:24px 0}
+.lesson{
+  display:grid;grid-template-columns:48px 1fr;gap:20px;
+  padding:24px 0;border-top:1px solid var(--rule-soft);
+}
+.lesson:first-child{border-top:none;padding-top:8px}
+.lesson-n{
+  font-size:32px;font-weight:800;color:var(--ink);
+  letter-spacing:-.03em;line-height:1;opacity:.2;
+  font-feature-settings:"tnum";
+}
+.lesson-body h3{margin:0 0 6px;font-size:16px}
+.lesson-body p{margin:0;font-size:15px;line-height:1.65}
+
+/* ── Problem list ── */
+.problems{margin:28px 0;counter-reset:p}
+.problem{
+  counter-increment:p;padding:22px 0;
+  border-top:1px solid var(--rule-soft);
+  display:grid;grid-template-columns:42px 1fr;gap:20px;
+}
+.problem:first-child{border-top:none;padding-top:6px}
+.problem::before{
+  content:counter(p,decimal-leading-zero);
+  width:32px;height:32px;border-radius:50%;
+  background:var(--card);border:1.5px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--ink);
+}
+.problem h3{margin:0 0 6px;font-size:16px}
+.problem p{margin:0;font-size:15px}
+
+/* ── CTA ── */
+.cta{
+  background:var(--ink);color:#fff;
+  padding:72px 0;margin-top:48px;text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.03) 1px,transparent 0);
+  background-size:24px 24px;pointer-events:none;
+}
+.cta-inner{position:relative}
+.cta h2{color:#fff;font-size:clamp(30px,4.5vw,44px);margin-bottom:14px;letter-spacing:-.025em}
+.cta p{color:rgba(255,255,255,.7);font-size:16px;max-width:480px;margin:0 auto 32px}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#fff;color:var(--ink);
+  padding:15px 28px;font-size:14px;font-weight:700;
+  border-radius:100px;box-shadow:var(--sh-md);
+  transition:transform .2s,box-shadow .2s;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.cta-btn svg{transition:transform .2s}
+.cta-btn:hover svg{transform:translate(2px,-2px)}
+
+/* ── Footer ── */
+footer{
+  padding:40px 0;text-align:center;
+  color:var(--ink-mute);font-size:13px;
+  border-top:1px solid var(--rule-soft);
+}
+footer b{color:var(--ink);font-weight:700}
+
+/* ── Reveal anim ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── Editable marker ── */
+.edit-me{
+  background:#FFF3A8;color:#6B5800;
+  padding:1px 7px;border-radius:4px;
+  font-family:var(--mono);font-size:12px;font-weight:600;
+}
+
+/* ── Responsive ── */
+@media(max-width:720px){
+  .container{padding:0 22px}
+  .container-wide{padding:0 22px}
+  .hero-wrap{padding-top:56px}
+  .content{padding:56px 0}
+  section.block{margin-bottom:48px}
+  .callout{padding:22px 24px}
+  .decisions{padding:4px 22px}
+  .ba-head{padding:18px 22px 10px}
+  .ba-col{padding:18px 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="top">
+  <div class="container-wide">
+    <div class="brand">Rifda Sajida <span>/ Portfolio</span></div>
+    <div class="nav-meta">Case Study · <b>01</b></div>
+  </div>
+</nav>
+
+<!-- ═══ HERO (blue-grey bg) ═══ -->
+<div class="hero-wrap">
+  <div class="container">
+    <div class="hero reveal">
+      <div class="pills">
+        <span class="pill">Product Strategy</span>
+        <span class="pill">UX Design</span>
+        <span class="pill">Web App</span>
+        <span class="pill">Solo Build</span>
+      </div>
+      <h1 class="hero-title">Smart Murajaah Web App to Solve My Problem</h1>
+      <p class="hero-lede">A mobile-first Quran memorization tool designed and built end-to-end to solve the "loop of doubt" — closing the gap that existing apps left open for serious murojaah practice.</p>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="hero-visual-inner">
+        <div class="hero-arabic">مراجعة</div>
+        <div class="hero-arabic-sub">MURAJAAH · REVIEW</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content">
+  <div class="container">
+
+    <!-- ── Overview ── -->
+    <section class="block reveal">
+      <h2>Overview</h2>
+      <p>As someone on a Quran memorization journey, I struggled daily with a problem no existing app solved well. So I decided to design and build a tool that fixed it for <em>me</em> — then kept iterating until it worked for my community, too. This case study documents that end-to-end journey: the problem, the pivots, the technical hurdles, and the lessons.</p>
+    </section>
+
+    <!-- ── TL;DR ── -->
+    <section class="block reveal">
+      <div class="tldr">
+        <div class="tldr-lbl">TL;DR</div>
+        <div class="tldr-row">
+          <div class="tldr-k">Problem</div>
+          <div class="tldr-v">Existing Quran apps offer full-surah audio and passive reading — but none handle the real murojaah workflow: verse-level repetition, self-validated recitation, and cross-surah doubt.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Solution</div>
+          <div class="tldr-v">Mobile-first web app with speech-recognized recitation validation, verse-level audio looping, per-ayah progress tracking, and a "Sambung Ayat" practice mode — no install, no signup wall.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">My role</div>
+          <div class="tldr-v">Everything. Problem framing, UX, frontend, speech matcher engine, database schema, RLS security, OAuth, deployment.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Biggest win</div>
+          <div class="tldr-v">Shipped a production app end-to-end as a designer. Learned that product thinking and technical execution are the <em>same</em> discipline when you can't hide behind a team.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The Problem ── -->
+    <section class="block reveal">
+      <h2>The Problem</h2>
+      <p>A few months ago, I joined a murojaah community — a small group of friends committed to staying consistent with our Quran memorization. Every week, we'd take turns reciting from memory, testing each other, holding each other accountable. And every week, I ran into the same two problems.</p>
+
+      <div class="problems">
+        <div class="problem">
+          <div>
+            <h3>The loop of doubt</h3>
+            <p>I'd close the Mushaf and begin to recite. Two ayahs in, a thought: <em>"Wait — was that verse correct?"</em> I'd reopen the Mushaf, check, close it again, continue. Two lines later, the doubt returned. Sometimes I'd unconsciously slip into a different surah because verse endings sounded alike — suddenly I was lost, focus broken.</p>
+          </div>
+        </div>
+        <div class="problem">
+          <div>
+            <h3>No verse-level repetition</h3>
+            <p>I memorize best when I can loop a specific verse while listening — over and over, until the rhythm is in my bones. But every audio app I tried only offered full-surah playback. I'd manually pause, rewind, guess the timestamp. The tool was fighting my workflow instead of supporting it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <h3>Why not just download another app?</h3>
+        <p>I looked. I tried browser-based players, native apps, YouTube playlists. Nothing clicked. And downloading yet another app wasn't an option — my phone storage has been permanently fighting for survival at 99% for months. That's when I thought: <em>"What if I just build it myself?"</em></p>
+      </div>
+    </section>
+
+    <!-- ── Process ── -->
+    <section class="block reveal">
+      <h2>Process</h2>
+      <p>Rather than jumping to Figma, I used a builder-first approach: validate the hardest technical unknown first, then iterate design based on real user testing.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div class="step-body">
+            <h3>Problem validation & competitive audit</h3>
+            <p>Spent a weekend auditing every major Quran app I could find — free, paid, local, international. Looked specifically for verse-level looping, real-time recitation validation, and per-ayah progress tracking. Most apps optimized for <em>reading</em>, not for practicing recitation from memory. The gap was real.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div class="step-body">
+            <h3>Iteration 01 — builder mode (ugly on purpose)</h3>
+            <p>Ignored UX deliberately. Built a rough working version to de-risk the biggest unknown: <em>could the browser's speech recognition API actually understand Arabic recitation well enough to validate memorization?</em> Once it (barely) worked, I shared it with my murojaah friends to test.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div class="step-body">
+            <h3>Reality check — user testing</h3>
+            <p>What made sense to me did not make sense to anyone else. Friends got confused by the flow, tapped wrong buttons, missed features I thought were obvious. The feedback that stung most: <em>"It works, but I don't understand what to do next."</em> Five words that reset my approach entirely.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div class="step-body">
+            <h3>Iteration 02 — designer pivot</h3>
+            <p>Key observation: 100% of my friends opened the app on their phones. I was the only desktop user. I rebuilt top-down with three rules — mobile-first (not mobile-compatible), Indonesian-consistent, and no feature without a verb. Every screen had to answer "what do I do next?" within one glance.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">5</div>
+          <div class="step-body">
+            <h3>Technical hardening & shipping</h3>
+            <p>Added Row-Level Security in Supabase, XSS escaping, defense-in-depth user_id filters, FK cascade for compliance, Google OAuth with custom branding. All invisible to users, all non-negotiable. Deployed to Vercel with a custom domain and tested across mobile browsers before a soft launch to the community.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Product Decisions ── -->
+    <section class="block reveal">
+      <h2>Key Product Decisions</h2>
+      <p>Five forks in the road that shaped the app. Each was a trade-off I had to make alone, without a PM to argue with.</p>
+
+      <div class="decisions">
+        <div class="decision">
+          <div class="decision-q">Guest mode or force login?</div>
+          <div class="decision-a"><strong>Guest, local-only.</strong> Login-first walls kill first impressions. I let guest users store progress in localStorage and sync to Supabase only after sign-in. This mirrors how I wanted to try the app myself — try first, commit later.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Tab sync or tab independent?</div>
+          <div class="decision-a"><strong>Tab sync (industry standard).</strong> If a user logs out in one tab, every tab logs out. Forcing per-tab login is worse than the alternative — and matches how Gmail, Notion, and every serious web app behave.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Speech recognition or manual input?</div>
+          <div class="decision-a"><strong>Speech, despite the complexity.</strong> Manual input would've been 10× easier but 10× less useful. Murojaah <em>is</em> reciting out loud. Typing misses the entire point of the exercise.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Per-surah or per-juz picker?</div>
+          <div class="decision-a"><strong>Both, via segmented control.</strong> Different users think in different units. Exam-prep friends wanted "test me on Juz 30". I wanted "test me on Al-Ma'arij". Segmented tabs respect both mental models.</div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Hide technical errors or surface them?</div>
+          <div class="decision-a"><strong>Surface them in Indonesian with a suggested action.</strong> "Mikrofon belum aktif. Klik ikon kunci di address bar." Users fail gracefully only if they understand what failed. Silent failures are the worst possible UX.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Before / After ── -->
+    <section class="block reveal">
+      <h2>UX Iteration Highlights</h2>
+      <p>I kept a running list of every moment a friend hesitated, tapped the wrong thing, or asked "wait, how do I…". Each of these fixes came directly from that list.</p>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 01</span>
+          <span class="ba-title">Setoran modal getting cut off</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Bottom sheet used <code>max-height:100vh</code>. Mobile browser chrome covered the bottom row. Users couldn't see or reach the ayah range inputs.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Capped at <code>92vh</code>. Ayah range promoted to highlighted cell with dashed accent border, pulse animation, larger inputs, auto-select on focus.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 02</span>
+          <span class="ba-title">"Skip" that wasn't skip</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Button labeled "Skip" (English, in an Indonesian app) that only worked inside retry mode. Outside retry mode, nothing happened. Users assumed the app was broken.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Renamed to <em>"Lewati"</em>. Rewrote the handler to advance the cursor in non-retry mode, marking remaining words as neutral. One word fix plus one logic fix equals zero confusion.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 03</span>
+          <span class="ba-title">Dengarkan Ayat form chaos</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Three inconsistent inputs with phantom dropdown chevrons. No validation. Users could enter ayah 100 for Al-Fatihah (which has 7). No feedback at all.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Standardized fields. Replaced repeat count with a <em>−/+ stepper</em> (still typeable). Live range validation. Dynamic status: <em>"Siap memutar: Al-Ma'arij ayat 1 sampai 5 dengan 3x pengulangan."</em></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 04</span>
+          <span class="ba-title">Sambung Ayat with no identity</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Page jumped straight into a config card with no header. Score tracking lived in a separate disconnected card. Users didn't know what screen they were on.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Added header inside the config card. Moved score tracking into inline <em>BENAR/SALAH chips</em> in the prompt card header. Chips hidden until a session actually starts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 05</span>
+          <span class="ba-title">Silent data leak between users</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>User A logs in, closes the tab without logging out. User B (shared laptop) opens the app — and sees User A's data. Logout handler only cleared topbar UI, not localStorage.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Introduced a logged-in marker. On cold start: if marker exists but no active session, purge all local data. Combined with hard reload on logout, XSS escaping, defense-in-depth <code>user_id</code> filters.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Technical Deep Dive ── -->
+    <section class="block reveal">
+      <h2>Technical Deep Dive</h2>
+      <p>The hardest part wasn't the design — it was teaching a browser to understand a recitation in a language it wasn't optimized for.</p>
+
+      <h3>Speech recognition, and why it broke my brain</h3>
+      <p>The Web Speech API is the browser's built-in speech-to-text engine. Free. Works. And wildly inconsistent — especially for Arabic. I spent more time on this single feature than on every other feature combined.</p>
+      <ul>
+        <li>Same recitation produced different results on Chrome desktop vs Chrome Android vs Safari iOS.</li>
+        <li>Microphone permissions behaved differently — granted silently, required user gestures, required HTTPS, revoked between sessions.</li>
+        <li>Some browsers handled Arabic pronunciation better than others (Chrome best; Safari a gamble).</li>
+        <li>Android Chrome plays an audible "ding" at recognition start — impossible to disable at app level.</li>
+      </ul>
+
+      <h3>When "fifty thousand" broke everything</h3>
+      <p>Early on I tested Al-Ma'arij verse 4, which contains the number <strong>50,000 years</strong>. The browser transcribed my recitation as <code>"خمسين ألف"</code> (phonetic Arabic), but my reference text had <code>"50,000"</code> as digits. My matcher compared them character-by-character, decided they didn't match, and marked a perfectly correct recitation as wrong.</p>
+
+      <pre class="code"><span class="c">// Map digit sequences to their Arabic spoken equivalents</span>
+<span class="k">const</span> <span class="f">_NUM_TO_AR</span> = {
+  <span class="s">'50000'</span>: <span class="s">'خمسين الف'</span>,
+  <span class="s">'70000'</span>: <span class="s">'سبعين الف'</span>,
+  <span class="s">'50'</span>: <span class="s">'خمسين'</span>, <span class="s">'70'</span>: <span class="s">'سبعين'</span>,
+  <span class="s">'19'</span>: <span class="s">'تسعة عشر'</span>, <span class="s">'12'</span>: <span class="s">'اثنا عشر'</span>,
+  <span class="c">// ...and so on</span>
+};
+
+<span class="k">function</span> <span class="f">_digitsToArabic</span>(text) {
+  <span class="k">return</span> text.replace(<span class="s">/\d+/g</span>, m =&gt; _NUM_TO_AR[m] || m);
+}</pre>
+
+      <h3>Lookahead & gap tolerance</h3>
+      <p>Reciters don't always mispronounce — sometimes they <em>skip</em> a word, or pause long enough that the API interprets it as silence. A strictly sequential matcher would cascade errors from one missed word. The fix was a bounded lookahead.</p>
+
+      <div class="callout success">
+        <h3>Matcher behavior</h3>
+        <p>Before marking a word wrong, look ahead up to <strong>3 words</strong> in the expected sequence. If a match exists within that window, treat skipped words as neutral <code>'passed'</code>. For gaps of 2+ words, require a stricter similarity threshold (<code>MATCH_THRESHOLD + 0.08</code>) to prevent the matcher from accidentally claiming a wildly different ayah as a match.</p>
+      </div>
+
+      <p>This single change turned the matcher from "frustrating and punishing" into "forgiving but honest" — exactly the feedback loop a person memorizing the Quran needs.</p>
+
+      <h3>Security is a design decision</h3>
+      <p>When you're a solo builder launching a personal tool, security feels like the thing you do "later". It wasn't.</p>
+      <ul>
+        <li><strong>Row-Level Security</strong> on every Supabase table, targeting the <code>authenticated</code> role with correct <code>USING</code> + <code>WITH CHECK</code> clauses.</li>
+        <li><strong>Storage policies</strong> ensuring users could only upload to folders named with their own <code>auth.uid()</code>.</li>
+        <li><strong>FK <code>ON DELETE CASCADE</code></strong> so deleting a user also deletes all their setoran — compliance with GDPR-style data rights.</li>
+        <li><strong>XSS escaping</strong> in every modal rendering user-supplied data, plus audio URL scheme validation.</li>
+        <li><strong>Defense-in-depth filters</strong> at the query level, even with RLS enabled — because one day I might misconfigure RLS, and the code layer would still save me.</li>
+      </ul>
+    </section>
+
+    <!-- ── Stack ── -->
+    <section class="block reveal">
+      <h2>Stack</h2>
+      <p>No framework. No build step. Just static HTML, CSS, and JS. Turns out you don't always need Next.js.</p>
+      <div class="stack">
+        <span class="stack-pill"><span class="dot"></span>Vanilla JS</span>
+        <span class="stack-pill"><span class="dot"></span>Custom CSS</span>
+        <span class="stack-pill"><span class="dot"></span>Web Speech API</span>
+        <span class="stack-pill"><span class="dot"></span>Supabase</span>
+        <span class="stack-pill"><span class="dot"></span>Google OAuth</span>
+        <span class="stack-pill"><span class="dot"></span>Vercel</span>
+        <span class="stack-pill"><span class="dot"></span>Al-Quran Cloud API</span>
+      </div>
+    </section>
+
+    <!-- ── Lessons ── -->
+    <section class="block reveal">
+      <h2>Lessons Learned</h2>
+      <p>The bugs I fixed are on GitHub. The lessons I learned are here.</p>
+
+      <div class="lessons">
+        <div class="lesson">
+          <div class="lesson-n">01</div>
+          <div class="lesson-body">
+            <h3>Personal itch ≠ product success</h3>
+            <p>I built v1 for myself and it worked — for me. The moment anyone else touched it, every assumption became a friction point. A personal tool becomes a product the moment a second human uses it, and the work between those two states is the real design work.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">02</div>
+          <div class="lesson-body">
+            <h3>UX intuition is a starting point, not a shortcut</h3>
+            <p>Years of design experience didn't stop me from shipping a v1 that confused testers in 30 seconds. Intuition points you in a direction. Testing tells you if the direction was correct. Skipping the second step is how designers ship bad products.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">03</div>
+          <div class="lesson-body">
+            <h3>Technical constraints are design material</h3>
+            <p>The speech API's quirks forced me to design around uncertainty — retry modes, forgiving matchers, visible confidence indicators. Constraints didn't limit the design; they shaped it into something more honest.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">04</div>
+          <div class="lesson-body">
+            <h3>Security is a trust decision</h3>
+            <p>RLS, XSS escaping, data isolation — these sound like backend concerns. They're not. They determine whether a user feels safe trusting your app with their recitation recordings. I stopped thinking of security as "the dev's job" and started thinking of it as <em>trust design</em>.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">05</div>
+          <div class="lesson-body">
+            <h3>Shipping is a skill, not an event</h3>
+            <p>Before this project, shipping felt like a moment — the day you "go live". Now I understand shipping as a muscle: cutting scope, holding quality lines, saying "this version is good enough to show someone" without flinching. I'm still training that muscle.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">06</div>
+          <div class="lesson-body">
+            <h3>Belajar sambil blangsakan</h3>
+            <p>An Indonesian expression that loosely translates to "learning while making a mess of it". My first GitHub push. My first Supabase RLS policy. My first OAuth consent screen. Every single one was a mess. Every single one taught me something I now know forever.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What's Next ── -->
+    <section class="block reveal">
+      <h2>What's Next</h2>
+      <p>Murajaah is live, used, and actively improving. It's not finished — and honestly, I'm not sure it ever will be, because the moment I "finish" something, friends return with new edge cases.</p>
+
+      <h3>On the roadmap</h3>
+      <ul>
+        <li>IndexedDB persistence for guest-mode audio recordings</li>
+        <li>Multiple qari voice options (currently single reciter)</li>
+        <li>Shareable progress snapshots for study groups</li>
+        <li>Proper onboarding flow for first-time users</li>
+      </ul>
+
+      <h3>Known limitations</h3>
+      <ul>
+        <li>Speech recognition quality varies by browser. iOS Safari remains a gamble.</li>
+        <li>The Android Chrome "listening" chime cannot be disabled without a server-side STT pipeline.</li>
+        <li>Speech-to-text has hard failure modes for <em>tajwid</em>-specific nuances. I'm clear about this in-app.</li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <h2>Try it yourself.</h2>
+      <p>The best case studies aren't read — they're experienced. Murajaah is live, free, and built to be tried on your phone in 30 seconds.</p>
+      <a href="https://smartmurojaahquran.vercel.app" target="_blank" class="cta-btn">
+        smartmurojaahquran.vercel.app
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="7" y1="17" x2="17" y2="7"/>
+          <polyline points="7 7 17 7 17 17"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    Designed, built &amp; shipped by <b>Rifda Sajida</b> · 2026 · Case Study 01
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

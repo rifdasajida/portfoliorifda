@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { hero } from "@/data/portfolio";
+import Lottie from "lottie-react"
+import heroAnimation from "@/assets/lottie/lottie-hero.json"
 
 export function Hero() {
   const containerVariants = {
@@ -70,11 +72,10 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <div className="relative w-full max-w-[500px] rounded-2xl overflow-hidden">
-              <img
-                src={`${import.meta.env.BASE_URL}images/${hero.image}`}
-                alt={hero.imageAlt}
-                className="w-80 h-auto"
+            <div className="relative w-full max-w-[500px] mx-auto">
+              <Lottie
+                animationData={heroAnimation}
+                loop
               />
             </div>
           </motion.div>

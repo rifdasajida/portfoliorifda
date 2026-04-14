@@ -202,7 +202,7 @@ export const galleryItems = [
   {
     title: "Mobile App Screens",
     tag: "Mobile UI",
-    image: "galery-dipay.png",
+    image: "gallery-dipay.png",
   },
   {
     title: "Data Visualization",

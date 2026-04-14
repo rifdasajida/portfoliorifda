@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import CaseStudy from "@/pages/CaseStudy";
+import SmartMurojaahCaseStudy from "@/pages/SmartMurojaahCaseStudy";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +20,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/case-study/smart-murojaah" component={SmartMurojaahCaseStudy} />
       <Route path="/case-study/:slug" component={CaseStudy} />
       <Route component={NotFound} />
     </Switch>
