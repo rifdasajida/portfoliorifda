@@ -80,8 +80,8 @@ export function CaseStudies() {
         </div>
 
         <div className="mt-16 text-center">
-          <Button variant="outline" size="lg">
-            See More Projects
+          <Button variant="outline" size="lg" asChild>
+            <a href="#gallery">See More Projects</a>
           </Button>
         </div>
       </div>
