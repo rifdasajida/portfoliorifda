@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AMAN Dashboard Revamp — Case Study</title>
+<meta name="description" content="Standardizing chaos: how I redesigned a B2B insurtech dashboard with 6 inconsistent table styles, 4 different detail page layouts, and zero design system into a unified, scalable product.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* AMAN brand palette — teal/cyan focused */
+  --bg:#FAFCFC;
+  --bg-hero:#E0F4F3;
+  --bg-section:#F2F8F8;
+  --card:#FFFFFF;
+  --card-alt:#F7FAFA;
+  --ink:#0A1F1F;
+  --ink-soft:#1F3838;
+  --ink-body:#4A5959;
+  --ink-mute:#7A8888;
+  --ink-faint:#B5C0C0;
+  --accent:#1FB5B0;
+  --accent-deep:#0D8B86;
+  --accent-darkest:#063E3C;
+  --accent-soft:#D0F0EE;
+  --accent-glow:#7FE4DF;
+  --rule:#DEE8E7;
+  --rule-soft:#EDF3F2;
+  --ok:#1F9B6E;
+  --ok-soft:#DFF4EB;
+  --err:#C54545;
+  --err-soft:#FBE4E4;
+  --warn:#E67E22;
+  --warn-soft:#FFF3E0;
+  --pill:#E8F2F2;
+  --pill-border:#D0E0E0;
+  --note-bg:#FFF8E1;
+  --note-border:#F5D77B;
+  --note-ink:#7A5D00;
+  --sh-sm:0 1px 2px rgba(10,31,31,.04);
+  --sh-md:0 4px 16px rgba(10,31,31,.06);
+  --sh-lg:0 20px 48px rgba(10,31,31,.08);
+  --sh-glow:0 20px 60px rgba(31,181,176,.18);
+  --sans:'Plus Jakarta Sans',-apple-system,system-ui,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink-body);
+  font-size:16px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── Layout ── */
+.container{max-width:760px;margin:0 auto;padding:0 28px;position:relative}
+.container-wide{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* ── Nav ── */
+nav.top{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,252,252,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule-soft);padding:18px 0;
+}
+nav.top .container-wide{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.brand span{color:var(--ink-mute);font-weight:500}
+.nav-meta{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.05em;text-transform:uppercase}
+.nav-meta b{color:var(--ink);font-weight:700}
+
+/* ── Hero ── */
+.hero-wrap{
+  background:var(--bg-hero);
+  padding:72px 0 0;
+  position:relative;
+  overflow:hidden;
+}
+.hero-wrap::before{
+  content:'';position:absolute;
+  top:-100px;right:-100px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(31,181,176,.15) 0%,transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+}
+.hero{padding-bottom:48px;position:relative}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.pill{
+  display:inline-flex;align-items:center;
+  padding:7px 16px;border-radius:100px;
+  background:var(--card);border:1px solid var(--pill-border);
+  font-size:12px;font-weight:600;color:var(--ink-soft);letter-spacing:-.01em;
+  box-shadow:var(--sh-sm);
+}
+.pill.real{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pill .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+  margin-right:8px;
+}
+.pill.real .dot{background:#fff}
+
+h1.hero-title{
+  font-size:clamp(36px,5.5vw,56px);font-weight:800;
+  line-height:1.05;letter-spacing:-.03em;color:var(--ink);
+  margin-bottom:20px;max-width:680px;
+}
+h1.hero-title em{
+  font-family:var(--serif);font-style:italic;
+  color:var(--accent-deep);font-weight:700;
+}
+.hero-lede{
+  font-size:18px;line-height:1.55;color:var(--ink-body);
+  max-width:620px;margin-bottom:40px;font-weight:400;
+}
+
+/* Hero visual — distinct from the prev one */
+.hero-visual{
+  background:linear-gradient(135deg,#063E3C 0%,#0D8B86 50%,#1FB5B0 100%);
+  border-radius:24px;overflow:hidden;
+  aspect-ratio:16/10;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;box-shadow:var(--sh-glow);
+}
+.hero-visual::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.08) 0,transparent 50%),
+    radial-gradient(circle at 80% 70%,rgba(127,228,223,.12) 0,transparent 50%);
+}
+/* grid pattern */
+.hero-visual::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;
+  mask-image:radial-gradient(circle at center,#000 30%,transparent 80%);
+}
+.hero-visual-inner{
+  position:relative;z-index:1;text-align:center;padding:40px;
+}
+.aman-mark{
+  width:80px;height:60px;margin:0 auto 24px;
+  position:relative;
+  filter:drop-shadow(0 6px 20px rgba(127,228,223,.4));
+}
+.aman-mark svg{width:100%;height:100%}
+.hero-text{
+  font-family:var(--serif);
+  font-size:clamp(30px,5vw,46px);
+  font-weight:800;color:#fff;
+  line-height:1.1;margin-bottom:14px;letter-spacing:-.02em;
+  font-style:italic;
+}
+.hero-sub{
+  font-family:var(--mono);font-size:11px;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+}
+/* Floating UI shapes — dashboard-themed */
+.ui-shape{position:absolute;border-radius:8px;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1)}
+.ui-1{top:14%;left:8%;width:80px;height:14px}
+.ui-2{top:22%;left:8%;width:60px;height:8px;background:rgba(127,228,223,.3)}
+.ui-3{bottom:18%;right:10%;width:70px;height:50px}
+.ui-4{bottom:14%;right:10%;width:50px;height:8px;background:rgba(255,255,255,.15);transform:translateY(-20px)}
+@media(max-width:720px){.ui-shape{display:none}}
+
+/* Italic intro paragraph (matches your original style) */
+.intro-quote{
+  font-family:var(--serif);font-style:italic;
+  font-size:17px;line-height:1.6;color:var(--ink-soft);
+  padding:24px 0;margin:0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+}
+
+/* ── Content sections ── */
+.content{padding:72px 0}
+section.block{margin-bottom:64px}
+section.block:last-child{margin-bottom:0}
+
+/* Section eyebrow label */
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.18em;color:var(--accent-deep);
+  text-transform:uppercase;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{
+  content:'';width:24px;height:1.5px;background:var(--accent);
+  display:inline-block;
+}
+
+h2{
+  font-size:30px;font-weight:800;color:var(--ink);
+  letter-spacing:-.025em;line-height:1.15;margin-bottom:18px;
+}
+h2.lg{font-size:36px}
+h2 em{font-family:var(--serif);font-style:italic;color:var(--accent-deep);font-weight:700}
+
+h3{
+  font-size:18px;font-weight:700;color:var(--ink);
+  letter-spacing:-.01em;line-height:1.3;margin:32px 0 10px;
+}
+p{margin-bottom:1.1em;color:var(--ink-body);font-size:16px;line-height:1.7}
+p:last-child{margin-bottom:0}
+p strong{color:var(--ink);font-weight:600}
+p em{color:var(--ink-soft);font-style:italic}
+ul{margin:12px 0 20px 20px}
+li{color:var(--ink-body);line-height:1.75;margin-bottom:6px;font-size:15.5px}
+code{
+  font-family:var(--mono);font-size:13px;
+  background:var(--accent-soft);color:var(--accent-darkest);
+  padding:2px 6px;border-radius:4px;
+}
+
+/* ── TWO-COLUMN comparison block (background & condition style) ── */
+.dual-col{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  margin:24px 0;
+}
+.dual-col-item h3{margin:0 0 10px;font-size:22px;letter-spacing:-.02em}
+.dual-col-item p{font-size:15.5px;line-height:1.65;color:var(--ink-body)}
+@media(max-width:640px){.dual-col{grid-template-columns:1fr;gap:24px}}
+
+/* ── IMAGE PLACEHOLDER (note for user to add image) ── */
+.img-placeholder{
+  background:var(--note-bg);
+  border:2px dashed var(--note-border);
+  border-radius:12px;
+  padding:32px 24px;
+  margin:24px 0;
+  text-align:center;
+  position:relative;
+}
+.img-placeholder::before{
+  content:'📷  ADD IMAGE HERE';
+  position:absolute;top:-12px;left:24px;
+  background:var(--note-bg);
+  padding:0 10px;
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.12em;color:var(--note-ink);
+}
+.img-placeholder-title{
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  color:var(--note-ink);margin-bottom:8px;letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.img-placeholder-desc{
+  font-size:14px;color:var(--note-ink);line-height:1.55;
+  font-style:italic;
+}
+.img-placeholder-caption{
+  font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+  margin-top:14px;padding-top:14px;
+  border-top:1px dashed var(--note-border);
+  letter-spacing:.05em;
+}
+
+/* ── CASE NUMBER (01, 02, 03, 04) ── */
+.case-block{
+  margin:48px 0;padding-top:8px;
+  border-top:1px solid var(--rule-soft);
+}
+.case-block:first-of-type{border-top:none;padding-top:0;margin-top:24px}
+.case-num{
+  font-family:var(--mono);font-size:13px;font-weight:700;
+  color:var(--accent);letter-spacing:.05em;margin-bottom:6px;
+}
+.case-title{
+  font-size:24px;font-weight:800;color:var(--accent-deep);
+  letter-spacing:-.02em;line-height:1.25;margin-bottom:12px;
+}
+.case-block p{font-size:16px;line-height:1.7}
+
+/* ── Stat ribbon (numerical highlights) ── */
+.stat-ribbon{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:24px;margin:24px 0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  box-shadow:var(--sh-sm);
+  overflow:hidden;
+}
+.stat-cell{
+  text-align:center;padding:8px 16px;
+  border-right:1px solid var(--rule-soft);
+}
+.stat-cell:last-child{border-right:none}
+.stat-num{
+  font-family:var(--serif);font-size:36px;font-weight:800;
+  color:var(--accent-deep);letter-spacing:-.03em;line-height:1;
+  margin-bottom:6px;font-style:italic;
+}
+.stat-lbl{
+  font-size:11px;font-weight:600;color:var(--ink-mute);
+  text-transform:uppercase;letter-spacing:.08em;line-height:1.3;
+}
+@media(max-width:640px){
+  .stat-ribbon{grid-template-columns:1fr 1fr;gap:0;padding:0}
+  .stat-cell{padding:20px 12px;border-bottom:1px solid var(--rule-soft)}
+  .stat-cell:nth-child(2){border-right:none}
+  .stat-cell:nth-child(odd){border-right:1px solid var(--rule-soft)}
+  .stat-cell:nth-last-child(-n+2){border-bottom:none}
+}
+
+/* ── Callout ── */
+.callout{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:28px 32px;margin:28px 0;
+  box-shadow:var(--sh-sm);
+}
+.callout h3{margin:0 0 10px;font-size:18px}
+.callout p{margin:0;font-size:15.5px}
+.callout.warm{background:#FFF9F0;border-color:#F5E4C5}
+.callout.danger{background:#FFF5F5;border-color:#F5D4D4}
+.callout.success{background:#F0FAF5;border-color:#C9E8D7}
+.callout.accent{background:var(--accent-soft);border-color:var(--accent-glow)}
+
+/* ── Pivot moment block (the "we decided to revamp" moment) ── */
+.pivot{
+  background:linear-gradient(135deg,var(--accent-soft) 0%,#fff 100%);
+  border:1px solid var(--accent-glow);
+  border-radius:20px;padding:36px 40px;
+  margin:36px 0;
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+  box-shadow:var(--sh-md);
+}
+.pivot-text{
+  font-family:var(--serif);font-style:italic;
+  font-size:22px;line-height:1.4;color:var(--ink);font-weight:700;
+  letter-spacing:-.01em;
+}
+.pivot-icon{
+  font-size:48px;line-height:1;
+}
+@media(max-width:640px){
+  .pivot{grid-template-columns:1fr;text-align:center;padding:28px 24px}
+  .pivot-text{font-size:19px}
+}
+
+/* ── TL;DR ── */
+.tldr{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;padding:28px 32px;margin:24px 0;
+  box-shadow:var(--sh-sm);
+}
+.tldr-lbl{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.18em;color:var(--accent-deep);
+  text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.tldr-lbl::after{
+  content:'';flex:1;height:1px;background:var(--rule);
+}
+.tldr-row{
+  display:grid;grid-template-columns:110px 1fr;gap:16px;
+  padding:14px 0;border-top:1px solid var(--rule-soft);
+}
+.tldr-row:first-of-type{border-top:none}
+.tldr-k{font-size:13px;font-weight:700;color:var(--ink)}
+.tldr-v{font-size:14.5px;line-height:1.65;color:var(--ink-body)}
+@media(max-width:640px){
+  .tldr-row{grid-template-columns:1fr;gap:4px}
+}
+
+/* ── Process steps ── */
+.steps{margin:24px 0}
+.step{
+  display:grid;grid-template-columns:42px 1fr;gap:20px;
+  padding:20px 0;border-top:1px solid var(--rule-soft);
+}
+.step:first-child{border-top:none;padding-top:8px}
+.step-n{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:#fff;
+  font-feature-settings:"tnum";
+  box-shadow:0 4px 10px rgba(31,181,176,.25);
+}
+.step-body h3{margin:0 0 6px;font-size:16px;font-weight:700}
+.step-body p{margin:0;font-size:15px;color:var(--ink-body);line-height:1.65}
+
+/* ── Before / After ── */
+.ba{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:16px;overflow:hidden;margin:20px 0;
+  box-shadow:var(--sh-sm);
+}
+.ba-head{
+  padding:20px 28px 12px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.ba-num{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--accent-deep);letter-spacing:.12em;
+  background:var(--accent-soft);padding:4px 10px;border-radius:100px;
+  border:1px solid var(--accent-glow);
+}
+.ba-title{font-size:16px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.ba-body{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--rule-soft);
+}
+.ba-col{padding:20px 28px}
+.ba-col.before{background:var(--card-alt);border-right:1px solid var(--rule-soft)}
+.ba-col h4{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin:0 0 10px;
+  display:flex;align-items:center;gap:6px;
+}
+.ba-col.before h4{color:var(--err)}
+.ba-col.before h4::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--err)}
+.ba-col.after h4{color:var(--ok)}
+.ba-col.after h4::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.ba-col p{margin:0;font-size:14px;line-height:1.65;color:var(--ink-body)}
+@media(max-width:640px){
+  .ba-body{grid-template-columns:1fr}
+  .ba-col.before{border-right:none;border-bottom:1px solid var(--rule-soft)}
+}
+
+/* ── Design system standardization grid ── */
+.system-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+  margin:24px 0;
+}
+.system-card{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:14px;padding:22px;
+  box-shadow:var(--sh-sm);
+}
+.system-card-tag{
+  display:inline-block;font-family:var(--mono);font-size:10px;
+  font-weight:700;color:var(--accent-deep);letter-spacing:.12em;
+  background:var(--accent-soft);padding:3px 9px;border-radius:100px;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.system-card h4{
+  font-size:15px;font-weight:700;color:var(--ink);
+  margin-bottom:6px;letter-spacing:-.01em;
+}
+.system-card p{font-size:13.5px;color:var(--ink-body);line-height:1.6;margin:0}
+@media(max-width:640px){.system-grid{grid-template-columns:1fr}}
+
+/* ── Stack pills ── */
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}
+.stack-pill{
+  padding:8px 16px;border-radius:100px;
+  background:var(--card);border:1px solid var(--rule);
+  font-size:13px;font-weight:600;color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:8px;
+  box-shadow:var(--sh-sm);
+}
+.stack-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* ── Lessons ── */
+.lessons{margin:24px 0}
+.lesson{
+  display:grid;grid-template-columns:48px 1fr;gap:20px;
+  padding:24px 0;border-top:1px solid var(--rule-soft);
+}
+.lesson:first-child{border-top:none;padding-top:8px}
+.lesson-n{
+  font-family:var(--serif);
+  font-size:38px;font-weight:800;color:var(--accent-deep);
+  letter-spacing:-.03em;line-height:1;opacity:.35;
+  font-feature-settings:"tnum";font-style:italic;
+}
+.lesson-body h3{margin:0 0 6px;font-size:16px}
+.lesson-body p{margin:0;font-size:15px;line-height:1.65}
+
+/* ── Result highlight ── */
+.result{
+  background:linear-gradient(135deg,#063E3C 0%,#0D8B86 50%,#1FB5B0 100%);
+  border-radius:24px;padding:56px 40px;margin:40px 0;
+  text-align:center;color:#fff;
+  box-shadow:var(--sh-glow);
+  position:relative;overflow:hidden;
+}
+.result::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);
+  background-size:20px 20px;pointer-events:none;
+}
+.result::after{
+  content:'';position:absolute;
+  top:-150px;right:-150px;
+  width:300px;height:300px;
+  background:radial-gradient(circle,rgba(127,228,223,.2) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.result-inner{position:relative;z-index:1}
+.result-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:18px;
+}
+.result-headline{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(36px,6vw,52px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.1;margin-bottom:18px;
+}
+.result-desc{
+  font-size:17px;color:rgba(255,255,255,.85);max-width:480px;margin:0 auto;
+  line-height:1.55;
+}
+
+/* ── CTA ── */
+.cta{
+  background:var(--ink);color:#fff;
+  padding:72px 0;margin-top:48px;text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.03) 1px,transparent 0);
+  background-size:24px 24px;pointer-events:none;
+}
+.cta-inner{position:relative}
+.cta h2{color:#fff;font-size:clamp(30px,4.5vw,44px);margin-bottom:14px;letter-spacing:-.025em}
+.cta h2 em{color:var(--accent-glow);font-family:var(--serif);font-style:italic}
+.cta p{color:rgba(255,255,255,.7);font-size:16px;max-width:480px;margin:0 auto 32px}
+
+/* ── Footer ── */
+footer{
+  padding:40px 0;text-align:center;
+  color:var(--ink-mute);font-size:13px;
+  border-top:1px solid var(--rule-soft);
+}
+footer b{color:var(--ink);font-weight:700}
+
+/* ── Reveal anim ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── Responsive ── */
+@media(max-width:720px){
+  .container{padding:0 22px}
+  .container-wide{padding:0 22px}
+  .hero-wrap{padding-top:56px}
+  .content{padding:56px 0}
+  section.block{margin-bottom:48px}
+  .callout{padding:22px 24px}
+  .img-placeholder{padding:28px 20px}
+  .result{padding:40px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="top">
+  <div class="container-wide">
+    <div class="brand">Rifda Sajida <span>/ Portfolio</span></div>
+    <div class="nav-meta">Case Study · <b>03</b></div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero-wrap">
+  <div class="container">
+    <div class="hero reveal">
+      <div class="pills">
+        <span class="pill real"><span class="dot"></span>Real Project</span>
+        <span class="pill">B2B SaaS</span>
+        <span class="pill">Design System</span>
+        <span class="pill">UI Standardization</span>
+        <span class="pill">Dashboard UX</span>
+      </div>
+      <h1 class="hero-title">Standardizing chaos: <em>the AMAN Dashboard</em> Revamp</h1>
+      <p class="hero-lede">How I transformed a B2B insurtech dashboard plagued by 6 different table styles, 4 competing detail page layouts, and zero design system into a unified, scalable product — without breaking what already worked.</p>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="ui-shape ui-1"></div>
+      <div class="ui-shape ui-2"></div>
+      <div class="ui-shape ui-3"></div>
+      <div class="ui-shape ui-4"></div>
+      <div class="hero-visual-inner">
+        <div class="aman-mark">
+          <svg viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 50 Q10 15 25 15 Q40 15 40 35 Q40 15 55 15 Q70 15 70 50" 
+                  stroke="#7FE4DF" stroke-width="6" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="hero-text">Aman Design 2.0</div>
+        <div class="hero-sub">B2B Insurtech · Indonesia</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content">
+  <div class="container">
+
+    <!-- ── Italic Intro ── -->
+    <section class="block reveal">
+      <p class="intro-quote">Aman is an insurtech start-up with the vision to supercharge & simplify employee health benefits experience in Indonesia, focusing on B2B product models of healthcare products as added value.</p>
+    </section>
+
+    <!-- ── Overview ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Overview</div>
+      <h2>The dashboard that everyone used, and <em>no one</em> liked</h2>
+      <p>Dashboards play a multitude of roles within our business, serving both our clients and internal teams. They're the daily operating surface for sales, claims, member management, and merchant operations — touched by dozens of people, every day.</p>
+      <p>However, the current state of our dashboard presented a real challenge. <strong>It was complex and disordered.</strong> Lacking consistency and standardization, it fell short of meeting our usability standards. This case study walks through how we overhauled it and established a uniform structure — enhancing both consistency and user-friendliness.</p>
+
+      <!-- Image: Login Page hero/cover image -->
+      <div class="img-placeholder">
+        <div class="img-placeholder-title">Image 1.1 — Cover / Login Page</div>
+        <div class="img-placeholder-desc">Replace this block with the AMAN login screen mockup ("Welcome back to Aman" with the bear mascot and "Supercharge your team's health benefits" panel).</div>
+        <div class="img-placeholder-caption">Suggested filename: <code>aman-login-cover.png</code> · max-width: 760px</div>
+      </div>
+    </section>
+
+    <!-- ── TL;DR ── -->
+    <section class="block reveal">
+      <div class="tldr">
+        <div class="tldr-lbl">TL;DR</div>
+        <div class="tldr-row">
+          <div class="tldr-k">Problem</div>
+          <div class="tldr-v">No design system. 6 different table styles, 4 different detail page layouts, unclear icons, missing navigation states, and brand-new branding that had never made it into the dashboard.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Approach</div>
+          <div class="tldr-v">Audit every screen → group issues by pattern → standardize at the component & flow level → leave room for customization where genuine variation was needed.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Solution</div>
+          <div class="tldr-v">A unified design system covering tables, detail pages, forms, navigation, and iconography — paired with the rollout of AMAN's new brand identity (logo, colors, typography, mascot).</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">My role</div>
+          <div class="tldr-v">Lead the audit, define the standardization strategy, design the component library, and ship the redesigned dashboard pages alongside engineering.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Background & Condition (dual column like the original) ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Background & Condition</div>
+      <h2>Why now?</h2>
+      <p>Two pressures collided at the same time — and that collision is what made this revamp finally happen.</p>
+
+      <div class="dual-col">
+        <div class="dual-col-item">
+          <h3>Inconsistency</h3>
+          <p>The revamp was triggered when the product design team was asked to build a new feature on the dashboard. We saw inconsistent components, flows, and interactions everywhere — with no documentation explaining why. We were genuinely confused about what patterns to follow for the new feature, which is itself a bad sign for any team.</p>
+        </div>
+        <div class="dual-col-item">
+          <h3>Aman Design Rebranding</h3>
+          <p>At the same time, Aman had introduced new branding across the wider product suite — refreshed logo, new primary color, updated typography, and a mascot. Unfortunately, none of this had been implemented in the dashboard yet. The two pressures together made it clear: this was the moment to revamp.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Case Gathering ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Case Gathering</div>
+      <h2>Deep dive into the <em>condition</em> of our current dashboard</h2>
+      <p>Before designing anything new, I started by collecting every dashboard screen — every menu, every flow, every form — and grouping them by similar issues. The goal wasn't to redesign on instinct, but to let the patterns of inconsistency surface on their own. Here's what we found.</p>
+
+      <!-- Issue 01 -->
+      <div class="case-block">
+        <div class="case-num">01</div>
+        <h3 class="case-title">Inconsistency of Tables</h3>
+        <p>Dashboards live and die by tables — and ours had a lot of data poured into them. The problem? <strong>Six different table styles existed across the product</strong>, with no shared rules. Different headers, different row heights, different filter placements, different action button treatments, different empty states.</p>
+
+        <div class="img-placeholder">
+          <div class="img-placeholder-title">Image 2.1 — Table Inconsistency Audit</div>
+          <div class="img-placeholder-desc">Replace this block with the screenshot showing the 6 different table variants from the dashboard (the blurred audit collage).</div>
+          <div class="img-placeholder-caption">Suggested filename: <code>aman-table-audit.png</code> · *Intentionally blurred image acceptable</div>
+        </div>
+      </div>
+
+      <!-- Issue 02 -->
+      <div class="case-block">
+        <div class="case-num">02</div>
+        <h3 class="case-title">Inconsistency of Detail Pages</h3>
+        <p>Many features had a "detail page" — the second-level view that shows the full record behind a table row. We found <strong>four different detail page layouts</strong>, each with its own approach to content hierarchy, component placement, navigation back to the list, and inline editing. Users essentially had to relearn the page every time they entered a different module.</p>
+
+        <div class="img-placeholder">
+          <div class="img-placeholder-title">Image 2.2 — Detail Page Variants</div>
+          <div class="img-placeholder-desc">Replace this block with the screenshot showing the 4 different detail page layouts side-by-side (User Profile, Claim Details, Member Information, Family Relationships Detail).</div>
+          <div class="img-placeholder-caption">Suggested filename: <code>aman-detail-pages.png</code> · *Intentionally blurred image acceptable</div>
+        </div>
+      </div>
+
+      <!-- Issue 03 -->
+      <div class="case-block">
+        <div class="case-num">03</div>
+        <h3 class="case-title">Limited Space to Input/Edit Data</h3>
+        <p>Some data fields require many characters — full names, company addresses, ICD-10 codes, currency amounts. But the dashboard supported <strong>inline editing directly inside table rows</strong>, where the available width was tiny. Users couldn't see what they were typing, couldn't tell which fields were required, and couldn't validate their input visually.</p>
+
+        <div class="img-placeholder">
+          <div class="img-placeholder-title">Image 2.3 — Inline Edit Constraints</div>
+          <div class="img-placeholder-desc">Replace this block with the screenshot showing the cramped inline-edit row with red "x" indicators across Employer / Job Title / Office ID / Country / Salary Currency fields.</div>
+          <div class="img-placeholder-caption">Suggested filename: <code>aman-inline-edit-issue.png</code></div>
+        </div>
+      </div>
+
+      <!-- Issue 04 -->
+      <div class="case-block">
+        <div class="case-num">04</div>
+        <h3 class="case-title">Unclear Conditions & Affordances</h3>
+        <p>Two related problems lived under this label, both about <em>users not knowing what they were looking at</em>.</p>
+
+        <div class="dual-col" style="margin-top:18px">
+          <div class="dual-col-item">
+            <h3 style="font-size:16px;margin-bottom:6px">Navigation has no current state</h3>
+            <p style="font-size:14.5px">The sidebar should tell the user <em>where they are</em> — which menu, which sub-menu. But the active state simply wasn't visible. Users opened the dashboard with no anchor point.</p>
+          </div>
+          <div class="dual-col-item">
+            <h3 style="font-size:16px;margin-bottom:6px">Icons that mean nothing</h3>
+            <p style="font-size:14.5px">Bare icons like "+", "?", and undecorated chevrons appeared throughout the UI without labels or tooltips. Users guessed at what they did — and guessed wrong.</p>
+          </div>
+        </div>
+
+        <div class="img-placeholder">
+          <div class="img-placeholder-title">Image 2.4 — Navigation & Icon Issues</div>
+          <div class="img-placeholder-desc">Replace this block with the side-by-side screenshot showing (left) the AMAN sidebar with no active state, and (right) the close-up of unclear icons (+, ?, action buttons).</div>
+          <div class="img-placeholder-caption">Suggested filename: <code>aman-nav-icons-issue.png</code></div>
+        </div>
+      </div>
+
+      <!-- Pivot -->
+      <div class="pivot">
+        <div class="pivot-text">After gathering the issues and discussing them as a team, we decided to revamp the design — and make it consistent and easy to use.</div>
+        <div class="pivot-icon">🐻</div>
+      </div>
+    </section>
+
+    <!-- ── Standardization ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Standardization</div>
+      <h2>Before designing, I went <em>back into</em> the dashboard</h2>
+      <p>It was tempting to jump straight into Figma. But that would have just produced four prettier table styles instead of six ugly ones. Instead, I went back into the dashboard one more time — this time looking for the <strong>common content, common actions, and common flows</strong> that every screen shared underneath the visual chaos.</p>
+
+      <p>The standardization had two goals: make the dashboard consistent, but <em>still</em> leave room for genuine customization where the data demanded it. A claims table and an invoices table look similar — they don't have to be identical.</p>
+
+      <div class="img-placeholder">
+        <div class="img-placeholder-title">Image 3.1 — Standardization Mind Map</div>
+        <div class="img-placeholder-desc">Replace this block with the mind map / sitemap diagram that breaks down Overview Page (Table → Head Table → Body Table → Pagination, etc.) and Detail Page hierarchies. This is the artifact that proved the patterns existed underneath the inconsistency.</div>
+        <div class="img-placeholder-caption">Suggested filename: <code>aman-standardization-map.png</code></div>
+      </div>
+
+      <!-- The system grid -->
+      <h3>What standardization actually covered</h3>
+      <div class="system-grid">
+        <div class="system-card">
+          <span class="system-card-tag">01 · Tables</span>
+          <h4>One table, infinite content</h4>
+          <p>Header, table-head, table-body, footer — locked. Filters, search, column visibility, pagination — same place, every time.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card-tag">02 · Detail Pages</span>
+          <h4>Predictable second-level</h4>
+          <p>Back button. Page title. Status pill. Tabbed left navigation. Content panel. Same skeleton, different content per module.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card-tag">03 · Forms</span>
+          <h4>Modals, not table cells</h4>
+          <p>Add / Edit moved into proper modals with full-width inputs, required-field markers, and visible validation states.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card-tag">04 · Navigation</span>
+          <h4>You are here</h4>
+          <p>Sidebar with explicit active state, sub-menu indentation, badge counts, and brand-aligned visual treatment.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card-tag">05 · Iconography</span>
+          <h4>Icon + label, always</h4>
+          <p>No bare "+" buttons. Every action icon paired with a clear label or tooltip. Consistent stroke weight across the set.</p>
+        </div>
+        <div class="system-card">
+          <span class="system-card-tag">06 · Brand</span>
+          <h4>Aman Design 2.0</h4>
+          <p>New logo, primary teal, refreshed typography, and the mascot — finally implemented in the dashboard, fully.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Design Execution ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Design Execution</div>
+      <h2>Make it <em>consistent</em> and easy to use</h2>
+      <p>From the standardized patterns, the actual screens followed quickly. Below are the highest-impact fixes — paired with the original problems they solve.</p>
+
+      <!-- Table standardization -->
+      <h3>Table standardization</h3>
+      <div class="img-placeholder">
+        <div class="img-placeholder-title">Image 4.1 — Standardized Table Anatomy</div>
+        <div class="img-placeholder-desc">Replace with the table standardization diagram showing labeled regions: Header / Table Head / Table Body / Footer with the "Insurance Policy Information" example.</div>
+        <div class="img-placeholder-caption">Suggested filename: <code>aman-table-standardized.png</code></div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 01</span>
+          <span class="ba-title">From 6 table styles to 1 anatomy</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Six different table styles. Filter inputs in different positions. Inconsistent action buttons. Empty and loading states handled ad-hoc per screen.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>One canonical anatomy: Header → Table Head → Table Body → Footer. Filters always above headers. Consistent row hover, status pills, and inline action menu.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview pages -->
+      <h3>Overview pages, unified</h3>
+      <div class="img-placeholder">
+        <div class="img-placeholder-title">Image 4.2 — Variation of Overview Pages</div>
+        <div class="img-placeholder-desc">Replace with the collage showing multiple overview page variants: Healthcare Facility Overview, Employers Overview, Leads Overview — proving the same skeleton supports different modules.</div>
+        <div class="img-placeholder-caption">Suggested filename: <code>aman-overview-variations.png</code></div>
+      </div>
+
+      <p>The same skeleton scales across <strong>Employers, Members, Healthcare Facilities, Leads, Claims, Invoices, Merchants</strong>, and more. Each module gets the columns and KPIs it actually needs — but lands the user on a layout they already know how to read.</p>
+
+      <!-- Detail Page -->
+      <h3>Detail pages, predictable</h3>
+      <div class="img-placeholder">
+        <div class="img-placeholder-title">Image 4.3 — Detail Page Example (Member Details)</div>
+        <div class="img-placeholder-desc">Replace with the redesigned Member Details page showing left tabs (Personal Information, Employment, Insurance Policy, Family, Bank, Medical, Change Request, Change History) and the standardized content panel.</div>
+        <div class="img-placeholder-caption">Suggested filename: <code>aman-detail-page.png</code></div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 02</span>
+          <span class="ba-title">From 4 detail layouts to 1 navigation pattern</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Four different detail page layouts. Users had to relearn navigation, status indicators, and edit affordances every time they entered a different module.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Tabbed left nav as the canonical pattern. Status pill in the header. Inline edit on the right panel only. Same back button, same breadcrumb, same place — every time.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add / Edit Modal -->
+      <h3>Add & Edit, finally with breathing room</h3>
+      <div class="img-placeholder">
+        <div class="img-placeholder-title">Image 4.4 — Add Lead & Edit Lead Modals</div>
+        <div class="img-placeholder-desc">Replace with the screenshot showing the redesigned Add Lead and Edit Lead Information modals — full-width inputs, required-field markers, two-column layout for related fields.</div>
+        <div class="img-placeholder-caption">Suggested filename: <code>aman-add-edit-modals.png</code></div>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">FIX 03</span>
+          <span class="ba-title">Inline editing → proper modals</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Editing happened inside table cells. Tiny inputs. No required-field signals. No validation feedback. Users typed blind.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Add/Edit modals with grouped sections, full-width inputs, required-field asterisks, real-time validation, and a sticky footer with Cancel + Save.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Process ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Process Recap</div>
+      <h2>The five-step path from chaos to system</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div class="step-body">
+            <h3>Audit every screen</h3>
+            <p>Collected every dashboard menu, every flow, every form. Treated the existing UI as the research artifact rather than starting from a blank Figma file.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div class="step-body">
+            <h3>Group by issue, not by feature</h3>
+            <p>Sorted screens by the <em>type</em> of inconsistency — table styles together, detail pages together, navigation issues together. The patterns surfaced themselves.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div class="step-body">
+            <h3>Map common content, action, and flow</h3>
+            <p>Built a sitemap-style diagram of every recurring component: table head, table body, pagination, filter, search, batch actions, empty states. Same exercise for detail pages.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div class="step-body">
+            <h3>Standardize, with escape hatches</h3>
+            <p>Locked the skeleton (header, body, footer regions, navigation patterns) but left module-level customization for genuinely different data needs. Consistency without rigidity.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">5</div>
+          <div class="step-body">
+            <h3>Roll out branding alongside structure</h3>
+            <p>Implemented Aman Design 2.0 — logo, primary teal, typography, mascot — together with the structural revamp, so users experienced the new dashboard as a single coherent change rather than two confusing ones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Result ── -->
+    <section class="block reveal">
+      <div class="eyebrow">The Outcome</div>
+      <h2>One dashboard, finally aligned</h2>
+
+      <div class="result">
+        <div class="result-inner">
+          <div class="result-label">Welcome to Aman Design 2.0</div>
+          <div class="result-headline">From 6 table styles<br>to one consistent system.</div>
+          <div class="result-desc">A unified, scalable dashboard that finally reflects Aman's brand — and gives the team a foundation to build new features on, without confusion.</div>
+        </div>
+      </div>
+
+      <div class="stat-ribbon">
+        <div class="stat-cell">
+          <div class="stat-num">6→1</div>
+          <div class="stat-lbl">Table Styles<br>Unified</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">4→1</div>
+          <div class="stat-lbl">Detail Page<br>Patterns</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Brand 2.0<br>Adoption</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">∞</div>
+          <div class="stat-lbl">Future<br>Scalability</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Lessons Learned ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Lessons Learned</div>
+      <h2>What this project actually <em>taught</em> me</h2>
+
+      <div class="lessons">
+        <div class="lesson">
+          <div class="lesson-n">01</div>
+          <div class="lesson-body">
+            <h3>Audit before you redesign</h3>
+            <p>The temptation when a UI feels broken is to open Figma. The real win came from going <em>backwards</em> first — collecting screens, grouping by issue, letting the patterns surface. The redesign was almost trivial once the audit was done.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">02</div>
+          <div class="lesson-body">
+            <h3>Standardization ≠ uniformity</h3>
+            <p>Locking the skeleton while leaving module-level customization meant the system held up for genuinely different data — claims, invoices, merchants, members — without forcing one shape over all of them. Rigid systems break the moment edge cases appear.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">03</div>
+          <div class="lesson-body">
+            <h3>Branding alone won't fix structure</h3>
+            <p>The new logo, color, and mascot were ready — but on top of an inconsistent dashboard they would have just been lipstick. Pairing the brand rollout with structural standardization is what made the whole thing feel new.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">04</div>
+          <div class="lesson-body">
+            <h3>Inconsistency is a leadership signal</h3>
+            <p>Six table styles don't appear because designers can't draw tables. They appear because no one owns the system. The most valuable output of this project wasn't the new dashboard — it was the shared language the team now uses to discuss what "consistent" actually means.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Scope & Role ── -->
+    <section class="block reveal">
+      <div class="eyebrow">Scope & My Role</div>
+      <h2>What I owned on this project</h2>
+      <p>End-to-end ownership across audit, system design, and execution — alongside the engineering and brand team for rollout.</p>
+
+      <div class="stack">
+        <span class="stack-pill"><span class="dot"></span>UI Audit</span>
+        <span class="stack-pill"><span class="dot"></span>Design System</span>
+        <span class="stack-pill"><span class="dot"></span>Component Library</span>
+        <span class="stack-pill"><span class="dot"></span>UI Standardization</span>
+        <span class="stack-pill"><span class="dot"></span>Information Architecture</span>
+        <span class="stack-pill"><span class="dot"></span>Brand Implementation</span>
+        <span class="stack-pill"><span class="dot"></span>Stakeholder Collaboration</span>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <h2>Curious about the <em>process</em>?</h2>
+      <p>Standardizing a B2B product is rarely a single moment of design — it's the slow work of finding patterns, naming them, and getting a team to agree. Happy to walk through the messier parts.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    Designed &amp; documented by <b>Rifda Sajida</b> · 2026 · Case Study 03
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
