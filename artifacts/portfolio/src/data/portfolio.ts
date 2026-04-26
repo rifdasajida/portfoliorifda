@@ -185,6 +185,123 @@ export const caseStudies = [
     ],
     gallery: ["case-study-3.png"],
   },
+
+  {
+    slug: "fintech-onboarding",
+    title: "Fintech Onboarding Flow Redesign",
+    description:
+      "Streamlining a 12-step KYC flow into a 4-step progressive experience that boosted account approvals by 38%.",
+    tags: ["Fintech", "Onboarding", "Mobile UI"],
+    image: "case-study-1.png",
+    color: "bg-blue-50",
+    overview:
+      "Worked with a digital bank to redesign their account opening journey, balancing strict regulatory KYC requirements with a friendly, low-friction first impression.",
+    problem:
+      "The original onboarding had 12 sequential steps with no progress indicator, asked for sensitive documents upfront, and lost 61% of users before account approval.",
+    outcome:
+      "The redesigned flow lifted completed signups by 38%, cut average completion time from 14 to 6 minutes, and reduced support tickets about onboarding by 52%.",
+    processSteps: [
+      {
+        title: "Compliance Audit",
+        description:
+          "Mapped every required KYC field against local regulations to identify what was truly mandatory versus 'nice to have' — and removed 5 fields entirely.",
+      },
+      {
+        title: "Progressive Disclosure",
+        description:
+          "Restructured the flow into 4 stages (Identity → Address → Verification → Confirmation), each with a clear progress indicator and inline help.",
+      },
+      {
+        title: "Visual System",
+        description:
+          "Designed a friendly, conversational tone with illustrations at each step to demystify intimidating financial language.",
+      },
+      {
+        title: "Live Validation",
+        description:
+          "Added real-time validation for IDs, phone numbers, and addresses — preventing dead-end errors at the final submit.",
+      },
+    ],
+    gallery: ["case-study-1.png"],
+  },
+
+  {
+    slug: "edtech-learning-path",
+    title: "EdTech Personalized Learning Path",
+    description:
+      "Designing an adaptive learning experience that helps students stay on track with personalized milestones and progress tracking.",
+    tags: ["EdTech", "Personalization", "Web App"],
+    image: "case-study-2.png",
+    color: "bg-yellow-50",
+    overview:
+      "Collaborated with an online learning platform to design a personalized learning path system that adapts to each student's pace, goals, and interests.",
+    problem:
+      "Students were overwhelmed by 200+ available courses with no clear sequence, leading to a 70% drop-off rate within the first two weeks.",
+    outcome:
+      "The new adaptive path system improved 30-day retention by 44%, course completion rates by 28%, and weekly active learners by 62%.",
+    processSteps: [
+      {
+        title: "Learner Interviews",
+        description:
+          "Conducted 18 interviews with active and churned learners to understand the gap between intent and follow-through.",
+      },
+      {
+        title: "Goal-Based Pathways",
+        description:
+          "Designed an onboarding quiz that maps users to one of 6 learning tracks, each with a visual roadmap of milestones.",
+      },
+      {
+        title: "Adaptive Pacing",
+        description:
+          "Built logic to suggest weekly study targets based on user availability, with gentle nudges and a streak system to maintain momentum.",
+      },
+      {
+        title: "Progress Dashboard",
+        description:
+          "Created a personal dashboard showing achievements, current streak, time-to-goal estimate, and recommended next lesson.",
+      },
+    ],
+    gallery: ["case-study-2.png"],
+  },
+
+  {
+    slug: "healthcare-appointment",
+    title: "Healthcare Appointment Booking",
+    description:
+      "Reimagining a hospital's appointment booking system to reduce no-shows and make scheduling 3x faster for patients.",
+    tags: ["Healthcare", "Service Design", "Mobile UI"],
+    image: "case-study-3.png",
+    color: "bg-pink-50",
+    overview:
+      "Partnered with a regional hospital network to overhaul their patient-facing appointment booking — both the mobile app and the web portal — to reduce friction for patients and admin overhead for staff.",
+    problem:
+      "The legacy system required patients to call during office hours, used confusing medical terminology, and had a 22% no-show rate due to lack of reminders and easy reschedule options.",
+    outcome:
+      "Self-service bookings rose by 71%, no-show rate dropped to 9%, and call-center booking volume decreased by 54% — freeing up staff for higher-value support.",
+    processSteps: [
+      {
+        title: "Patient Journey Mapping",
+        description:
+          "Mapped the end-to-end patient experience from symptom recognition to post-visit follow-up across 4 patient personas.",
+      },
+      {
+        title: "Plain-Language Specialty Selector",
+        description:
+          "Replaced medical jargon with symptom-based search ('Why are you visiting?') that maps to the correct specialty automatically.",
+      },
+      {
+        title: "Smart Scheduling",
+        description:
+          "Designed a calendar view that shows real-time availability across nearby clinics, with one-tap reschedule and auto-reminders via SMS and push.",
+      },
+      {
+        title: "Staff Companion App",
+        description:
+          "Built a lightweight admin view for front-desk staff to manage walk-ins and reassign appointments without leaving the same system patients use.",
+      },
+    ],
+    gallery: ["case-study-3.png"],
+  },
 ];
 
 // --------------- UI GALLERY ---------------

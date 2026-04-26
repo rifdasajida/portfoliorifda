@@ -1,10 +1,17 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { caseStudies } from "@/data/portfolio";
 
+const INITIAL_COUNT = 3;
+
 export function CaseStudies() {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? caseStudies : caseStudies.slice(0, INITIAL_COUNT);
+  const hasMore = caseStudies.length > INITIAL_COUNT;
+
   return (
     <section id="work" className="py-24 bg-background">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -30,60 +37,75 @@ export function CaseStudies() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseStudies.map((study, index) => (
-            <motion.div
-              key={study.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group flex flex-col h-full"
+          <AnimatePresence initial={false}>
+            {visible.map((study, index) => (
+              <motion.div
+                key={study.slug}
+                layout
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: index < INITIAL_COUNT ? index * 0.1 : (index - INITIAL_COUNT) * 0.1 }}
+                className="group flex flex-col h-full"
+              >
+                <Link
+                  href={`/case-study/${study.slug}`}
+                  className="flex flex-col h-full rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl transition-all duration-300"
+                >
+                  <div
+                    className={`relative aspect-[4/3] overflow-hidden ${study.color} flex items-center justify-center p-6`}
+                  >
+                    <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10" />
+                    <img
+                      src={`${import.meta.env.BASE_URL}images/${study.image}`}
+                      alt={study.title}
+                      className="w-full h-full object-cover rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {study.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs font-medium px-2.5 py-1 bg-secondary text-secondary-foreground rounded-md"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      {study.title}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm mb-6 flex-grow">
+                      {study.description}
+                    </p>
+
+                    <div className="flex items-center text-sm font-semibold text-primary mt-auto">
+                      View Case Study
+                      <ArrowUpRight className="ml-1 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+
+        {hasMore && (
+          <div className="mt-16 text-center">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setShowAll((prev) => !prev)}
+              data-testid="button-toggle-projects"
             >
-              <Link href={`/case-study/${study.slug}`} className="flex flex-col h-full rounded-2xl overflow-hidden border border-border bg-card hover:shadow-xl transition-all duration-300">
-                <div className={`relative aspect-[4/3] overflow-hidden ${study.color} flex items-center justify-center p-6`}>
-                  <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10" />
-                  <img
-                    src={`${import.meta.env.BASE_URL}images/${study.image}`}
-                    alt={study.title}
-                    className="w-full h-full object-cover rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-
-                <div className="p-6 flex flex-col flex-grow">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {study.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs font-medium px-2.5 py-1 bg-secondary text-secondary-foreground rounded-md"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                    {study.title}
-                  </h3>
-
-                  <p className="text-muted-foreground text-sm mb-6 flex-grow">
-                    {study.description}
-                  </p>
-
-                  <div className="flex items-center text-sm font-semibold text-primary mt-auto">
-                    View Case Study
-                    <ArrowUpRight className="ml-1 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <Button variant="outline" size="lg" asChild>
-            <a href="#gallery">See More Projects</a>
-          </Button>
-        </div>
+              {showAll ? "Show Less" : "See More Projects"}
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );
