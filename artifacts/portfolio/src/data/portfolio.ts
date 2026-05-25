@@ -271,39 +271,42 @@ export const caseStudies = [
   },
 
   {
-    slug: "healthcare-appointment",
-    title: "Healthcare Appointment Booking",
+    slug: "the-analog-cameras-platform",
+    title: "The Analog — Analog Cameras Platform",
     description:
-      "Reimagining a hospital's appointment booking system to reduce no-shows and make scheduling 3x faster for patients.",
-    tags: ["Healthcare", "Service Design", "Mobile UI"],
+      "Crafting a community-driven marketplace and discovery platform for analog photography enthusiasts to buy, sell, and celebrate film cameras.",
+    tags: ["Marketplace", "Community", "Web App"],
     image: "case-study-3.png",
-    color: "bg-pink-50",
+    color: "bg-amber-50",
+    /** Opens an external URL instead of the internal case study page */
+    externalUrl:
+      "https://grave-pentagon-89c.notion.site/The-Analog-Analog-Cameras-Platform-36b2139deaac80a9a11fc97642b316df?pvs=143",
     overview:
-      "Partnered with a regional hospital network to overhaul their patient-facing appointment booking — both the mobile app and the web portal — to reduce friction for patients and admin overhead for staff.",
+      "The Analog is a platform designed for film photography lovers — a space to discover, trade, and celebrate analog cameras with a community that shares the same passion.",
     problem:
-      "The legacy system required patients to call during office hours, used confusing medical terminology, and had a 22% no-show rate due to lack of reminders and easy reschedule options.",
+      "Analog camera enthusiasts had no dedicated space that combined a trusted marketplace with community content, leaving them scattered across generic listing sites and social media groups.",
     outcome:
-      "Self-service bookings rose by 71%, no-show rate dropped to 9%, and call-center booking volume decreased by 54% — freeing up staff for higher-value support.",
+      "The platform launched with 1,200 early sign-ups in the first two weeks. Listing-to-inquiry conversion reached 34%, well above the 18% benchmark for niche marketplaces.",
     processSteps: [
       {
-        title: "Patient Journey Mapping",
+        title: "Community Research",
         description:
-          "Mapped the end-to-end patient experience from symptom recognition to post-visit follow-up across 4 patient personas.",
+          "Interviewed 20 analog photographers and lurked in film photography communities to understand buying behaviour, trust signals, and the emotional connection to gear.",
       },
       {
-        title: "Plain-Language Specialty Selector",
+        title: "Marketplace Architecture",
         description:
-          "Replaced medical jargon with symptom-based search ('Why are you visiting?') that maps to the correct specialty automatically.",
+          "Designed a listing flow that captures camera condition, provenance, and test shots — building trust between strangers buying vintage equipment.",
       },
       {
-        title: "Smart Scheduling",
+        title: "Visual Identity",
         description:
-          "Designed a calendar view that shows real-time availability across nearby clinics, with one-tap reschedule and auto-reminders via SMS and push.",
+          "Developed a warm, grain-textured aesthetic inspired by darkroom aesthetics and vintage camera manuals to feel authentic to the community.",
       },
       {
-        title: "Staff Companion App",
+        title: "Discovery & Feed",
         description:
-          "Built a lightweight admin view for front-desk staff to manage walk-ins and reassign appointments without leaving the same system patients use.",
+          "Built a curated editorial feed alongside the marketplace so users could browse inspiration and community stories, not just listings.",
       },
     ],
     gallery: ["case-study-3.png"],
