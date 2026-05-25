@@ -229,39 +229,42 @@ export const caseStudies = [
   },
 
   {
-    slug: "edtech-learning-path",
-    title: "EdTech Personalized Learning Path",
+    slug: "water-hydration-reminder",
+    title: "Water Hydration Reminder Feature",
     description:
-      "Designing an adaptive learning experience that helps students stay on track with personalized milestones and progress tracking.",
-    tags: ["EdTech", "Personalization", "Web App"],
+      "Designing a smart hydration tracking feature that nudges users to drink more water through personalized reminders and progress visualization.",
+    tags: ["Health App", "Feature Design", "Mobile UI"],
     image: "case-study-2.png",
-    color: "bg-yellow-50",
+    color: "bg-cyan-50",
+    /** Opens an external URL instead of the internal case study page */
+    externalUrl:
+      "https://grave-pentagon-89c.notion.site/Water-Hydration-Reminder-Feature-36b2139deaac8045a471ddadc88fd167?pvs=143",
     overview:
-      "Collaborated with an online learning platform to design a personalized learning path system that adapts to each student's pace, goals, and interests.",
+      "Designed a hydration reminder feature for a wellness app that helps users build consistent daily water intake habits through gentle nudges, visual progress, and smart scheduling.",
     problem:
-      "Students were overwhelmed by 200+ available courses with no clear sequence, leading to a 70% drop-off rate within the first two weeks.",
+      "Most users knew they should drink more water but consistently forgot throughout the day — existing reminder apps felt intrusive and were quickly disabled.",
     outcome:
-      "The new adaptive path system improved 30-day retention by 44%, course completion rates by 28%, and weekly active learners by 62%.",
+      "Daily active usage of the feature reached 68% within the first month. Users who engaged with the reminder logged 40% more water intake on average.",
     processSteps: [
       {
-        title: "Learner Interviews",
+        title: "User Research",
         description:
-          "Conducted 18 interviews with active and churned learners to understand the gap between intent and follow-through.",
+          "Surveyed 200+ users and ran diary studies to understand when and why people forget to hydrate throughout the day.",
       },
       {
-        title: "Goal-Based Pathways",
+        title: "Behavioral Design",
         description:
-          "Designed an onboarding quiz that maps users to one of 6 learning tracks, each with a visual roadmap of milestones.",
+          "Designed a non-intrusive reminder system that adapts timing based on user activity patterns, reducing notification fatigue.",
       },
       {
-        title: "Adaptive Pacing",
+        title: "Progress Visualization",
         description:
-          "Built logic to suggest weekly study targets based on user availability, with gentle nudges and a streak system to maintain momentum.",
+          "Created a satisfying water glass fill animation and daily ring chart so users feel rewarded for each log entry.",
       },
       {
-        title: "Progress Dashboard",
+        title: "Personalization Flow",
         description:
-          "Created a personal dashboard showing achievements, current streak, time-to-goal estimate, and recommended next lesson.",
+          "Built an onboarding flow that calculates a recommended daily goal based on weight, activity level, and climate — and lets users adjust it at any time.",
       },
     ],
     gallery: ["case-study-2.png"],
