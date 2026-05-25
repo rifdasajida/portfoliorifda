@@ -187,42 +187,45 @@ export const caseStudies = [
   },
 
   {
-    slug: "fintech-onboarding",
-    title: "Fintech Onboarding Flow Redesign",
+    slug: "shonic-ecommerce",
+    title: "SHONIC Electronic E-Commerce",
     description:
-      "Streamlining a 12-step KYC flow into a 4-step progressive experience that boosted account approvals by 38%.",
-    tags: ["Fintech", "Onboarding", "Mobile UI"],
-    image: "case-study-1.png",
-    color: "bg-blue-50",
+      "Designing an end-to-end shopping experience for an electronics retailer — from product discovery to seamless checkout.",
+    tags: ["E-Commerce", "Mobile UI", "UX Research"],
+    image: "case-study-surplus.png",
+    color: "bg-indigo-50",
+    /** Opens an external URL instead of the internal case study page */
+    externalUrl:
+      "https://grave-pentagon-89c.notion.site/SHONIC-Electronic-E-Commerce-36b2139deaac802db96aebc27e665a19?pvs=143",
     overview:
-      "Worked with a digital bank to redesign their account opening journey, balancing strict regulatory KYC requirements with a friendly, low-friction first impression.",
+      "SHONIC is an electronics e-commerce platform redesigned to help users confidently compare, choose, and purchase gadgets with a fast and trustworthy experience.",
     problem:
-      "The original onboarding had 12 sequential steps with no progress indicator, asked for sensitive documents upfront, and lost 61% of users before account approval.",
+      "Users struggled to compare technical specs across products, had low trust in product authenticity, and faced a cluttered checkout that led to high cart abandonment.",
     outcome:
-      "The redesigned flow lifted completed signups by 38%, cut average completion time from 14 to 6 minutes, and reduced support tickets about onboarding by 52%.",
+      "The redesign improved product page engagement by 41%, reduced checkout drop-off by 29%, and raised the mobile NPS from +18 to +46.",
     processSteps: [
       {
-        title: "Compliance Audit",
+        title: "Discovery & Research",
         description:
-          "Mapped every required KYC field against local regulations to identify what was truly mandatory versus 'nice to have' — and removed 5 fields entirely.",
+          "Conducted competitive analysis of leading electronics e-commerce platforms and interviewed 15 shoppers to map pain points around product comparison and trust signals.",
       },
       {
-        title: "Progressive Disclosure",
+        title: "Information Architecture",
         description:
-          "Restructured the flow into 4 stages (Identity → Address → Verification → Confirmation), each with a clear progress indicator and inline help.",
+          "Restructured category navigation and spec comparison flows to reduce cognitive load and help users reach the right product faster.",
       },
       {
-        title: "Visual System",
+        title: "UI Design",
         description:
-          "Designed a friendly, conversational tone with illustrations at each step to demystify intimidating financial language.",
+          "Created a clean, tech-forward visual system with a dark-accent palette, high-quality product imagery, and a streamlined 3-step checkout.",
       },
       {
-        title: "Live Validation",
+        title: "Usability Testing",
         description:
-          "Added real-time validation for IDs, phone numbers, and addresses — preventing dead-end errors at the final submit.",
+          "Ran 2 rounds of moderated testing with 8 participants. Iterated on the comparison table and cart summary based on task-failure feedback.",
       },
     ],
-    gallery: ["case-study-1.png"],
+    gallery: ["case-study-surplus.png"],
   },
 
   {
