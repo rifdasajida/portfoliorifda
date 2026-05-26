@@ -6,6 +6,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import CaseStudy from "@/pages/CaseStudy";
 import SmartMurojaahCaseStudy from "@/pages/SmartMurojaahCaseStudy";
+import DipayCaseStudy from "@/pages/DipayCaseStudy";
 import EcommerceCheckoutCaseStudy from "@/pages/EcommerceCheckoutCaseStudy";
 import SaasAnalyticsCaseStudy from "@/pages/SaasAnalyticsCaseStudy";
 
@@ -23,6 +24,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/case-study/smart-murojaah" component={SmartMurojaahCaseStudy} />
+      <Route path="/case-study/dipay-settlement" component={DipayCaseStudy} />
       <Route path="/case-study/ecommerce-checkout" component={EcommerceCheckoutCaseStudy} />
       <Route path="/case-study/saas-analytics-dashboard" component={SaasAnalyticsCaseStudy} />
       <Route path="/case-study/:slug" component={CaseStudy} />

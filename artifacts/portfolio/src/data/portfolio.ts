@@ -109,6 +109,45 @@ export const caseStudies = [
   },
 
   {
+    slug: "dipay-settlement",
+    title: "Dipay Settlement & Reconciliation Revamp",
+    description:
+      "Redesigning Dipay's internal settlement operations to eliminate manual reconciliation and save Finance teams 4–5 hours per settlement cycle.",
+    tags: ["Fintech", "Operational UX", "Internal Tool"],
+    image: "gallery-dipay.png",
+    color: "bg-indigo-950",
+    overview:
+      "Finance teams at Dipay spent almost an entire working day per settlement cycle manually comparing spreadsheets and downloading reports one-by-one. This project redesigned the full settlement and reconciliation workflow inside Dipay's Core Dashboard.",
+    problem:
+      "Settlement operations relied on manual reconciliation across 50–70 merchants per batch, with a UI that reset filters after every export — making every Monday a multi-hour ordeal of repetitive, error-prone work.",
+    outcome:
+      "Automated reconciliation engine reduced processing time by 4–5 hours per cycle, eliminated manual spreadsheet exports, and surfaced anomalies instantly instead of requiring row-by-row comparison.",
+    processSteps: [
+      {
+        title: "Operational Research",
+        description:
+          "Conducted deep interviews and workflow walkthroughs with Finance and Operations teams to map where time was actually being lost — mostly outside the 'decision-making' process, in downloads, refreshes, and manual comparisons.",
+      },
+      {
+        title: "Settlement Lifecycle Mapping",
+        description:
+          "Documented the full lifecycle from Settlement Request to Disbursement & Retry, identifying bottlenecks at the reconciliation and operational review stages.",
+      },
+      {
+        title: "Automation Boundary Design",
+        description:
+          "Worked with backend engineers to define what could safely be automated. Designed a hybrid model: automate high-confidence cases, escalate uncertain ones for human review.",
+      },
+      {
+        title: "System & UI Design",
+        description:
+          "Designed the two-status reconciliation engine, anomaly highlighting, multi-level approval workflow, and failed settlement retry flow — each addressing a specific operational failure mode.",
+      },
+    ],
+    gallery: ["gallery-dipay.png"],
+  },
+
+  {
     slug: "ecommerce-checkout",
     title: "E-commerce Checkout Optimization",
     description:

@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dipay Settlement & Reconciliation Revamp — Case Study</title>
+<meta name="description" content="Redesigning Dipay's internal settlement operations to reduce manual reconciliation effort by 4–5 hours, improve transaction visibility, and support scalable financial operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Dipay brand palette — deep indigo / slate fintech */
+  --bg:#F5F6FA;
+  --bg-hero:#ECEEF8;
+  --bg-dark:#0F1229;
+  --card:#FFFFFF;
+  --card-alt:#F8F9FC;
+  --ink:#0D1117;
+  --ink-soft:#1A2040;
+  --ink-body:#44505E;
+  --ink-mute:#8494A8;
+  --ink-faint:#C0CAD6;
+  --accent:#4B5FE0;
+  --accent-mid:#3548C9;
+  --accent-deep:#1E2D9E;
+  --accent-soft:#EBEDf8;
+  --accent-glow:#A5AFFF;
+  --accent2:#E06B4B;          /* warm orange — secondary accent for callouts */
+  --accent2-soft:#FDF0EB;
+  --rule:#E0E4EE;
+  --rule-soft:#ECEEF5;
+  --ok:#1A9E6E;
+  --ok-soft:#E0F5EC;
+  --ok-vivid:#22C55E;
+  --err:#D94040;
+  --err-soft:#FDEAEA;
+  --warn:#D97706;
+  --warn-soft:#FEF3C7;
+  --note-bg:#FFFBEB;
+  --note-border:#FCD34D;
+  --note-ink:#78520A;
+  --sh-sm:0 1px 3px rgba(13,17,35,.05);
+  --sh-md:0 4px 20px rgba(13,17,35,.07);
+  --sh-lg:0 24px 56px rgba(13,17,35,.09);
+  --sh-accent:0 16px 48px rgba(75,95,224,.2);
+  --sans:'Plus Jakarta Sans',-apple-system,system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --r-sm:10px;
+  --r-md:16px;
+  --r-lg:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink-body);
+  font-size:16px;line-height:1.65;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--accent);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── Layout ── */
+.container{max-width:768px;margin:0 auto;padding:0 28px;position:relative}
+.container-wide{max-width:1120px;margin:0 auto;padding:0 28px}
+
+/* ══════════════════════════
+   NAV
+══════════════════════════ */
+nav.top{
+  position:sticky;top:0;z-index:100;
+  background:rgba(245,246,250,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule-soft);padding:16px 0;
+}
+nav.top .container-wide{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.brand span{color:var(--ink-mute);font-weight:500}
+.nav-badge{
+  font-family:var(--mono);font-size:10.5px;color:var(--accent);
+  letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  background:var(--accent-soft);padding:5px 12px;border-radius:100px;
+  border:1px solid var(--accent-glow);
+}
+
+/* ══════════════════════════
+   HERO
+══════════════════════════ */
+.hero-wrap{
+  background:var(--bg-dark);
+  padding:80px 0 0;
+  position:relative;overflow:hidden;
+}
+/* layered noise + glow */
+.hero-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(75,95,224,.22) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(224,107,75,.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-wrap::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:40px 40px;
+  pointer-events:none;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 100%);
+}
+
+.hero{padding-bottom:0;position:relative;z-index:1}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 16px;border-radius:100px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:-.005em;
+}
+.pill.real{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 16px rgba(75,95,224,.4)}
+.pill .dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);flex-shrink:0}
+.pill.real .dot{background:rgba(255,255,255,.8)}
+
+h1.hero-title{
+  font-size:clamp(34px,5vw,54px);font-weight:800;
+  line-height:1.06;letter-spacing:-.032em;color:#fff;
+  margin-bottom:22px;max-width:680px;
+}
+h1.hero-title em{
+  font-family:var(--serif);font-style:italic;
+  color:var(--accent-glow);font-weight:400;
+}
+.hero-lede{
+  font-size:17.5px;line-height:1.6;color:rgba(255,255,255,.65);
+  max-width:600px;margin-bottom:48px;font-weight:400;
+}
+
+/* Hero visual — terminal / dashboard dark theme */
+.hero-visual{
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+  overflow:hidden;
+  position:relative;
+  background:#161830;
+  border:1px solid rgba(255,255,255,.08);
+  border-bottom:none;
+  box-shadow:0 -20px 80px rgba(75,95,224,.15);
+  margin-top:8px;
+}
+.hero-visual-bar{
+  background:#0D1117;
+  padding:14px 20px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hv-dot{width:10px;height:10px;border-radius:50%}
+.hv-dot:nth-child(1){background:#FF5F57}
+.hv-dot:nth-child(2){background:#FFBD2E}
+.hv-dot:nth-child(3){background:#28C840}
+.hv-title{
+  font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.3);
+  margin-left:auto;letter-spacing:.08em;
+}
+.hero-visual-body{
+  padding:32px 28px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;
+  min-height:240px;
+}
+.hv-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r-sm);padding:20px;
+}
+.hv-card-label{
+  font-family:var(--mono);font-size:9.5px;color:rgba(255,255,255,.35);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;
+}
+.hv-card-val{
+  font-family:var(--serif);font-style:italic;
+  font-size:28px;font-weight:400;color:#fff;line-height:1;margin-bottom:6px;
+}
+.hv-card-sub{font-size:11px;color:rgba(255,255,255,.4)}
+.hv-status{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 10px;border-radius:100px;
+  font-size:10.5px;font-weight:600;font-family:var(--mono);
+  letter-spacing:.05em;margin-top:10px;
+}
+.hv-ok{background:rgba(26,158,110,.2);color:#4ADE80;border:1px solid rgba(74,222,128,.2)}
+.hv-warn{background:rgba(217,119,6,.15);color:#FCD34D;border:1px solid rgba(252,211,77,.2)}
+.hv-err{background:rgba(217,64,64,.15);color:#FCA5A5;border:1px solid rgba(252,165,165,.2)}
+.hv-bar-row{margin-top:14px}
+.hv-bar{height:4px;border-radius:100px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:6px}
+.hv-bar-fill{height:100%;border-radius:100px}
+.hv-fill-ok{background:linear-gradient(90deg,#22C55E,#4ADE80)}
+.hv-fill-warn{background:linear-gradient(90deg,#F59E0B,#FCD34D)}
+.hv-fill-err{background:linear-gradient(90deg,#EF4444,#FCA5A5)}
+@media(max-width:640px){
+  .hero-visual-body{grid-template-columns:1fr;min-height:auto}
+}
+
+/* ══════════════════════════
+   CONTENT
+══════════════════════════ */
+.content{padding:80px 0}
+section.block{margin-bottom:72px}
+section.block:last-child{margin-bottom:0}
+
+/* eyebrow label — different from AMAN: dot instead of line */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10.5px;font-weight:700;
+  letter-spacing:.18em;color:var(--accent);text-transform:uppercase;
+  background:var(--accent-soft);padding:5px 14px;border-radius:100px;
+  border:1px solid rgba(75,95,224,.2);margin-bottom:18px;
+}
+.eyebrow::before{content:'◆';font-size:7px}
+
+h2{
+  font-size:28px;font-weight:800;color:var(--ink);
+  letter-spacing:-.025em;line-height:1.18;margin-bottom:18px;
+}
+h2.lg{font-size:36px}
+h2 em{font-family:var(--serif);font-style:italic;color:var(--accent-mid);font-weight:400}
+h3{
+  font-size:18px;font-weight:700;color:var(--ink);
+  letter-spacing:-.015em;margin:32px 0 10px;
+}
+p{margin-bottom:1.1em;color:var(--ink-body);font-size:16px;line-height:1.72}
+p:last-child{margin-bottom:0}
+p strong{color:var(--ink);font-weight:700}
+p em{color:var(--ink-soft);font-style:italic}
+ul{margin:10px 0 18px 20px}
+li{color:var(--ink-body);line-height:1.75;margin-bottom:5px;font-size:15.5px}
+code{
+  font-family:var(--mono);font-size:12.5px;
+  background:var(--accent-soft);color:var(--accent-deep);
+  padding:2px 7px;border-radius:5px;
+}
+
+/* ── TL;DR ── */
+.tldr{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--r-md);padding:32px;margin:24px 0;
+  box-shadow:var(--sh-sm);position:relative;overflow:hidden;
+}
+.tldr::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--accent),var(--accent-glow));
+}
+.tldr-lbl{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.2em;color:var(--accent);text-transform:uppercase;
+  margin-bottom:20px;
+}
+.tldr-row{
+  display:grid;grid-template-columns:100px 1fr;gap:20px;
+  padding:14px 0;border-top:1px solid var(--rule-soft);
+}
+.tldr-row:first-of-type{border-top:none;padding-top:0}
+.tldr-k{font-size:13px;font-weight:700;color:var(--ink);line-height:1.5}
+.tldr-v{font-size:14.5px;line-height:1.68;color:var(--ink-body)}
+@media(max-width:600px){.tldr-row{grid-template-columns:1fr;gap:6px}}
+
+/* ── Stat ribbon (fintech-style) ── */
+.stat-ribbon{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin:28px 0;
+}
+.stat-card{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--r-md);padding:22px 20px;
+  box-shadow:var(--sh-sm);position:relative;overflow:hidden;
+}
+.stat-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-glow));
+  opacity:0;transition:opacity .2s;
+}
+.stat-card:hover::after{opacity:1}
+.stat-n{
+  font-family:var(--serif);font-style:italic;
+  font-size:34px;font-weight:400;color:var(--accent-deep);
+  letter-spacing:-.02em;line-height:1;margin-bottom:6px;
+}
+.stat-n.danger{color:var(--err)}
+.stat-n.ok{color:var(--ok)}
+.stat-n.warn{color:var(--warn)}
+.stat-lbl{
+  font-size:11.5px;font-weight:600;color:var(--ink-mute);
+  line-height:1.4;text-transform:uppercase;letter-spacing:.06em;
+}
+@media(max-width:600px){.stat-ribbon{grid-template-columns:1fr 1fr}}
+
+/* ── Pain point cards (numbered) ── */
+.pain-list{margin:28px 0;display:grid;gap:14px}
+.pain{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--r-md);padding:26px 28px;
+  box-shadow:var(--sh-sm);
+  display:grid;grid-template-columns:44px 1fr;gap:20px;align-items:start;
+}
+.pain-n{
+  width:36px;height:36px;border-radius:var(--r-sm);
+  background:var(--accent-soft);border:1px solid rgba(75,95,224,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;font-weight:700;
+  color:var(--accent);letter-spacing:.02em;
+}
+.pain-body h3{margin:0 0 8px;font-size:16px;font-weight:700}
+.pain-body p{margin:0;font-size:14.5px;line-height:1.65;color:var(--ink-body)}
+@media(max-width:600px){
+  .pain{grid-template-columns:1fr;gap:12px}
+  .pain-n{width:32px;height:32px}
+}
+
+/* ── Callout variants ── */
+.callout{
+  border-radius:var(--r-md);padding:26px 30px;margin:24px 0;
+  border:1px solid var(--rule);background:var(--card);
+  box-shadow:var(--sh-sm);
+}
+.callout h3{margin:0 0 10px;font-size:17px}
+.callout p{margin:0;font-size:15px;line-height:1.68}
+.callout.info{background:var(--accent-soft);border-color:rgba(75,95,224,.25)}
+.callout.info h3{color:var(--accent-deep)}
+.callout.warn{background:var(--warn-soft);border-color:rgba(217,119,6,.3)}
+.callout.danger{background:var(--err-soft);border-color:rgba(217,64,64,.25)}
+.callout.success{background:var(--ok-soft);border-color:rgba(26,158,110,.25)}
+.callout.orange{background:var(--accent2-soft);border-color:rgba(224,107,75,.3)}
+.callout.orange h3{color:var(--accent2)}
+
+/* ── Process timeline (vertical) ── */
+.timeline{margin:28px 0;position:relative;padding-left:32px}
+.timeline::before{
+  content:'';position:absolute;left:11px;top:8px;bottom:8px;
+  width:2px;background:linear-gradient(180deg,var(--accent),rgba(75,95,224,.1));
+}
+.tl-item{margin-bottom:32px;position:relative}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-32px;top:4px;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--card);border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+}
+.tl-dot-inner{
+  width:8px;height:8px;border-radius:50%;background:var(--accent);
+}
+.tl-item h3{font-size:16px;margin:0 0 8px}
+.tl-item p{font-size:14.5px;line-height:1.65;margin:0}
+
+/* ── Decision cards (key product decisions) ── */
+.decisions{display:grid;gap:14px;margin:24px 0}
+.decision{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--r-md);padding:0;overflow:hidden;
+  box-shadow:var(--sh-sm);
+}
+.decision-q{
+  background:var(--card-alt);padding:18px 24px;
+  font-size:15px;font-weight:700;color:var(--ink);
+  border-bottom:1px solid var(--rule-soft);
+  display:flex;align-items:center;gap:12px;
+}
+.decision-q::before{
+  content:'?';width:26px;height:26px;border-radius:50%;
+  background:var(--accent-soft);color:var(--accent-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;font-family:var(--mono);flex-shrink:0;
+}
+.decision-a{padding:18px 24px}
+.decision-a p{font-size:14.5px;line-height:1.68;margin:0}
+.decision-a p + p{margin-top:10px}
+
+/* ── Status tags ── */
+.tag{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 12px;border-radius:100px;
+  font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.04em;
+}
+.tag.ok{background:var(--ok-soft);color:var(--ok);border:1px solid rgba(26,158,110,.25)}
+.tag.warn{background:var(--warn-soft);color:var(--warn);border:1px solid rgba(217,119,6,.3)}
+.tag.err{background:var(--err-soft);color:var(--err);border:1px solid rgba(217,64,64,.25)}
+.tag.accent{background:var(--accent-soft);color:var(--accent-deep);border:1px solid rgba(75,95,224,.25)}
+.tag::before{content:'●';font-size:6px;opacity:.7}
+
+/* ── Lifecycle flow ── */
+.lifecycle{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--r-md);padding:28px;margin:24px 0;
+  box-shadow:var(--sh-sm);
+}
+.lc-label{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.18em;color:var(--ink-mute);
+  text-transform:uppercase;margin-bottom:20px;
+}
+.lc-steps{
+  display:flex;flex-direction:column;gap:0;
+}
+.lc-step{
+  display:grid;grid-template-columns:28px 1fr;gap:16px;
+  padding:12px 0;border-top:1px solid var(--rule-soft);
+  align-items:start;
+}
+.lc-step:first-child{border-top:none;padding-top:0}
+.lc-step-n{
+  width:24px;height:24px;border-radius:6px;
+  background:var(--accent-soft);border:1px solid rgba(75,95,224,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10px;font-weight:700;color:var(--accent);
+  flex-shrink:0;margin-top:2px;
+}
+.lc-step-body{font-size:14.5px;line-height:1.6}
+.lc-step-body strong{color:var(--ink);font-weight:700;display:block;margin-bottom:2px}
+.lc-step-body span{color:var(--ink-body)}
+.lc-step-arrow{
+  text-align:center;padding:2px 0;
+  color:var(--accent-glow);font-size:14px;
+  grid-column:1;margin-top:0;
+}
+
+/* ── Solution cards ── */
+.solutions{display:grid;gap:14px;margin:28px 0}
+.sol{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-sm);
+}
+.sol-head{
+  background:linear-gradient(135deg,var(--accent-soft),#fff);
+  padding:20px 24px;border-bottom:1px solid var(--rule-soft);
+  display:flex;align-items:center;gap:14px;
+}
+.sol-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:var(--accent);display:flex;align-items:center;
+  justify-content:center;font-size:18px;flex-shrink:0;
+  box-shadow:0 4px 12px rgba(75,95,224,.3);
+}
+.sol-head-text h3{margin:0 0 4px;font-size:16px;font-weight:700;color:var(--ink)}
+.sol-head-text p{margin:0;font-size:12.5px;color:var(--ink-mute)}
+.sol-body{padding:20px 24px}
+.sol-body p{font-size:14.5px;line-height:1.68;margin:0}
+.sol-body ul{margin:12px 0 0 18px}
+.sol-body li{font-size:14px;line-height:1.65;margin-bottom:4px}
+
+/* ── Status showcase ── */
+.status-box{
+  background:#0D1117;border-radius:var(--r-md);padding:24px 28px;
+  margin:20px 0;display:flex;flex-wrap:wrap;gap:10px;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:var(--sh-md);
+}
+.status-box .tag{font-size:12px;padding:6px 14px}
+
+/* ── Before / After ── */
+.ba{
+  background:var(--card);border:1px solid var(--rule);
+  border-radius:var(--r-md);overflow:hidden;margin:20px 0;
+  box-shadow:var(--sh-sm);
+}
+.ba-head{
+  padding:18px 24px 14px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  border-bottom:1px solid var(--rule-soft);
+}
+.ba-num{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--accent-deep);letter-spacing:.1em;
+  background:var(--accent-soft);padding:4px 10px;border-radius:100px;
+  border:1px solid rgba(75,95,224,.2);
+}
+.ba-title{font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.ba-body{display:grid;grid-template-columns:1fr 1fr}
+.ba-col{padding:20px 24px}
+.ba-col.before{background:var(--card-alt);border-right:1px solid var(--rule-soft)}
+.ba-col h4{
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;margin:0 0 10px;
+  display:flex;align-items:center;gap:6px;
+}
+.ba-col.before h4{color:var(--err)}
+.ba-col.before h4::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--err)}
+.ba-col.after h4{color:var(--ok)}
+.ba-col.after h4::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--ok)}
+.ba-col p{margin:0;font-size:14px;line-height:1.65;color:var(--ink-body)}
+.ba-col ul{margin:8px 0 0 16px}
+.ba-col li{font-size:13.5px;line-height:1.6;margin-bottom:4px}
+@media(max-width:600px){
+  .ba-body{grid-template-columns:1fr}
+  .ba-col.before{border-right:none;border-bottom:1px solid var(--rule-soft)}
+}
+
+/* ── Lessons ── */
+.lessons{margin:24px 0}
+.lesson{
+  display:grid;grid-template-columns:52px 1fr;gap:20px;
+  padding:24px 0;border-top:1px solid var(--rule-soft);
+}
+.lesson:first-child{border-top:none;padding-top:8px}
+.lesson-n{
+  font-family:var(--serif);font-style:italic;
+  font-size:38px;font-weight:400;color:var(--accent);
+  line-height:1;opacity:.3;
+}
+.lesson-body h3{margin:0 0 7px;font-size:16.5px;font-weight:700}
+.lesson-body p{margin:0;font-size:15px;line-height:1.68}
+
+/* ── Reflection block ── */
+.reflection{
+  background:var(--bg-dark);border-radius:var(--r-lg);padding:48px 40px;
+  margin:40px 0;color:#fff;position:relative;overflow:hidden;
+}
+.reflection::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 60% at 80% 50%,rgba(75,95,224,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.reflection-inner{position:relative;z-index:1}
+.reflection p{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(19px,3vw,24px);line-height:1.55;
+  color:rgba(255,255,255,.88);font-weight:400;
+  letter-spacing:-.005em;
+}
+.reflection p + p{margin-top:18px;font-size:16px;line-height:1.7;font-family:var(--sans);font-style:normal;color:rgba(255,255,255,.6)}
+
+/* ── Impact block ── */
+.impact{
+  background:linear-gradient(135deg,#1E2D9E 0%,#3548C9 40%,#4B5FE0 100%);
+  border-radius:var(--r-lg);padding:52px 40px;margin:36px 0;
+  text-align:center;color:#fff;position:relative;overflow:hidden;
+  box-shadow:var(--sh-accent);
+}
+.impact::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 1px 1px,rgba(255,255,255,.04) 1px,transparent 0);
+  background-size:22px 22px;pointer-events:none;
+}
+.impact-inner{position:relative;z-index:1}
+.impact-label{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px;
+}
+.impact-headline{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(38px,6vw,58px);font-weight:400;
+  line-height:1.05;margin-bottom:16px;letter-spacing:-.025em;
+}
+.impact-desc{
+  font-size:17px;color:rgba(255,255,255,.78);
+  max-width:520px;margin:0 auto 32px;line-height:1.6;
+}
+.impact-metrics{
+  display:flex;justify-content:center;gap:48px;flex-wrap:wrap;
+}
+.impact-m{text-align:center}
+.impact-m-n{
+  font-family:var(--serif);font-style:italic;
+  font-size:42px;font-weight:400;color:#fff;
+  letter-spacing:-.03em;line-height:1;margin-bottom:6px;
+}
+.impact-m-l{font-size:11.5px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em}
+
+/* ── Stack pills ── */
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
+.stack-pill{
+  padding:7px 15px;border-radius:100px;
+  background:var(--card);border:1px solid var(--rule);
+  font-size:13px;font-weight:600;color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:7px;
+  box-shadow:var(--sh-sm);
+}
+.stack-pill .dot{width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+/* ── Note (image placeholder) ── */
+.img-note{
+  background:var(--note-bg);border:2px dashed var(--note-border);
+  border-radius:var(--r-sm);padding:28px 24px;margin:20px 0;text-align:center;
+  position:relative;
+}
+.img-note::before{
+  content:'📸 ADD IMAGE';position:absolute;top:-11px;left:20px;
+  background:var(--note-bg);padding:0 8px;
+  font-family:var(--mono);font-size:10px;font-weight:700;
+  color:var(--note-ink);letter-spacing:.1em;
+}
+.img-note-title{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;
+  color:var(--note-ink);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;
+}
+.img-note-desc{font-size:13.5px;color:var(--note-ink);font-style:italic;line-height:1.6}
+.img-note-file{
+  font-family:var(--mono);font-size:11px;color:var(--ink-mute);
+  margin-top:12px;padding-top:12px;border-top:1px dashed var(--note-border);
+}
+
+/* ── CTA ── */
+.cta{
+  background:var(--ink);color:#fff;
+  padding:72px 0;text-align:center;position:relative;overflow:hidden;
+}
+.cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(75,95,224,.15) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-inner{position:relative}
+.cta h2{color:#fff;font-size:clamp(28px,4vw,42px);margin-bottom:14px;letter-spacing:-.025em}
+.cta h2 em{font-family:var(--serif);font-style:italic;color:var(--accent-glow)}
+.cta p{color:rgba(255,255,255,.65);font-size:16px;max-width:460px;margin:0 auto;line-height:1.65}
+
+/* ── Footer ── */
+footer{
+  padding:40px 0;text-align:center;
+  color:var(--ink-mute);font-size:13px;
+  border-top:1px solid var(--rule-soft);
+}
+footer b{color:var(--ink);font-weight:700}
+
+/* ── Reveal anim ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:720px){
+  .container{padding:0 20px}
+  .container-wide{padding:0 20px}
+  .hero-wrap{padding-top:56px}
+  .content{padding:60px 0}
+  section.block{margin-bottom:52px}
+  .impact{padding:36px 24px}
+  .impact-metrics{gap:28px}
+  .reflection{padding:36px 24px}
+  .stat-ribbon{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="top">
+  <div class="container-wide">
+    <div class="brand">Rifda Sajida <span>/ Portfolio</span></div>
+    <div class="nav-badge">Case Study · 04</div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero-wrap">
+  <div class="container">
+    <div class="hero reveal">
+      <div class="pills">
+        <span class="pill real"><span class="dot"></span>Real Project</span>
+        <span class="pill">Fintech · B2B</span>
+        <span class="pill">Operational UX</span>
+        <span class="pill">Internal Tool</span>
+        <span class="pill">Design System</span>
+      </div>
+      <h1 class="hero-title">Redesigning <em>settlement</em> so Finance teams stopped working like accountants in 2005</h1>
+      <p class="hero-lede">Inside Dipay's Core Dashboard, reconciliation meant spreadsheets, manual downloads, hundreds of refreshes, and a full working day per settlement cycle. This is how we fixed it.</p>
+    </div>
+
+    <!-- Dashboard mockup visual -->
+    <div class="hero-visual reveal">
+      <div class="hero-visual-bar">
+        <div class="hv-dot"></div>
+        <div class="hv-dot"></div>
+        <div class="hv-dot"></div>
+        <div class="hv-title">Dipay Core Dashboard · Settlement Bisnis</div>
+      </div>
+      <div class="hero-visual-body">
+        <div class="hv-card">
+          <div class="hv-card-label">Total Transaksi</div>
+          <div class="hv-card-val">2,840</div>
+          <div class="hv-card-sub">settlement batch aktif</div>
+          <div class="hv-status hv-ok">● Dapat Disettle</div>
+          <div class="hv-bar-row">
+            <div style="font-size:10px;color:rgba(255,255,255,.35);font-family:var(--mono)">82% reconciled</div>
+            <div class="hv-bar"><div class="hv-bar-fill hv-fill-ok" style="width:82%"></div></div>
+          </div>
+        </div>
+        <div class="hv-card">
+          <div class="hv-card-label">Perlu Ditinjau</div>
+          <div class="hv-card-val">341</div>
+          <div class="hv-card-sub">transaksi butuh dicek</div>
+          <div class="hv-status hv-warn">⚠ Butuh Dicek</div>
+          <div class="hv-bar-row">
+            <div style="font-size:10px;color:rgba(255,255,255,.35);font-family:var(--mono)">12% flagged</div>
+            <div class="hv-bar"><div class="hv-bar-fill hv-fill-warn" style="width:12%"></div></div>
+          </div>
+        </div>
+        <div class="hv-card">
+          <div class="hv-card-label">Settlement Gagal</div>
+          <div class="hv-card-val">27</div>
+          <div class="hv-card-sub">perlu retry / eskalasi</div>
+          <div class="hv-status hv-err">✕ Gagal</div>
+          <div class="hv-bar-row">
+            <div style="font-size:10px;color:rgba(255,255,255,.35);font-family:var(--mono)">1% failed</div>
+            <div class="hv-bar"><div class="hv-bar-fill hv-fill-err" style="width:1%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTENT ══ -->
+<div class="content">
+  <div class="container">
+
+    <!-- Overview -->
+    <section class="block reveal">
+      <div class="eyebrow">Overview</div>
+      <h2 class="lg">The settlement problem nobody saw coming</h2>
+      <p>As Dipay's transaction volume continued to grow, the internal settlement workflow became increasingly difficult to manage. Finance and Operations teams spent hours manually validating transactions before funds could be disbursed to business partners.</p>
+      <p>The challenge wasn't just operational complexity — <strong>it was financial accuracy.</strong> As an acquirer, Dipay needed to ensure that every transaction recorded internally matched transaction data from third-party payment switchers before settlement could happen. Even small inconsistencies could lead to failed settlements, incorrect fund disbursement, or serious operational risk.</p>
+      <p>Before this revamp, Finance teams created spreadsheets manually, downloaded QRIS transaction reports and mutation reports one-by-one per merchant, then compared the data manually to validate settlement eligibility. This project redesigned that end-to-end workflow inside Dipay's Core Dashboard.</p>
+    </section>
+
+    <!-- TL;DR -->
+    <section class="block reveal">
+      <div class="tldr">
+        <div class="tldr-lbl">TL;DR</div>
+        <div class="tldr-row">
+          <div class="tldr-k">Problem</div>
+          <div class="tldr-v">Settlement operations relied on manual reconciliation. Finance teams spent hours downloading mutation data, comparing spreadsheets, and repeatedly refreshing a dashboard that reset their filters — for every merchant in every batch.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Approach</div>
+          <div class="tldr-v">Deep operational interviews → map the full settlement lifecycle → work with engineers to define what could safely be automated → design a hybrid system that automates high-confidence cases and surfaces exceptions for human review.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Solution</div>
+          <div class="tldr-v">Automated reconciliation engine, structured operational review, multi-level approval workflow, real-time settlement visibility, anomaly highlighting, and retry handling for failed settlements.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">Impact</div>
+          <div class="tldr-v">Reduced settlement and reconciliation operational processing time by approximately 4–5 hours per cycle.</div>
+        </div>
+        <div class="tldr-row">
+          <div class="tldr-k">My role</div>
+          <div class="tldr-v">Solo product designer. Collaborated with PMs, backend engineers, Finance team, Operations team, and settlement approval stakeholders.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Problem -->
+    <section class="block reveal">
+      <div class="eyebrow">The Problem</div>
+      <h2>Settlement in Dipay wasn't simply "sending money to merchants"</h2>
+      <p>Before any funds could be disbursed, Dipay had to validate whether its internal transaction records matched data from external payment infrastructure — switchers, bank mutation records, and installment data. Every mismatch was a risk.</p>
+
+      <h3>Everything that had to be true before a settlement could proceed</h3>
+
+      <div class="callout info">
+        <p>For each settlement request, Finance teams had to verify: transaction amounts matched · mutation records existed · RRN (Retrieval Reference Number) was valid · transactions hadn't been settled before · installments were already paid · merchant totals met minimum thresholds · merchant accounts weren't suspended.</p>
+        <p style="margin-top:10px">Every single check. For every merchant. In every batch.</p>
+      </div>
+
+      <h3>What the process actually looked like day-to-day</h3>
+      <div class="lifecycle">
+        <div class="lc-label">Manual Reconciliation Loop (Before)</div>
+        <div class="lc-steps">
+          <div class="lc-step"><div class="lc-step-n">1</div><div class="lc-step-body"><strong>Create manual checking worksheet</strong><span>Start from scratch in spreadsheet, for every cycle</span></div></div>
+          <div class="lc-step"><div class="lc-step-n">2</div><div class="lc-step-body"><strong>Download mutation reports per merchant</strong><span>One-by-one. 50–70 merchants per batch.</span></div></div>
+          <div class="lc-step"><div class="lc-step-n">3</div><div class="lc-step-body"><strong>Download QRIS transaction reports</strong><span>Again, one-by-one. Filters reset after every export.</span></div></div>
+          <div class="lc-step"><div class="lc-step-n">4</div><div class="lc-step-body"><strong>Compare both data sources manually</strong><span>Row-by-row, across two different file formats</span></div></div>
+          <div class="lc-step"><div class="lc-step-n">5</div><div class="lc-step-body"><strong>Validate settlement eligibility</strong><span>Manually check every condition listed above</span></div></div>
+          <div class="lc-step"><div class="lc-step-n">6</div><div class="lc-step-body"><strong>Repeat for the next merchant</strong><span>Back to step 1. Every time. Sometimes hundreds of times in a single cycle.</span></div></div>
+        </div>
+      </div>
+
+      <p>On average, each settlement batch contained <strong>50–70 merchants</strong>. Operational checking could consume <strong>almost an entire working day</strong>. Mondays were especially brutal — settlement volume accumulated from Friday–Sunday transactions hit all at once.</p>
+
+      <div class="img-note">
+        <div class="img-note-title">Image 1 — Before State: Manual Spreadsheet Workflow</div>
+        <div class="img-note-desc">Screenshot or illustration of the Finance team's manual reconciliation spreadsheet, or the old dashboard with the export flow. Can be blurred/anonymized.</div>
+        <div class="img-note-file">Suggested: <code>dipay-before-manual-workflow.png</code></div>
+      </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="block reveal">
+      <div class="eyebrow">Pain Points</div>
+      <h2>Five things that made every Monday <em>miserable</em></h2>
+
+      <div class="pain-list">
+        <div class="pain">
+          <div class="pain-n">01</div>
+          <div class="pain-body">
+            <h3>Manual and repetitive reconciliation</h3>
+            <p>Every check was performed by hand — download mutation data, download QRIS data, compare manually, validate individually. As transaction volume increased, this process became impossible to scale.</p>
+          </div>
+        </div>
+        <div class="pain">
+          <div class="pain-n">02</div>
+          <div class="pain-body">
+            <h3>Low operational efficiency</h3>
+            <p>The majority of time was spent on administrative work rather than actual financial decision-making. A huge amount of cognitive energy was wasted before Finance teams could do the one thing they were there to do: validate settlements.</p>
+          </div>
+        </div>
+        <div class="pain">
+          <div class="pain-n">03</div>
+          <div class="pain-body">
+            <h3>High risk of human error</h3>
+            <p>Manual comparison at scale is inherently error-prone. Incorrect transaction validation, overlooked mismatches, duplicate settlement risks, calculation mistakes — each one had direct financial consequences.</p>
+          </div>
+        </div>
+        <div class="pain">
+          <div class="pain-n">04</div>
+          <div class="pain-body">
+            <h3>Poor operational visibility</h3>
+            <p>Problematic transactions were visually indistinguishable from clean ones. Finance teams couldn't quickly identify mismatches, failed reconciliations, or unsettled transactions — making reviews cognitively exhausting and slow.</p>
+          </div>
+        </div>
+        <div class="pain">
+          <div class="pain-n">05</div>
+          <div class="pain-body">
+            <h3>UI friction that compounded at scale</h3>
+            <p>Filter states reset after every export. The dashboard required repeated page refreshes. Multiple report generations were needed for a single merchant. These small frictions repeated hundreds of times daily became enormous operational burdens.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="block reveal">
+      <div class="eyebrow">Process</div>
+      <h2>Understand the operational ecosystem first, <em>design later</em></h2>
+      <p>Rather than redesigning screens immediately, I spent significant time understanding the financial workflow behind settlement processing — because the UI was only one layer of a much larger operational ecosystem.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <h3>1 — Mapping the existing workflow</h3>
+          <p>Collaborated with Finance and Operations through interviews, workflow walkthroughs, and reconciliation observation. Key insight: most of the time was consumed outside the actual "decision-making" process — in downloads, refreshes, filters, and comparisons.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <h3>2 — Mapping the settlement lifecycle</h3>
+          <p>Together with stakeholders, I documented the full lifecycle to identify where bottlenecks occurred most: Settlement Request → Cut-off Config → Eligibility Validation → Reconciliation → Operational Review → Approval → Disbursement → Monitoring & Retry.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <h3>3 — Aligning with technical feasibility</h3>
+          <p>The Finance team wanted maximum automation — but the real design challenge was determining <em>how far automation could safely go</em>. I worked closely with backend engineers to understand switcher data flows, mutation validation, and reconciliation logic. Not every mismatch could be resolved programmatically.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <h3>4 — Defining the automation boundaries</h3>
+          <p>Rather than full automation, we designed a hybrid model: automate high-confidence validation cases, escalate uncertain cases for manual review. This shaped the two-status system that became the core of the redesign.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+          <h3>5 — Designing for operational clarity</h3>
+          <p>The redesign's core principle: help operations teams make <em>faster and safer financial decisions</em>, not just use a "cleaner interface." Every design decision was evaluated against that standard.</p>
+        </div>
+      </div>
+
+      <div class="img-note">
+        <div class="img-note-title">Image 2 — Settlement Lifecycle Diagram / Workflow Map</div>
+        <div class="img-note-desc">Flowchart or service blueprint showing the full settlement lifecycle from request to disbursement, with bottleneck annotations.</div>
+        <div class="img-note-file">Suggested: <code>dipay-settlement-lifecycle.png</code></div>
+      </div>
+    </section>
+
+    <!-- Key Product Decisions -->
+    <section class="block reveal">
+      <div class="eyebrow">Key Product Decisions</div>
+      <h2>The hard calls that shaped the system</h2>
+
+      <div class="decisions">
+        <div class="decision">
+          <div class="decision-q">Auto reconciliation vs. fully manual checking?</div>
+          <div class="decision-a">
+            <p>Auto reconciliation. Manually validating every transaction no longer scaled. The system automatically checks reconciliation consistency and only surfaces problematic transactions for manual review — shifting Finance from <em>"check everything"</em> to <em>"focus only on exceptions."</em></p>
+          </div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">If reconciliation is automated, why keep manual review at all?</div>
+          <div class="decision-a">
+            <p>Because financial operations require human judgment for edge cases. Automation handles standard validation, but Finance teams still need authority to validate suspicious transactions, reject settlement eligibility, and prevent incorrect disbursements. The system supports operational judgment — it doesn't replace it.</p>
+          </div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Why introduce anomaly highlighting?</div>
+          <div class="decision-a">
+            <p>One major operational issue was that problematic transactions were visually impossible to identify quickly. The redesign introduced highlighted mismatch states, error indicators, and contextual feedback — so Finance teams immediately know where to look, instead of scanning thousands of rows.</p>
+          </div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Why multi-level approval?</div>
+          <div class="decision-a">
+            <p>Settlement directly impacts financial disbursement. Separating operational checking from stakeholder approval creates clearer accountability, audit visibility, and safer financial operations. It also reduces ambiguity about who can authorize what.</p>
+          </div>
+        </div>
+        <div class="decision">
+          <div class="decision-q">Why allow retry only for failed settlements, not all?</div>
+          <div class="decision-a">
+            <p>To prevent duplicate disbursement risk. Retry applies only to businesses with <span class="tag err">Settlement Gagal</span> status. Successful or rejected settlements cannot be retried, ensuring safer operational recovery flows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section class="block reveal">
+      <div class="eyebrow">Solution</div>
+      <h2>What we built — and <em>why</em> each piece matters</h2>
+
+      <!-- Status system -->
+      <h3>The two-status reconciliation system</h3>
+      <p>The core of the redesign is a clear, binary output from the automated reconciliation engine. Every transaction gets one of two statuses:</p>
+
+      <div class="status-box">
+        <span class="tag ok">✓ Dapat Disettle</span>
+        <span style="color:rgba(255,255,255,.3);font-size:13px;align-self:center">→ cleared for disbursement</span>
+        <span class="tag warn" style="margin-left:auto">⚠ Butuh Dicek</span>
+        <span style="color:rgba(255,255,255,.3);font-size:13px;align-self:center">→ flagged for human review</span>
+      </div>
+
+      <div class="ba">
+        <div class="ba-head">
+          <span class="ba-num">BEFORE → AFTER</span>
+          <span class="ba-title">Reconciliation approach</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-col before">
+            <h4>Before</h4>
+            <p>Every transaction manually checked by Finance. No system differentiation between clean and problematic transactions. All burden on humans.</p>
+          </div>
+          <div class="ba-col after">
+            <h4>After</h4>
+            <p>Auto-reconciliation engine categorizes transactions. Finance focuses only on <span class="tag warn" style="font-size:10px;padding:2px 8px">Butuh Dicek</span> cases — a fraction of the total volume.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="img-note">
+        <div class="img-note-title">Image 3 — Auto Reconciliation Results View</div>
+        <div class="img-note-desc">Dashboard screen showing transaction list with "Dapat Disettle" and "Butuh Dicek" status indicators, anomaly highlights, and settlement summary.</div>
+        <div class="img-note-file">Suggested: <code>dipay-reconciliation-status-view.png</code></div>
+      </div>
+
+      <div class="solutions">
+        <div class="sol">
+          <div class="sol-head">
+            <div class="sol-icon">⚡</div>
+            <div class="sol-head-text">
+              <h3>Auto Reconciliation Engine</h3>
+              <p>Automated transaction validation at scale</p>
+            </div>
+          </div>
+          <div class="sol-body">
+            <p>When settlement requests are created, the system automatically queries eligible transactions, runs reconciliation rules, generates settlement request IDs, and flags problematic transactions — covering common mismatch cases like missing mutation records, nominal mismatches, unavailable RRN switcher data, inconsistent transaction states, and duplicated settlement attempts.</p>
+          </div>
+        </div>
+        <div class="sol">
+          <div class="sol-head">
+            <div class="sol-icon">🔍</div>
+            <div class="sol-head-text">
+              <h3>Structured Operational Review</h3>
+              <p>Human oversight, intelligently scoped</p>
+            </div>
+          </div>
+          <div class="sol-body">
+            <p>Finance teams review only flagged transactions. The system enforces validation completion, blocks progression if unresolved transactions exist, and generates settlement summaries automatically — improving operational control while reducing oversight risk.</p>
+          </div>
+        </div>
+        <div class="sol">
+          <div class="sol-head">
+            <div class="sol-icon">🎯</div>
+            <div class="sol-head-text">
+              <h3>Anomaly Highlighting & Visualization</h3>
+              <p>Problems visible at a glance</p>
+            </div>
+          </div>
+          <div class="sol-body">
+            <p>The redesigned dashboard highlights mismatched data, settlement warning indicators, incomplete data markers, inconsistent period indicators, and missing reconciliation alerts — eliminating the need for repetitive manual comparison across spreadsheets.</p>
+          </div>
+        </div>
+        <div class="sol">
+          <div class="sol-head">
+            <div class="sol-icon">✅</div>
+            <div class="sol-head-text">
+              <h3>Multi-Level Approval Workflow</h3>
+              <p>Accountability built into the process</p>
+            </div>
+          </div>
+          <div class="sol-body">
+            <p>Stakeholders can approve settlements, reject specific businesses with documented reasons, monitor settlement readiness, and view operational actors transparently. The workflow creates an auditable trail for every settlement decision.</p>
+          </div>
+        </div>
+        <div class="sol">
+          <div class="sol-head">
+            <div class="sol-icon">🔄</div>
+            <div class="sol-head-text">
+              <h3>Settlement Monitoring & Retry</h3>
+              <p>Recovery flows that don't create new risks</p>
+            </div>
+          </div>
+          <div class="sol-body">
+            <p>Business-level settlement visibility, failed settlement monitoring, and retry handling with duplicate-prevention validation. Only <span class="tag err" style="font-size:10px;padding:2px 8px">Settlement Gagal</span> cases can be retried — protecting against double disbursement.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="img-note">
+        <div class="img-note-title">Image 4 — Approval Workflow Screen</div>
+        <div class="img-note-desc">Multi-level approval interface showing settlement batch summary, approve/reject controls per business, rejection reason input, and stakeholder visibility.</div>
+        <div class="img-note-file">Suggested: <code>dipay-approval-workflow.png</code></div>
+      </div>
+
+      <div class="img-note">
+        <div class="img-note-title">Image 5 — Settlement Monitoring & Retry Screen</div>
+        <div class="img-note-desc">Monitoring dashboard showing settlement statuses per business, failed settlement highlighting, and retry CTA for "Settlement Gagal" cases only.</div>
+        <div class="img-note-file">Suggested: <code>dipay-monitoring-retry.png</code></div>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="block reveal">
+      <div class="eyebrow">Impact</div>
+
+      <div class="impact">
+        <div class="impact-inner">
+          <div class="impact-label">Biggest Operational Impact</div>
+          <div class="impact-headline">4–5 hours saved<br>per settlement cycle</div>
+          <div class="impact-desc">By eliminating repetitive manual validation and giving Finance teams visibility where it matters, every settlement cycle got dramatically shorter.</div>
+          <div class="impact-metrics">
+            <div class="impact-m">
+              <div class="impact-m-n">↓ 4–5h</div>
+              <div class="impact-m-l">Time per cycle</div>
+            </div>
+            <div class="impact-m">
+              <div class="impact-m-n">0×</div>
+              <div class="impact-m-l">Manual exports</div>
+            </div>
+            <div class="impact-m">
+              <div class="impact-m-n">↓ ~</div>
+              <div class="impact-m-l">Human error risk</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-ribbon">
+        <div class="stat-card">
+          <div class="stat-n ok">↓ 4–5h</div>
+          <div class="stat-lbl">Processing time reduced per settlement cycle</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-n ok">Auto</div>
+          <div class="stat-lbl">Reconciliation — no more spreadsheets</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-n ok">Instant</div>
+          <div class="stat-lbl">Anomaly identification (was: scan manually)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-n ok">Scale</div>
+          <div class="stat-lbl">Operations can now grow with volume</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lessons Learned -->
+    <section class="block reveal">
+      <div class="eyebrow">Lessons Learned</div>
+      <h2>What this project <em>changed</em> about how I design</h2>
+
+      <div class="lessons">
+        <div class="lesson">
+          <div class="lesson-n">01</div>
+          <div class="lesson-body">
+            <h3>Internal tools are operational systems, not just dashboards</h3>
+            <p>Designing internal fintech tools requires understanding operational workflows, financial risks, reconciliation systems, approval hierarchies, and transaction dependencies. The UI is only one layer of a much larger ecosystem — and sometimes not the most important one.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">02</div>
+          <div class="lesson-body">
+            <h3>Small operational friction compounds brutally at scale</h3>
+            <p>A filter resetting, an unnecessary refresh, one extra export click — each is invisible in isolation. When repeated hundreds of times daily, they consume hours. Small UX fixes can create disproportionately large operational impact in internal tools.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">03</div>
+          <div class="lesson-body">
+            <h3>Visibility reduces operational stress more than features do</h3>
+            <p>Many inefficiencies weren't caused by missing functionality — they were caused by poor visibility. Clear statuses, structured workflows, and actionable states dramatically reduced cognitive load. Seeing the problem is often 80% of solving it.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">04</div>
+          <div class="lesson-body">
+            <h3>Automation without human control is dangerous in fintech</h3>
+            <p>Fully automated financial operations can cause serious harm when edge cases aren't handled. The most effective system combines scalable automation with human operational oversight — not as a compromise, but as a deliberate design principle.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">05</div>
+          <div class="lesson-body">
+            <h3>Cross-functional collaboration shapes better systems</h3>
+            <p>Understanding technical constraints behind reconciliation logic shaped workflows that were not only usable, but operationally realistic and financially safe. The final product was heavily influenced by deep conversations with engineers — not just designers.</p>
+          </div>
+        </div>
+        <div class="lesson">
+          <div class="lesson-n">06</div>
+          <div class="lesson-body">
+            <h3>Edge cases define fintech products more than happy paths</h3>
+            <p>The hardest — and most important — design work in this project wasn't the standard flow. It was designing for inconsistent switcher data, failed disbursement recovery, duplicate prevention, reconciliation mismatches, and eligibility changes. In fintech operational tools, edge cases are the product.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reflection -->
+    <section class="block reveal">
+      <div class="eyebrow">Reflection</div>
+      <div class="reflection">
+        <div class="reflection-inner">
+          <p>This project changed how I think about operational product design.</p>
+          <p>Before this, I viewed internal dashboards primarily as workflow interfaces. After working closely with Finance and Operations teams, I realized operational tools are deeply tied to business risk, financial accuracy, and organizational trust. A settlement dashboard isn't a UI challenge — it's a systems challenge that happens to have a UI. Small workflow improvements created significant business impact because they reduced hours of repetitive work while helping teams make safer decisions. That's the version of product design I want to keep doing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scope & Role -->
+    <section class="block reveal">
+      <div class="eyebrow">Scope & My Role</div>
+      <h2>What I owned on this project</h2>
+      <p>End-to-end product design across research, workflow mapping, system design, and iteration — in close collaboration with engineering, finance, and operations.</p>
+      <div class="stack">
+        <span class="stack-pill"><span class="dot"></span>Workflow Mapping</span>
+        <span class="stack-pill"><span class="dot"></span>Operational Research</span>
+        <span class="stack-pill"><span class="dot"></span>Information Architecture</span>
+        <span class="stack-pill"><span class="dot"></span>UX & Interaction Design</span>
+        <span class="stack-pill"><span class="dot"></span>Edge-Case Handling</span>
+        <span class="stack-pill"><span class="dot"></span>Dashboard Redesign</span>
+        <span class="stack-pill"><span class="dot"></span>Cross-functional Alignment</span>
+        <span class="stack-pill"><span class="dot"></span>Stakeholder Collaboration</span>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ══ CTA ══ -->
+<div class="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <h2>Want to talk about <em>operational design?</em></h2>
+      <p>Internal fintech tools are where the hardest design problems live. If you're building something in that space, I'd love to hear about it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="container">
+    Designed &amp; documented by <b>Rifda Sajida</b> · 2026 · Case Study 04
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
