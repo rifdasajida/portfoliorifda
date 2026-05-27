@@ -96,19 +96,15 @@ export function Gallery() {
         <div ref={emblaRef} className="overflow-hidden -mx-3">
           <div className="flex touch-pan-y">
             {galleryItems.map((item, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
                 className="flex-none w-full sm:w-[80%] md:w-[60%] lg:w-[45%] xl:w-[38%] px-3"
               >
-                <div className="group relative aspect-[16/9] overflow-hidden rounded-2xl border border-border shadow-sm bg-white cursor-pointer">
+                <div className="group relative aspect-[16/9] overflow-hidden rounded-2xl border border-border shadow-sm bg-muted cursor-pointer">
                   <img
                     src={`${import.meta.env.BASE_URL}images/${item.image}`}
                     alt={item.title}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     draggable={false}
                   />
 
@@ -125,7 +121,7 @@ export function Gallery() {
                     </h3>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
