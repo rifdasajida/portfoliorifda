@@ -98,7 +98,7 @@ export function Gallery() {
             {galleryItems.map((item, index) => (
               <div
                 key={index}
-                className="flex-none w-full sm:w-[80%] md:w-[60%] lg:w-[45%] xl:w-[38%] px-3"
+                className="flex-none w-full sm:w-[95%] md:w-[80%] lg:w-[65%] xl:w-[57%] px-3"
               >
                 <div className="group relative aspect-[16/9] overflow-hidden rounded-2xl border border-border shadow-sm bg-muted cursor-pointer">
                   <img

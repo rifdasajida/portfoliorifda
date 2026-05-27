@@ -398,6 +398,11 @@ export const galleryItems = [
     tag: "Web UI",
     image: "gallery-techno.png",
   },
+  {
+    title: "MIA — Migrant Worker Platform",
+    tag: "Mobile & Web",
+    image: "gallery-mia.png",
+  },
 ];
 
 // --------------- ABOUT ME ---------------
