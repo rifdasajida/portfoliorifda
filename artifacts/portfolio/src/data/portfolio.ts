@@ -359,20 +359,44 @@ export const caseStudies = [
  */
 export const galleryItems = [
   {
-    title: "Dashboard Components",
-    tag: "Web UI",
-    /** Image filename in public/images/ */
-    image: "gallery-1.png",
-  },
-  {
-    title: "Mobile App Screens",
+    title: "Dipay — Mobile App",
     tag: "Mobile UI",
-    image: "gallery-dipay.png",
+    image: "gallery-dipay-mobile.png",
   },
   {
-    title: "Data Visualization",
-    tag: "Data Kit",
-    image: "gallery-3.png",
+    title: "Bakeriou — Bakery App",
+    tag: "Mobile UI",
+    image: "gallery-bakeriou.png",
+  },
+  {
+    title: "E-Class — Learning Platform",
+    tag: "Mobile UI",
+    image: "gallery-eclass.png",
+  },
+  {
+    title: "Sport — Fitness App",
+    tag: "Mobile UI",
+    image: "gallery-sport.png",
+  },
+  {
+    title: "Dear Hope — Mental Health App",
+    tag: "Mobile UI",
+    image: "gallery-dearhope.png",
+  },
+  {
+    title: "Aman — Health Benefits Platform",
+    tag: "Web UI",
+    image: "gallery-aman.png",
+  },
+  {
+    title: "Kiss the Ground — Web Redesign",
+    tag: "Web UI",
+    image: "gallery-kissground.png",
+  },
+  {
+    title: "Techno — SaaS Landing Page",
+    tag: "Web UI",
+    image: "gallery-techno.png",
   },
 ];
 
