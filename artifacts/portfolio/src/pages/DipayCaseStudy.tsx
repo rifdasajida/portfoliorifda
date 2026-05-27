@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
+import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
@@ -118,6 +119,14 @@ export default function DipayCaseStudy() {
       <div className="dp-hero-wrap">
         <div style={{ maxWidth: 768, margin: "0 auto", padding: "0 28px", position: "relative", zIndex: 1 }}>
           <motion.div {...fade()}>
+            <Link
+              href="/"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,.5)", textDecoration: "none", marginBottom: 28, transition: "color .2s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,.9)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,.5)")}
+            >
+              <ArrowLeft style={{ width: 14, height: 14 }} /> Back to Portfolio
+            </Link>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
               <span className="dp-pill real"><span className="dp-dot" /> Real Project</span>
               <span className="dp-pill">Fintech · B2B</span>
