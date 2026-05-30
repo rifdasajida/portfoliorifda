@@ -20,7 +20,7 @@ function CardInner({ study }: { study: (typeof caseStudies)[number] }) {
         <img
           src={`${import.meta.env.BASE_URL}images/${study.image}`}
           alt={study.title}
-          className="w-full h-full object-cover rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-contain rounded-lg group-hover:scale-105 transition-transform duration-500"
         />
       </div>
 
