@@ -14,7 +14,7 @@ function CardInner({ study }: { study: (typeof caseStudies)[number] }) {
   return (
     <>
       <div
-        className={`relative aspect-[4/3] overflow-hidden ${study.color} flex items-center justify-center p-6`}
+        className={`relative aspect-[4/3] overflow-hidden ${study.color} flex items-center justify-center`}
       >
         <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10" />
         <img
