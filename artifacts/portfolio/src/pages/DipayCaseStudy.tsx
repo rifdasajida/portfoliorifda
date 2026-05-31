@@ -144,46 +144,13 @@ export default function DipayCaseStudy() {
             </p>
           </motion.div>
 
-          {/* Dashboard mockup */}
-          <motion.div {...fade(0.15)} className="dp-visual">
-            <div className="dp-visual-bar">
-              <div className="dp-hv-dot" style={{ background: "#FF5F57" }} />
-              <div className="dp-hv-dot" style={{ background: "#FFBD2E" }} />
-              <div className="dp-hv-dot" style={{ background: "#28C840" }} />
-              <div className="dp-visual-title">Dipay Core Dashboard · Settlement Bisnis</div>
-            </div>
-            <div className="dp-visual-body">
-              <div className="dp-hv-card">
-                <div className="dp-hv-label">Total Transaksi</div>
-                <div className="dp-hv-val">2,840</div>
-                <div className="dp-hv-sub">settlement batch aktif</div>
-                <div className="dp-hv-status dp-hv-ok">● Dapat Disettle</div>
-                <div style={{ marginTop: 14 }}>
-                  <div style={{ fontSize: 10, color: "rgba(255,255,255,.35)", fontFamily: "'JetBrains Mono', monospace" }}>82% reconciled</div>
-                  <div className="dp-hv-bar"><div style={{ width: "82%", height: "100%", borderRadius: 100, background: "linear-gradient(90deg,#22C55E,#4ADE80)" }} /></div>
-                </div>
-              </div>
-              <div className="dp-hv-card">
-                <div className="dp-hv-label">Perlu Ditinjau</div>
-                <div className="dp-hv-val">341</div>
-                <div className="dp-hv-sub">transaksi butuh dicek</div>
-                <div className="dp-hv-status dp-hv-warn">⚠ Butuh Dicek</div>
-                <div style={{ marginTop: 14 }}>
-                  <div style={{ fontSize: 10, color: "rgba(255,255,255,.35)", fontFamily: "'JetBrains Mono', monospace" }}>12% flagged</div>
-                  <div className="dp-hv-bar"><div style={{ width: "12%", height: "100%", borderRadius: 100, background: "linear-gradient(90deg,#F59E0B,#FCD34D)" }} /></div>
-                </div>
-              </div>
-              <div className="dp-hv-card">
-                <div className="dp-hv-label">Settlement Gagal</div>
-                <div className="dp-hv-val">27</div>
-                <div className="dp-hv-sub">perlu retry / eskalasi</div>
-                <div className="dp-hv-status dp-hv-err">✕ Gagal</div>
-                <div style={{ marginTop: 14 }}>
-                  <div style={{ fontSize: 10, color: "rgba(255,255,255,.35)", fontFamily: "'JetBrains Mono', monospace" }}>1% failed</div>
-                  <div className="dp-hv-bar"><div style={{ width: "1%", height: "100%", borderRadius: 100, background: "linear-gradient(90deg,#EF4444,#FCA5A5)" }} /></div>
-                </div>
-              </div>
-            </div>
+          {/* Hero banner */}
+          <motion.div {...fade(0.15)} style={{ borderRadius: "16px 16px 0 0", overflow: "hidden", marginTop: 8 }}>
+            <img
+              src={`${import.meta.env.BASE_URL}images/dipay-settlement-banner.png`}
+              alt="Dipay Settlement dashboard screens"
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
           </motion.div>
         </div>
       </div>

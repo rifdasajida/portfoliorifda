@@ -114,8 +114,8 @@ export const caseStudies = [
     description:
       "Redesigning Dipay's internal settlement operations to eliminate manual reconciliation and save Finance teams 4–5 hours per settlement cycle.",
     tags: ["Fintech", "Operational UX", "Internal Tool"],
-    image: "gallery-dipay.png",
-    color: "bg-indigo-950",
+    image: "dipay-settlement-banner.png",
+    color: "bg-blue-50",
     overview:
       "Finance teams at Dipay spent almost an entire working day per settlement cycle manually comparing spreadsheets and downloading reports one-by-one. This project redesigned the full settlement and reconciliation workflow inside Dipay's Core Dashboard.",
     problem:
