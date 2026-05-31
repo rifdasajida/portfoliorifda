@@ -231,8 +231,8 @@ export const caseStudies = [
     description:
       "Designing an end-to-end shopping experience for an electronics retailer — from product discovery to seamless checkout.",
     tags: ["E-Commerce", "Mobile UI", "UX Research"],
-    image: "case-study-surplus.png",
-    color: "bg-indigo-50",
+    image: "shonic-banner.webp",
+    color: "bg-blue-50",
     /** Opens an external URL instead of the internal case study page */
     externalUrl:
       "https://grave-pentagon-89c.notion.site/SHONIC-Electronic-E-Commerce-36b2139deaac802db96aebc27e665a19?pvs=143",
