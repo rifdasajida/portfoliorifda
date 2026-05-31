@@ -273,7 +273,7 @@ export const caseStudies = [
     description:
       "Designing a smart hydration tracking feature that nudges users to drink more water through personalized reminders and progress visualization.",
     tags: ["Health App", "Feature Design", "Mobile UI"],
-    image: "case-study-2.png",
+    image: "water-hydration-banner.webp",
     color: "bg-cyan-50",
     /** Opens an external URL instead of the internal case study page */
     externalUrl:
@@ -315,8 +315,8 @@ export const caseStudies = [
     description:
       "Crafting a community-driven marketplace and discovery platform for analog photography enthusiasts to buy, sell, and celebrate film cameras.",
     tags: ["Marketplace", "Community", "Web App"],
-    image: "case-study-3.png",
-    color: "bg-amber-50",
+    image: "analog-cameras-banner.webp",
+    color: "bg-slate-100",
     /** Opens an external URL instead of the internal case study page */
     externalUrl:
       "https://grave-pentagon-89c.notion.site/The-Analog-Analog-Cameras-Platform-36b2139deaac80a9a11fc97642b316df?pvs=143",
