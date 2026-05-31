@@ -72,37 +72,12 @@ export default function SmartMurojaahCaseStudy() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative rounded-[20px] overflow-hidden shadow-2xl"
-            style={{
-              background: "linear-gradient(135deg,#2C3344 0%,#1A2030 60%,#0F1525 100%)",
-              aspectRatio: "16/10",
-            }}
           >
-            {/* Decorative shapes */}
-            <div className="absolute top-[18%] left-[10%] w-12 h-12 rounded-xl rotate-[-12deg] shadow-lg" style={{ background: "linear-gradient(135deg,#3D4A60,#1F2736)" }} />
-            <div className="absolute top-[22%] right-[14%] w-[38px] h-[38px] rounded-full" style={{ background: "radial-gradient(circle at 30% 30%,#E8A96B,#C47B3A)" }} />
-            <div className="absolute bottom-[20%] left-[15%] w-14 h-14 rounded-full shadow-lg" style={{ background: "linear-gradient(135deg,#4A5568,#2D3748)" }} />
-            <div className="absolute bottom-[16%] right-[18%] w-[42px] h-[42px] rounded-xl rotate-[18deg] shadow-lg" style={{ background: "linear-gradient(135deg,#5A6578,#2D3748)" }} />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center px-10 z-10">
-                <div
-                  className="text-[clamp(64px,12vw,128px)] font-bold leading-none mb-5"
-                  style={{
-                    fontFamily: "'Amiri','Fraunces',serif",
-                    color: "rgba(255,255,255,0.96)",
-                    textShadow: "0 8px 40px rgba(100,150,200,.15)",
-                    letterSpacing: ".02em",
-                  }}
-                >
-                  مراجعة
-                </div>
-                <div
-                  className="text-[11px] tracking-[.3em] uppercase"
-                  style={{ fontFamily: "'JetBrains Mono',monospace", color: "rgba(255,255,255,.4)" }}
-                >
-                  MURAJAAH · REVIEW
-                </div>
-              </div>
-            </div>
+            <img
+              src={`${BASE}images/smart-murojaah-banner.png`}
+              alt="Smart Murajaah app screens"
+              className="w-full h-auto block"
+            />
           </motion.div>
         </div>
       </div>

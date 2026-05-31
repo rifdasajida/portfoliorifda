@@ -72,7 +72,7 @@ export const caseStudies = [
       "A comprehensive web application designed to help users track and maintain their memorization routines efficiently through gamification.",
     tags: ["Product Strategy", "UX Research", "Web App"],
     /** Cover image shown in the card grid */
-    image: "case-study-1.png",
+    image: "smart-murojaah-banner.png",
     /** Light background behind the card image */
     color: "bg-blue-50",
     // ---- Detail page content ----
