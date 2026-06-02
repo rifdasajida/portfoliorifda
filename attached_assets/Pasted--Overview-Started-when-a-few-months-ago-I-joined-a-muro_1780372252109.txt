@@ -1,0 +1,296 @@
+# **Overview**
+
+Started when a few months ago, I joined a murojaah community with my friends to stay consistent in memorizing the Quran. The experience was great. We took turns reciting from memory, helping validate each other's mistakes, and holding one another accountable.
+
+But outside those sessions, I noticed something: Practicing alone felt very different.
+
+I kept running into small but recurring challenges that disrupted my murojaah flow. I tried searching for existing tools that could help, but none of them matched the way I actually practiced.
+
+So a random thought crossed my mind: “*What if I just build it myself?"*
+
+What started as my first vibe-coding experiment eventually became a mobile-first web app that I now use for my own murojaah practice, and that some of my friends use too.
+
+This case study documents that journey: from identifying the problem, building the first rough version, collecting feedback, redesigning the experience, and learning where AI-assisted building still falls short.
+
+**TL;DR**
+
+**Problem**
+
+Practicing murojaah independently was harder than I expected. There was no one to validate my recitation when I made mistakes, no one to randomly prompt me with verses to strengthen my memorization, and no one to help me stay consistent.
+
+**Solution**
+
+A mobile-first web app that helps users: Check recitation through voice recognition, Practice sambung ayat independently, Track memorization progress, Repeat specific verses for memorization with easy use, no install.
+
+**My role**
+
+Solo Builder. I handled everything from problem discovery, product strategy, UX design, prototyping, frontend development, speech-recognition implementation, database setup, and deployment.
+
+**Biggest win**
+
+AI can significantly lower the barrier to building products, but it doesn't replace user feedback, accessibility considerations, or iteration. Technology helped me build faster. Real users taught me what actually mattered.
+
+# **The Problem**
+
+The inspiration for Smart Murojaah didn't come from a business opportunity or a startup idea.
+
+It came from a personal frustration. While practicing on my own between sessions, I repeatedly ran into these problems
+
+**01**
+
+### **The loop of doubt**
+
+I'd close the Mushaf and start reciting confidently. But a few verses later, a thought would suddenly appear: *"Wait... was that verse correct?"*
+
+Then the cycle began. Open the Mushaf. Check the verse. Close it again. Continue reciting. Then a few lines later, the doubt returned.
+
+Sometimes I would even slip into another surah without realizing it because similar verse endings sounded familiar.
+
+Instead of focusing on memorization, I was constantly switching between reciting and verifying.
+
+**02**
+
+### **No verse-level repetition**
+
+I memorize best when I can loop a specific verse while listening, over and over. But every audio Quran or murotal provided usually only offered full-surah playback. I should manually pause, rewind, guess the timestamp. The tool was fighting my workflow instead of supporting it.
+
+## 03 — Practicing Sambung Ayat Alone
+
+Another challenge appeared when preparing for sambung ayat assessments. In a typical assessment, someone reads part of a verse and you continue from there.
+
+The problem was simple:
+
+I lived alone. There was no one available to randomly prompt me with verses whenever I wanted to practice.
+
+### **04**
+
+**The limitation of Device**
+
+My first instinct wasn't to build anything. I simply looked for a tool that could solve my problems.
+
+I searched the web but couldn't find anything that matched the way I wanted to practice murojaah. Then I started looking at mobile apps, hoping one of them would fit my needs.
+
+Unfortunately, there was another problem: my phone storage had been permanently fighting for survival at 99%.
+
+Downloading yet another app wasn't really an option.
+
+This limitation ended up shaping the solution itself. If I were going to build something, I wanted it to be accessible instantly through a browser, without requiring installation, updates, or additional storage space.
+
+# **Process**
+
+Rather than jumping straight into Figma, I took a builder-first approach: validate the hardest technical unknown first, then iterate on the design through real user feedback.
+
+# Iteration 1 — Functionality First
+
+My goal wasn't to build a polished product. I simply wanted something that could help me solve my own problem. So I entered full builder mode.
+
+As a Product Designer, this felt unusual because I completely ignored things I normally care about: visual hierarchy, interaction patterns, onboarding, and usability.
+
+I focused only on one thing: **Making it work.** especially Built a rough working version to de-risk the biggest unknown: *could the browser's speech recognition API actually understand Arabic recitation well enough to validate memorization?*
+
+The process quickly became a cycle of:
+
+Build → Test → Bug → Fix → New Bug
+
+There were moments when I almost gave up because every fix seemed to create another issue, especially around voice recognition. Eventually, the product became stable enough for me to use in my daily murojaah and practice sambung Ayat.
+
+It should be enough for me cause i just want to build this to solve my problem, but my curiosrity push me far away, so that I made an important decision: I asked a few friends to try it.
+
+# The Reality Check
+
+What made sense to me didn't automatically make sense to others. Some users were confused by the flow.
+
+Others didn't understand certain interactions. A few features that I thought were obvious weren't obvious at all.
+
+This became my biggest realization:
+
+> Designing for yourself is very different from designing for other people.
+> 
+
+That feedback pushed me back to my roots as a designer.
+
+The product needed more than functionality. It needed usability.
+
+# Iteration 2 — Designing for Real Users
+
+Over the following weeks, I refactored almost everything.
+
+The biggest change was shifting fully into a mobile-first experience after realizing that every tester accessed the product through their phone, while I was practically the only desktop user.
+
+The redesign focused on:
+
+### Murojaah
+
+Practice recitation with real-time feedback and validation.
+
+### Hafalanku
+
+Track memorization progress and manage memorized surahs.
+
+### Dengarkan Ayat
+
+Repeat selected verses to strengthen memorization.
+
+### Sambung Ayat
+
+Practice random verse continuation independently.
+
+Alongside the redesign, I also spent a significant amount of time fixing voice recognition issues across different browsers and devices.
+
+The feedback from the second iteration improved significantly. There is still a long way to go, but the leap from Version 1 to Version 2 felt huge.
+
+# Try It for 30 days by my self
+
+While continuing to improve the product based on feedback from Iteration 2, I also committed to using it consistently for 30 days.
+
+Partly because I genuinely needed it. Partly because I wanted to understand what the experience felt like over time.
+
+This turned out to be one of the most valuable parts of the project.
+
+Repeated usage exposed issues that never appeared during short testing sessions. I discovered new bugs, friction points, and small usability problems that only surfaced through daily use.
+
+The more I used the product, the more opportunities I found to improve it.
+
+# **Technical Deep Dive**
+
+As a person that really never jump to the technical things, so the technical issue is become the hardest part for me.
+
+### 1. Voice Recognition
+
+The most challenging i faced is about voice recognation. At first, I assumed speech recognition would be the easiest part. Modern browsers already provide built-in speech-to-text APIs, so I thought I could simply plug it in and start validating recitations.
+
+But, I was wrong.
+
+After doing testing, i just notice that the same recitation could produce completely different results depending on the browser, operating system, or device being used.
+
+Some of the challenges included:
+
+- Different recognition results across Chrome, Safari, and Android browsers
+- Inconsistent microphone permission behavior between platforms
+- Varying levels of Arabic language support
+- Recognition delays that interrupted the murojaah flow
+
+What looked like a simple feature quickly became the most complex part of the product. But getting recognition to work was only half of the challenge.
+
+The next question and challenge was:
+
+**How strict should the validation be?**
+
+A strict word-by-word matcher quickly became frustrating. A single missed word could trigger a chain of false errors, even when the recitation was mostly correct.
+
+On the other hand, a highly tolerant matcher risked accepting incorrect recitations and reducing the usefulness of the feedback.
+
+To solve this, I experimented with lookahead matching and gap-tolerance mechanisms, allowing the system to accommodate minor recognition inconsistencies without sacrificing meaningful validation.
+
+The goal wasn't perfect accuracy.
+
+The goal was creating feedback that users could trust, something closer to how a real murojaah partner would respond: forgiving when appropriate, but still honest.
+
+## 2. Security Considerations
+
+As someone building and deploying a product on my own for the first time, security was one of the things that made me the most nervous about releasing it to the public.
+
+I knew that once people started using the product, they were trusting me with their data. Even though the data wasn't highly sensitive, I still felt responsible for protecting it. Because of my limited experience in this area, I worried about unintentionally exposing user data or creating security gaps without realizing it.
+
+That concern pushed me to spend a significant amount of time learning security fundamentals and understanding how to secure the application before launching it.
+
+Some of the areas I explored included:
+
+- **Authentication and authorization**, to ensure users could only access features and data that belonged to them.
+- **Row-Level Security (RLS)** in Supabase, so users could only read and modify their own records.
+- **Storage access policies**, to prevent users from accessing files belonging to other accounts.
+- **Secure deployment practices**, including environment variable management and protecting API keys.
+
+I'm sure there are still many things I don't know, and there is still a lot more to learn.
+
+But this project changed the way I think about security.
+
+I used to see security as something developers handled behind the scenes. Now I see it as part of building trust with users and therefore part of the product experience itself.
+
+# Lessons Learned
+
+## 01
+
+### Solving my problem didn't mean solving everyone's problem
+
+The first version worked perfectly—for me.
+
+But once other people started using it, I quickly realized how many assumptions I had made. Features that felt obvious to me weren't obvious to others. Flows that felt natural to me felt confusing to them.
+
+This project reminded me that a personal solution only becomes a product when it works for people beyond yourself.
+
+---
+
+## 02
+
+### Design intuition is not a substitute for user feedback
+
+As a Product Designer, I thought I had a pretty good sense of what would work.
+
+Then I watched people use the product.
+
+Within minutes, I discovered usability issues that I had completely missed.
+
+Intuition helped me get started, but user feedback showed me what actually needed to improve.
+
+---
+
+## 03
+
+### Technical limitations shape the experience
+
+Voice recognition became the most challenging part of the project.
+
+Different browsers behaved differently. Recognition wasn't always accurate. Small delays could interrupt the flow of recitation.
+
+At first, I saw these as technical problems.
+
+Eventually, I realized they were design problems too.
+
+The experience had to be designed around those limitations, not despite them.
+
+---
+
+## 04
+
+### Security is part of the user experience
+
+Before this project, I mostly thought of security as something handled by engineers.
+
+Building and deploying a product myself changed that perspective.
+
+The moment users trust your product with their data, security becomes part of the experience you're responsible for designing.
+
+Trust isn't built only through interfaces—it is also built through the decisions users never see.
+
+---
+
+## 05
+
+### Shipping is a skill
+
+Before this project, "shipping" felt like a finish line.
+
+Now I see it as a skill.
+
+There will always be another bug, another improvement, another feature idea.
+
+At some point, you have to decide that the product is good enough to be used, learn from real users, and continue improving from there.
+
+---
+
+## 06
+
+### Belajar sambil blangsakan
+
+This project was my first real experience working hands-on with development tools, deployment platforms, databases, authentication, and security practices.
+
+Many things were messy.
+
+Many mistakes were made.
+
+My developer friends definitely had opinions about some of my code.
+
+But looking back, that messy process was one of the most valuable parts of the journey.
+
+Sometimes the fastest way to learn is simply to build something, break it, fix it, and repeat.
