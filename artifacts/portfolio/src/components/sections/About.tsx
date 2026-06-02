@@ -44,7 +44,7 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 relative flex justify-center"
+            className="lg:col-span-5 relative flex justify-center mt-16"
           >
             <div className="w-64 h-64 md:w-72 md:h-72 rounded-3xl overflow-hidden border-8 border-white shadow-2xl relative z-10 bg-secondary">
               <img
@@ -58,8 +58,8 @@ export function About() {
 
             {/* Availability badge */}
             <div
-              className="absolute -bottom-6 -left-6 md:-left-12 bg-primary text-primary-foreground p-5 rounded-2xl shadow-xl z-20 max-w-[220px] animate-bounce"
-              style={{ animationDuration: "3s" }}
+              className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground p-5 rounded-2xl shadow-xl z-20 w-[220px] animate-bounce"
+              style={{ animationDuration: "4s" }}
             >
               <div className="flex items-start gap-3">
                 <div className="w-3 h-3 mt-1 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
