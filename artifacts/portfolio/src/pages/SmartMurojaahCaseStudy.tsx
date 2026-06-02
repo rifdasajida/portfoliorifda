@@ -237,12 +237,9 @@ export default function SmartMurojaahCaseStudy() {
 
             {/* Iteration 1 */}
             <div className="mb-8">
-              <div
-                className="text-[10.5px] font-bold tracking-[.18em] uppercase text-[#1F9B6E] mb-3"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
-              >
+              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
                 Iteration 01 — Functionality First
-              </div>
+              </h3>
               <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-4">
                 My goal was not to build a polished product. I simply wanted something that could help
                 me solve my own problem. So I entered full builder mode. As a Product Designer, this
@@ -264,12 +261,9 @@ export default function SmartMurojaahCaseStudy() {
 
             {/* Reality Check */}
             <div className="bg-white border border-[#E4E8F0] rounded-2xl px-8 py-7 mb-8 shadow-sm">
-              <div
-                className="text-[10.5px] font-bold tracking-[.18em] uppercase text-[#C54545] mb-3"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
-              >
+              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
                 The Reality Check
-              </div>
+              </h3>
               <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-4">
                 It should have been enough for me, but my curiosity pushed me further. I made an
                 important decision: I asked a few friends to try it.
@@ -286,12 +280,9 @@ export default function SmartMurojaahCaseStudy() {
 
             {/* Iteration 2 */}
             <div className="mb-8">
-              <div
-                className="text-[10.5px] font-bold tracking-[.18em] uppercase text-[#4B6BF0] mb-3"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
-              >
+              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
                 Iteration 02 — Designing for Real Users
-              </div>
+              </h3>
               <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-5">
                 Over the following weeks, I refactored almost everything. The biggest change was shifting
                 fully into a mobile-first experience after realizing that every tester accessed the product
@@ -314,12 +305,9 @@ export default function SmartMurojaahCaseStudy() {
 
             {/* 30 days */}
             <div className="bg-[#F0FAF5] border border-[#C9E8D7] rounded-2xl px-8 py-7">
-              <div
-                className="text-[10.5px] font-bold tracking-[.18em] uppercase text-[#1F9B6E] mb-3"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
-              >
+              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
                 30-Day Self Test
-              </div>
+              </h3>
               <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
                 While continuing to improve the product based on Iteration 2 feedback, I committed
                 to using it consistently for 30 days. Partly because I genuinely needed it. Partly
@@ -331,205 +319,6 @@ export default function SmartMurojaahCaseStudy() {
                 through daily use. The more I used the product, the more opportunities I found to
                 improve it.
               </p>
-            </div>
-          </Reveal>
-
-          {/* Key Product Decisions */}
-          <Reveal>
-            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">Key Product Decisions</h2>
-            <p className="text-[#4A5568] leading-[1.7] mb-6">
-              Five forks in the road that shaped the app. Each was a trade-off I had to make alone,
-              without a PM to argue with.
-            </p>
-            <div className="bg-white border border-[#E4E8F0] rounded-2xl shadow-sm overflow-hidden">
-              {[
-                {
-                  q: "Guest mode or force login?",
-                  a: (
-                    <>
-                      <strong className="text-[#0F1A2E] font-semibold">Guest, local-only.</strong>{" "}
-                      Login-first walls kill first impressions. I let guest users store progress in
-                      localStorage and sync to Supabase only after sign-in. Try first, commit later.
-                    </>
-                  ),
-                },
-                {
-                  q: "Speech recognition or manual input?",
-                  a: (
-                    <>
-                      <strong className="text-[#0F1A2E] font-semibold">Speech, despite the complexity.</strong>{" "}
-                      Manual input would have been 10x easier but 10x less useful. Murojaah{" "}
-                      <em className="text-[#2B3648]">is</em> reciting out loud. Typing misses the entire
-                      point of the exercise.
-                    </>
-                  ),
-                },
-                {
-                  q: "Per-surah or per-juz picker?",
-                  a: (
-                    <>
-                      <strong className="text-[#0F1A2E] font-semibold">Both, via segmented control.</strong>{" "}
-                      Different users think in different units. Exam-prep friends wanted "test me on Juz
-                      30". I wanted "test me on Al-Ma'arij". Segmented tabs respect both mental models.
-                    </>
-                  ),
-                },
-                {
-                  q: "How strict should validation be?",
-                  a: (
-                    <>
-                      <strong className="text-[#0F1A2E] font-semibold">Forgiving, but honest.</strong>{" "}
-                      A strict word-by-word matcher caused false errors even on correct recitations. A
-                      highly tolerant one risked accepting incorrect recitations. I landed on a lookahead
-                      gap-tolerance mechanism — closer to how a real murojaah partner would respond.
-                    </>
-                  ),
-                },
-                {
-                  q: "Hide technical errors or surface them?",
-                  a: (
-                    <>
-                      <strong className="text-[#0F1A2E] font-semibold">Surface them in Indonesian with a suggested action.</strong>{" "}
-                      "Mikrofon belum aktif. Klik ikon kunci di address bar." Users fail gracefully only
-                      if they understand what failed. Silent failures are the worst possible UX.
-                    </>
-                  ),
-                },
-              ].map((d, i) => (
-                <div
-                  key={i}
-                  className="py-[22px] px-7 border-t border-[#EEF1F7] first:border-t-0"
-                >
-                  <div className="text-[15px] font-bold text-[#0F1A2E] mb-[6px] tracking-[-0.01em]">
-                    {d.q}
-                  </div>
-                  <div className="text-[14.5px] leading-[1.65] text-[#4A5568]">{d.a}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* UX Iteration Highlights */}
-          <Reveal>
-            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">UX Iteration Highlights</h2>
-            <p className="text-[#4A5568] leading-[1.7] mb-6">
-              I kept a running list of every moment a friend hesitated, tapped the wrong thing, or asked
-              "wait, how do I...". Each of these fixes came directly from that list.
-            </p>
-            <div className="space-y-5">
-              {[
-                {
-                  num: "FIX 01",
-                  title: "Setoran modal getting cut off",
-                  before: (
-                    <>
-                      Bottom sheet used <code className="bg-[#E8ECF4] text-[#2B3648] px-1.5 py-0.5 rounded text-[13px] font-mono">max-height:100vh</code>. Mobile
-                      browser chrome covered the bottom row. Users could not see or reach the ayah range inputs.
-                    </>
-                  ),
-                  after: (
-                    <>
-                      Capped at <code className="bg-[#E8ECF4] text-[#2B3648] px-1.5 py-0.5 rounded text-[13px] font-mono">92vh</code>. Ayah range promoted to highlighted cell
-                      with dashed accent border, pulse animation, larger inputs, auto-select on focus.
-                    </>
-                  ),
-                },
-                {
-                  num: "FIX 02",
-                  title: "\"Skip\" that wasn't skip",
-                  before:
-                    "Button labeled \"Skip\" (English, in an Indonesian app) that only worked inside retry mode. Outside retry mode, nothing happened. Users assumed the app was broken.",
-                  after: (
-                    <>
-                      Renamed to <em className="text-[#2B3648]">"Lewati"</em>. Rewrote the handler to
-                      advance the cursor in non-retry mode, marking remaining words as neutral. One word
-                      fix plus one logic fix equals zero confusion.
-                    </>
-                  ),
-                },
-                {
-                  num: "FIX 03",
-                  title: "Dengarkan Ayat form chaos",
-                  before:
-                    "Three inconsistent inputs with phantom dropdown chevrons. No validation. Users could enter ayah 100 for Al-Fatihah (which has 7). No feedback at all.",
-                  after: (
-                    <>
-                      Standardized fields. Replaced repeat count with a{" "}
-                      <em className="text-[#2B3648]">-/+ stepper</em> (still typeable). Live range
-                      validation. Dynamic status:{" "}
-                      <em className="text-[#2B3648]">
-                        "Siap memutar: Al-Ma'arij ayat 1 sampai 5 dengan 3x pengulangan."
-                      </em>
-                    </>
-                  ),
-                },
-                {
-                  num: "FIX 04",
-                  title: "Sambung Ayat with no identity",
-                  before:
-                    "Page jumped straight into a config card with no header. Score tracking lived in a separate disconnected card. Users did not know what screen they were on.",
-                  after: (
-                    <>
-                      Added header inside the config card. Moved score tracking into inline{" "}
-                      <em className="text-[#2B3648]">BENAR/SALAH chips</em> in the prompt card header.
-                      Chips hidden until a session actually starts.
-                    </>
-                  ),
-                },
-                {
-                  num: "FIX 05",
-                  title: "Silent data leak between users",
-                  before:
-                    "User A logs in, closes the tab without logging out. User B (shared laptop) opens the app and sees User A's data. Logout handler only cleared topbar UI, not localStorage.",
-                  after: (
-                    <>
-                      Introduced a logged-in marker. On cold start: if marker exists but no active
-                      session, purge all local data. Combined with hard reload on logout, XSS escaping,
-                      and defense-in-depth{" "}
-                      <code className="bg-[#E8ECF4] text-[#2B3648] px-1.5 py-0.5 rounded text-[13px] font-mono">user_id</code> filters.
-                    </>
-                  ),
-                },
-              ].map((fix) => (
-                <div
-                  key={fix.num}
-                  className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm"
-                >
-                  <div className="px-7 pt-5 pb-3 flex items-center gap-3 flex-wrap">
-                    <span
-                      className="text-[10px] font-bold tracking-[.12em] text-[#8591A3] bg-[#F0F3FA] border border-[#E0E5EF] px-[10px] py-1 rounded-full"
-                      style={{ fontFamily: "'JetBrains Mono',monospace" }}
-                    >
-                      {fix.num}
-                    </span>
-                    <span className="text-[16px] font-bold text-[#0F1A2E] tracking-[-0.01em]">
-                      {fix.title}
-                    </span>
-                  </div>
-                  <div className="grid md:grid-cols-2 border-t border-[#EEF1F7]">
-                    <div className="px-7 py-5 bg-[#FAFBFD] border-b md:border-b-0 md:border-r border-[#EEF1F7]">
-                      <h4
-                        className="text-[10px] font-bold tracking-[.12em] uppercase mb-[10px] flex items-center gap-1.5"
-                        style={{ fontFamily: "'JetBrains Mono',monospace", color: "#C54545" }}
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C54545] inline-block" />
-                        Before
-                      </h4>
-                      <p className="text-[14px] leading-[1.65] text-[#4A5568] m-0">{fix.before}</p>
-                    </div>
-                    <div className="px-7 py-5">
-                      <h4
-                        className="text-[10px] font-bold tracking-[.12em] uppercase mb-[10px] flex items-center gap-1.5"
-                        style={{ fontFamily: "'JetBrains Mono',monospace", color: "#1F9B6E" }}
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#1F9B6E] inline-block" />
-                        After
-                      </h4>
-                      <p className="text-[14px] leading-[1.65] text-[#4A5568] m-0">{fix.after}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </Reveal>
 
@@ -553,18 +342,21 @@ export default function SmartMurojaahCaseStudy() {
               After testing, I noticed the same recitation could produce completely different results
               depending on the browser, operating system, or device.
             </p>
-            <ul className="mt-3 mb-5 ml-5 space-y-1.5">
+            <div className="mt-3 mb-5 space-y-3">
               {[
                 "Different recognition results across Chrome, Safari, and Android browsers.",
                 "Inconsistent microphone permission behavior between platforms.",
                 "Varying levels of Arabic language support across devices.",
                 "Recognition delays that interrupted the murojaah flow.",
               ].map((li, i) => (
-                <li key={i} className="text-[15.5px] text-[#4A5568] leading-[1.75]">
-                  {li}
-                </li>
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#E8ECF4] border border-[#CDD3E0] flex items-center justify-center flex-shrink-0 mt-[2px]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4A5568] inline-block" />
+                  </div>
+                  <p className="text-[15.5px] text-[#4A5568] leading-[1.7] m-0">{li}</p>
+                </div>
               ))}
-            </ul>
+            </div>
             <p className="text-[#4A5568] leading-[1.7] mb-4">
               Getting recognition to work was only half the challenge. The next question was:{" "}
               <strong className="text-[#0F1A2E] font-semibold">how strict should the validation be?</strong>
@@ -573,48 +365,12 @@ export default function SmartMurojaahCaseStudy() {
               A strict word-by-word matcher caused frustration. A single missed word triggered a chain of
               false errors, even when the recitation was mostly correct. On the other hand, a highly
               tolerant matcher risked accepting incorrect recitations. To solve this, I experimented with
-              lookahead matching and gap-tolerance mechanisms.
+              lookahead matching and gap-tolerance mechanisms — allowing the system to accommodate minor
+              recognition inconsistencies without sacrificing meaningful validation. The goal was not
+              perfect accuracy. The goal was creating feedback that users could trust, something closer
+              to how a real murojaah partner would respond:{" "}
+              <em className="text-[#2B3648]">forgiving when appropriate, but still honest.</em>
             </p>
-
-            <div className="bg-[#F0FAF5] border border-[#C9E8D7] rounded-2xl px-8 py-7 my-7">
-              <h3 className="text-[18px] font-bold text-[#0F1A2E] mb-[10px] mt-0">
-                Matcher behavior
-              </h3>
-              <p className="text-[15.5px] text-[#4A5568] leading-[1.7] m-0">
-                Before marking a word wrong, look ahead up to{" "}
-                <strong className="text-[#0F1A2E] font-semibold">3 words</strong> in the expected
-                sequence. If a match exists within that window, treat skipped words as neutral{" "}
-                <code className="bg-[#E8ECF4] text-[#2B3648] px-1.5 py-0.5 rounded text-[13px] font-mono">
-                  'passed'
-                </code>. For gaps of 2+ words, require a stricter similarity threshold to prevent the
-                matcher from accidentally claiming a wildly different ayah as a match. The goal was
-                not perfect accuracy — it was feedback users could trust, something closer to how a
-                real murojaah partner would respond:{" "}
-                <em className="text-[#2B3648]">forgiving when appropriate, but still honest.</em>
-              </p>
-            </div>
-
-            <pre
-              className="rounded-xl overflow-x-auto my-5 p-5 text-[12.5px] leading-[1.75] shadow-md"
-              style={{
-                background: "#0F1A2E",
-                color: "#D6DBE5",
-                fontFamily: "'JetBrains Mono',ui-monospace,monospace",
-              }}
-            >
-{`// Map digit sequences to their Arabic spoken equivalents
-const _NUM_TO_AR = {
-  '50000': 'خمسين الف',
-  '70000': 'سبعين الف',
-  '50': 'خمسين', '70': 'سبعين',
-  '19': 'تسعة عشر', '12': 'اثنا عشر',
-  // ...and so on
-};
-
-function _digitsToArabic(text) {
-  return text.replace(/\\d+/g, m => _NUM_TO_AR[m] || m);
-}`}
-            </pre>
 
             <h3 className="text-[18px] font-bold text-[#0F1A2E] mt-8 mb-[10px] tracking-[-0.01em]">
               2. Security Considerations
@@ -629,7 +385,7 @@ function _digitsToArabic(text) {
               That concern pushed me to spend significant time learning security fundamentals before
               launching. Some of the areas I explored:
             </p>
-            <ul className="mt-3 mb-5 ml-5 space-y-2">
+            <div className="mt-3 mb-5 space-y-3">
               {[
                 <>
                   <strong className="text-[#0F1A2E] font-semibold">Authentication and authorization</strong>{" "}
@@ -648,44 +404,19 @@ function _digitsToArabic(text) {
                   — environment variable management and protecting API keys.
                 </>,
               ].map((li, i) => (
-                <li key={i} className="text-[15.5px] text-[#4A5568] leading-[1.75]">
-                  {li}
-                </li>
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#E8ECF4] border border-[#CDD3E0] flex items-center justify-center flex-shrink-0 mt-[2px]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4A5568] inline-block" />
+                  </div>
+                  <p className="text-[15.5px] text-[#4A5568] leading-[1.7] m-0">{li}</p>
+                </div>
               ))}
-            </ul>
+            </div>
             <p className="text-[#4A5568] leading-[1.7]">
               This project changed the way I think about security. I used to see it as something
               developers handled behind the scenes. Now I see it as part of building trust with users
               — and therefore part of the product experience itself.
             </p>
-          </Reveal>
-
-          {/* Stack */}
-          <Reveal>
-            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">Stack</h2>
-            <p className="text-[#4A5568] leading-[1.7] mb-6">
-              No framework. No build step. Just static HTML, CSS, and JS. Turns out you do not always
-              need Next.js.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {[
-                "Vanilla JS",
-                "Custom CSS",
-                "Web Speech API",
-                "Supabase",
-                "Google OAuth",
-                "Vercel",
-                "Al-Quran Cloud API",
-              ].map((pill) => (
-                <span
-                  key={pill}
-                  className="flex items-center gap-2 px-4 py-2 bg-white border border-[#E4E8F0] rounded-full text-[13px] font-semibold text-[#2B3648] shadow-sm"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#1F9B6E] inline-block" />
-                  {pill}
-                </span>
-              ))}
-            </div>
           </Reveal>
 
           {/* Lessons Learned */}
