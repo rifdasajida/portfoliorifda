@@ -184,10 +184,15 @@ export default function SmartMurojaahCaseStudy() {
                   title: "Practicing sambung ayat alone",
                   body: (
                     <>
-                      When preparing for sambung ayat assessments, someone reads part of a verse and
-                      you continue from there. The problem was simple:{" "}
-                      <em className="text-[#2B3648]">I lived alone.</em> There was no one available
-                      to randomly prompt me with verses whenever I wanted to practice.
+                      <p className="text-[15px] text-[#4A5568] leading-[1.65] m-0">
+                        Another challenge appeared when preparing for sambung ayat assessments. In a
+                        typical assessment, someone reads part of a verse and you continue from there.
+                      </p>
+                      <p className="text-[15px] text-[#4A5568] leading-[1.65] mt-3 mb-0">
+                        The problem was simple:{" "}
+                        <em className="text-[#2B3648]">I lived alone.</em> There was no one available
+                        to randomly prompt me with verses whenever I wanted to practice.
+                      </p>
                     </>
                   ),
                 },
@@ -195,14 +200,24 @@ export default function SmartMurojaahCaseStudy() {
                   title: "The limitation of device",
                   body: (
                     <>
-                      My first instinct was not to build anything. I simply looked for a tool that
-                      could solve my problems. But my phone storage had been permanently fighting for
-                      survival at 99%. Downloading yet another app was not really an option. This
-                      limitation shaped the solution itself:{" "}
-                      <em className="text-[#2B3648]">
-                        if I were going to build something, it had to be accessible instantly through a
-                        browser, with no installation required.
-                      </em>
+                      <p className="text-[15px] text-[#4A5568] leading-[1.65] m-0">
+                        My first instinct was not to build anything. I simply looked for a tool that
+                        could solve my problems. I searched the web but could not find anything that
+                        matched the way I wanted to practice murojaah. Then I started looking at mobile
+                        apps, hoping one of them would fit my needs.
+                      </p>
+                      <p className="text-[15px] text-[#4A5568] leading-[1.65] mt-3 mb-0">
+                        Unfortunately, there was another problem: my phone storage had been permanently
+                        fighting for survival at 99%. Downloading yet another app was not really an option.
+                      </p>
+                      <p className="text-[15px] text-[#4A5568] leading-[1.65] mt-3 mb-0">
+                        This limitation ended up shaping the solution itself.{" "}
+                        <em className="text-[#2B3648]">
+                          If I were going to build something, I wanted it to be accessible instantly
+                          through a browser, without requiring installation, updates, or additional
+                          storage space.
+                        </em>
+                      </p>
                     </>
                   ),
                 },
@@ -219,8 +234,8 @@ export default function SmartMurojaahCaseStudy() {
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div>
-                    <h3 className="text-[16px] font-bold text-[#0F1A2E] mb-[6px]">{p.title}</h3>
-                    <p className="text-[15px] text-[#4A5568] leading-[1.65] m-0">{p.body}</p>
+                    <h3 className="text-[16px] font-bold text-[#0F1A2E] mb-[8px]">{p.title}</h3>
+                    <div>{p.body}</div>
                   </div>
                 </div>
               ))}
@@ -235,90 +250,155 @@ export default function SmartMurojaahCaseStudy() {
               hardest technical unknown first, then iterate on design through real user feedback.
             </p>
 
-            {/* Iteration 1 */}
-            <div className="mb-8">
-              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
-                Iteration 01 — Functionality First
-              </h3>
-              <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-4">
-                My goal was not to build a polished product. I simply wanted something that could help
-                me solve my own problem. So I entered full builder mode. As a Product Designer, this
-                felt unusual because I completely ignored things I normally care about: visual hierarchy,
-                interaction patterns, onboarding, and usability.
-              </p>
-              <p className="text-[15px] text-[#4A5568] leading-[1.7]">
-                I focused only on one thing:{" "}
-                <strong className="text-[#0F1A2E] font-semibold">making it work</strong> — especially
-                de-risking the biggest unknown:{" "}
-                <em className="text-[#2B3648]">
-                  could the browser's speech recognition API actually understand Arabic recitation well
-                  enough to validate memorization?
-                </em>{" "}
-                The process quickly became a cycle of Build &rarr; Test &rarr; Bug &rarr; Fix &rarr; New Bug.
-                Eventually the product became stable enough for my own daily practice.
-              </p>
-            </div>
+            <div className="space-y-0">
 
-            {/* Reality Check */}
-            <div className="bg-white border border-[#E4E8F0] rounded-2xl px-8 py-7 mb-8 shadow-sm">
-              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
-                The Reality Check
-              </h3>
-              <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-4">
-                It should have been enough for me, but my curiosity pushed me further. I made an
-                important decision: I asked a few friends to try it.
-              </p>
-              <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-5">
-                What made sense to me did not automatically make sense to others. Some users were
-                confused by the flow. Others did not understand certain interactions. A few features
-                that I thought were obvious were not obvious at all.
-              </p>
-              <blockquote className="border-l-[3px] border-[#0F1A2E] pl-5 text-[#2B3648] italic text-[15.5px] leading-[1.7]">
-                "Designing for yourself is very different from designing for other people."
-              </blockquote>
-            </div>
-
-            {/* Iteration 2 */}
-            <div className="mb-8">
-              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
-                Iteration 02 — Designing for Real Users
-              </h3>
-              <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-5">
-                Over the following weeks, I refactored almost everything. The biggest change was shifting
-                fully into a mobile-first experience after realizing that every tester accessed the product
-                through their phone — I was practically the only desktop user.
-              </p>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {[
-                  { name: "Murojaah", desc: "Practice recitation with real-time feedback and validation." },
-                  { name: "Hafalanku", desc: "Track memorization progress and manage memorized surahs." },
-                  { name: "Dengarkan Ayat", desc: "Repeat selected verses to strengthen memorization." },
-                  { name: "Sambung Ayat", desc: "Practice random verse continuation independently." },
-                ].map((f) => (
-                  <div key={f.name} className="bg-[#F8F9FC] border border-[#E4E8F0] rounded-xl px-5 py-4">
-                    <div className="text-[13px] font-bold text-[#0F1A2E] mb-1">{f.name}</div>
-                    <div className="text-[13.5px] text-[#4A5568] leading-[1.6]">{f.desc}</div>
-                  </div>
-                ))}
+              {/* Step 01 */}
+              <div
+                className="grid gap-5 py-[26px] border-t border-[#EEF1F7]"
+                style={{ gridTemplateColumns: "42px 1fr" }}
+              >
+                <div
+                  className="w-8 h-8 rounded-full bg-white border-[1.5px] border-[#0F1A2E] flex items-center justify-center text-[12px] font-bold text-[#0F1A2E] flex-shrink-0"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
+                >
+                  01
+                </div>
+                <div>
+                  <h3 className="text-[18px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
+                    Iteration 01 — Functionality First
+                  </h3>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
+                    My goal was not to build a polished product. I simply wanted something that could
+                    help me solve my own problem. So I entered full builder mode. As a Product Designer,
+                    this felt unusual because I completely ignored things I normally care about: visual
+                    hierarchy, interaction patterns, onboarding, and usability.
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
+                    I focused only on one thing:{" "}
+                    <strong className="text-[#0F1A2E] font-semibold">making it work</strong> — building
+                    a rough working version to de-risk the biggest unknown:{" "}
+                    <em className="text-[#2B3648]">
+                      could the browser's speech recognition API actually understand Arabic recitation
+                      well enough to validate memorization?
+                    </em>
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
+                    The process quickly became a cycle of{" "}
+                    <strong className="text-[#0F1A2E] font-semibold">
+                      Build &rarr; Test &rarr; Bug &rarr; Fix &rarr; New Bug
+                    </strong>. There were moments I almost gave up because every fix seemed to create
+                    another issue, especially around voice recognition. Eventually, the product became
+                    stable enough for daily use.
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7]">
+                    It should have been enough — I built it to solve my own problem. But curiosity
+                    pushed me further. I made an important decision:{" "}
+                    <em className="text-[#2B3648]">I asked a few friends to try it.</em>
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* 30 days */}
-            <div className="bg-[#F0FAF5] border border-[#C9E8D7] rounded-2xl px-8 py-7">
-              <h3 className="text-[20px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
-                30-Day Self Test
-              </h3>
-              <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
-                While continuing to improve the product based on Iteration 2 feedback, I committed
-                to using it consistently for 30 days. Partly because I genuinely needed it. Partly
-                because I wanted to understand what the experience felt like over time.
-              </p>
-              <p className="text-[15px] text-[#4A5568] leading-[1.7]">
-                Repeated usage exposed issues that never appeared during short testing sessions. I
-                discovered new bugs, friction points, and small usability problems that only surfaced
-                through daily use. The more I used the product, the more opportunities I found to
-                improve it.
-              </p>
+              {/* Step 02 */}
+              <div
+                className="grid gap-5 py-[26px] border-t border-[#EEF1F7]"
+                style={{ gridTemplateColumns: "42px 1fr" }}
+              >
+                <div
+                  className="w-8 h-8 rounded-full bg-white border-[1.5px] border-[#0F1A2E] flex items-center justify-center text-[12px] font-bold text-[#0F1A2E] flex-shrink-0"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
+                >
+                  02
+                </div>
+                <div>
+                  <h3 className="text-[18px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
+                    The Reality Check (Testing)
+                  </h3>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
+                    What made sense to me did not automatically make sense to others. Some users were
+                    confused by the flow. Others did not understand certain interactions. A few features
+                    that I thought were obvious were not obvious at all.
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-4">
+                    This became my biggest realization:
+                  </p>
+                  <blockquote className="border-l-[3px] border-[#0F1A2E] pl-5 text-[#2B3648] italic text-[15.5px] leading-[1.7] mb-4">
+                    "Designing for yourself is very different from designing for other people."
+                  </blockquote>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7]">
+                    That feedback pushed me back to my roots as a designer. The product needed more than
+                    functionality. It needed usability.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 03 */}
+              <div
+                className="grid gap-5 py-[26px] border-t border-[#EEF1F7]"
+                style={{ gridTemplateColumns: "42px 1fr" }}
+              >
+                <div
+                  className="w-8 h-8 rounded-full bg-white border-[1.5px] border-[#0F1A2E] flex items-center justify-center text-[12px] font-bold text-[#0F1A2E] flex-shrink-0"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
+                >
+                  03
+                </div>
+                <div>
+                  <h3 className="text-[18px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
+                    Iteration 02 — Designing for Real Users
+                  </h3>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-5">
+                    Over the following weeks, I refactored almost everything. The biggest change was
+                    shifting fully into a mobile-first experience after realizing that every tester
+                    accessed the product through their phone — I was practically the only desktop user.
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      { name: "Murojaah", desc: "Practice recitation with real-time feedback and validation." },
+                      { name: "Hafalanku", desc: "Track memorization progress and manage memorized surahs." },
+                      { name: "Dengarkan Ayat", desc: "Repeat selected verses to strengthen memorization." },
+                      { name: "Sambung Ayat", desc: "Practice random verse continuation independently." },
+                    ].map((f) => (
+                      <div key={f.name} className="bg-[#F8F9FC] border border-[#E4E8F0] rounded-xl px-5 py-4">
+                        <div className="text-[13px] font-bold text-[#0F1A2E] mb-1">{f.name}</div>
+                        <div className="text-[13.5px] text-[#4A5568] leading-[1.6]">{f.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 04 */}
+              <div
+                className="grid gap-5 py-[26px] border-t border-[#EEF1F7]"
+                style={{ gridTemplateColumns: "42px 1fr" }}
+              >
+                <div
+                  className="w-8 h-8 rounded-full bg-white border-[1.5px] border-[#0F1A2E] flex items-center justify-center text-[12px] font-bold text-[#0F1A2E] flex-shrink-0"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
+                >
+                  04
+                </div>
+                <div>
+                  <h3 className="text-[18px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
+                    30-Day Self Test
+                  </h3>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
+                    While continuing to improve the product based on feedback from Iteration 2, I also
+                    committed to using it consistently for 30 days. Partly because I genuinely needed it.
+                    Partly because I wanted to understand what the experience felt like over time.
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-3">
+                    This turned out to be one of the most valuable parts of the project.
+                  </p>
+                  <p className="text-[15px] text-[#4A5568] leading-[1.7]">
+                    Repeated usage exposed issues that never appeared during short testing sessions. I
+                    discovered new bugs, friction points, and small usability problems that only surfaced
+                    through daily use. The more I used the product, the more opportunities I found to
+                    improve it.
+                  </p>
+                </div>
+              </div>
+
             </div>
           </Reveal>
 
