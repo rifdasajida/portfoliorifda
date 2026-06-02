@@ -60,8 +60,8 @@ export default function SmartMurojaahCaseStudy() {
               Smart Murojaah: From Personal Struggle to Product
             </h1>
             <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">
-              A Quran memorization tool born from a simple question:{" "}
-              <em className="text-[#2B3648]">"What if I just build it myself?"</em>
+              A mobile-first web app built to support independent Quran memorization through recitation
+              validation, verse repetition, memorization progress tracking, and sambung ayat practice.
             </p>
           </motion.div>
 
@@ -344,7 +344,7 @@ export default function SmartMurojaahCaseStudy() {
                 </div>
                 <div>
                   <h3 className="text-[18px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-3">
-                    Iteration 02 — Designing for Real Users
+                    Iteration 02 — Rebuilding the Experience
                   </h3>
                   <p className="text-[15px] text-[#4A5568] leading-[1.7] mb-5">
                     Over the following weeks, I refactored almost everything. The biggest change was
@@ -564,27 +564,12 @@ export default function SmartMurojaahCaseStudy() {
             <h3 className="text-[18px] font-bold text-[#0F1A2E] mt-8 mb-[10px] tracking-[-0.01em]">
               On the roadmap
             </h3>
-            <ul className="ml-5 space-y-1.5 mb-8">
-              {[
-                "IndexedDB persistence for guest-mode audio recordings",
-                "Multiple qari voice options (currently single reciter)",
-                "Shareable progress snapshots for study groups",
-                "Proper onboarding flow for first-time users",
-              ].map((li, i) => (
-                <li key={i} className="text-[15.5px] text-[#4A5568] leading-[1.75]">
-                  {li}
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="text-[18px] font-bold text-[#0F1A2E] mt-0 mb-[10px] tracking-[-0.01em]">
-              Known limitations
-            </h3>
             <ul className="ml-5 space-y-1.5">
               {[
-                "Speech recognition quality varies by browser. iOS Safari remains a gamble.",
-                "The Android Chrome listening chime cannot be disabled without a server-side STT pipeline.",
-                "Speech-to-text has hard failure modes for tajwid-specific nuances. I am clear about this in-app.",
+                "Keep improving the voice recognition quality",
+                "Provide multiple qari voice options",
+                "AI feedback for Setor Hafalan in track memorization progress",
+                "Gamification on community-group based",
               ].map((li, i) => (
                 <li key={i} className="text-[15.5px] text-[#4A5568] leading-[1.75]">
                   {li}
