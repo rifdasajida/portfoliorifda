@@ -77,8 +77,7 @@ export function CaseStudies() {
             transition={{ delay: 0.1 }}
             className="text-lg text-muted-foreground"
           >
-            Deep dives into product challenges and the strategic design solutions
-            that drive measurable impact.
+            A collection of product journeys—from understanding the problem to shaping solutions that create value for users and the business.
           </motion.p>
         </div>
 
