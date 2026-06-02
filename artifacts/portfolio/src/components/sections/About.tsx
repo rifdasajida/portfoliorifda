@@ -44,13 +44,13 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 relative"
+            className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="aspect-square rounded-3xl overflow-hidden border-8 border-white shadow-2xl relative z-10 bg-secondary">
+            <div className="w-64 h-64 md:w-72 md:h-72 rounded-3xl overflow-hidden border-8 border-white shadow-2xl relative z-10 bg-secondary">
               <img
                 src={`${import.meta.env.BASE_URL}images/${about.avatar}`}
                 alt="Rifda - Product Designer"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
 
