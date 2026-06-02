@@ -67,10 +67,10 @@ export const philosophies = [
 export const caseStudies = [
   {
     slug: "smart-murojaah",
-    title: "Smart Murojaah Web App to Solve My Problem",
+    title: "Smart Murojaah: From Personal Struggle to Product",
     description:
-      "A comprehensive web application designed to help users track and maintain their memorization routines efficiently through gamification.",
-    tags: ["Product Strategy", "UX Research", "Web App"],
+      "A mobile-first web app built to support independent Quran memorization through recitation validation, verse repetition, memorization progress tracking, and sambung ayat practice.",
+    tags: ["Product Strategy", "UX Design", "Vibe Coding", "Solo Build"],
     /** Cover image shown in the card grid */
     image: "smart-murojaah-banner.png",
     /** Light background behind the card image */

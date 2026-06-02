@@ -46,7 +46,7 @@ export default function SmartMurojaahCaseStudy() {
             </Link>
 
             <div className="flex flex-wrap gap-2 mb-7">
-              {["Product Strategy", "UX Design", "Web App", "Solo Build"].map((tag) => (
+              {["Product Strategy", "UX Design", "Vibe Coding", "Solo Build"].map((tag) => (
                 <span
                   key={tag}
                   className="px-4 py-[7px] rounded-full bg-white border border-[#E0E5EF] text-xs font-semibold text-[#2B3648] shadow-sm"
@@ -564,18 +564,22 @@ export default function SmartMurojaahCaseStudy() {
             <h3 className="text-[18px] font-bold text-[#0F1A2E] mt-8 mb-[10px] tracking-[-0.01em]">
               On the roadmap
             </h3>
-            <ul className="ml-5 space-y-1.5">
+            <div className="mt-3 space-y-3">
               {[
                 "Keep improving the voice recognition quality",
                 "Provide multiple qari voice options",
+                "Accessibility audit",
                 "AI feedback for Setor Hafalan in track memorization progress",
                 "Gamification on community-group based",
               ].map((li, i) => (
-                <li key={i} className="text-[15.5px] text-[#4A5568] leading-[1.75]">
-                  {li}
-                </li>
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#E8ECF4] border border-[#CDD3E0] flex items-center justify-center flex-shrink-0 mt-[2px]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4A5568] inline-block" />
+                  </div>
+                  <p className="text-[15.5px] text-[#4A5568] leading-[1.7] m-0">{li}</p>
+                </div>
               ))}
-            </ul>
+            </div>
           </Reveal>
 
         </div>
