@@ -4,7 +4,6 @@ import { Philosophy } from "@/components/sections/Philosophy";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Gallery } from "@/components/sections/Gallery";
 import { About } from "@/components/sections/About";
-import { Blog } from "@/components/sections/Blog";
 import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
@@ -18,7 +17,6 @@ export default function Home() {
         <CaseStudies />
         <Gallery />
         <About />
-        <Blog />
       </main>
 
       <Footer />

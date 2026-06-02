@@ -1,4 +1,4 @@
-import { ArrowRight, Dribbble, Linkedin, Twitter } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { contact } from "@/data/portfolio";
 
@@ -23,19 +23,8 @@ export function Footer() {
           </a>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-gray-800 text-gray-500 text-sm">
+        <div className="pt-8 border-t border-gray-800 text-gray-500 text-sm">
           <p>© {new Date().getFullYear()} {contact.copyright}. All rights reserved.</p>
-          <div className="flex items-center gap-6 mt-4 md:mt-0">
-            <a href={contact.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              <Linkedin size={20} />
-            </a>
-            <a href={contact.socials.dribbble} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              <Dribbble size={20} />
-            </a>
-            <a href={contact.socials.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              <Twitter size={20} />
-            </a>
-          </div>
         </div>
       </div>
     </footer>

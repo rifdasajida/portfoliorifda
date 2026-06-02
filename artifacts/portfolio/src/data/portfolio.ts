@@ -22,7 +22,7 @@
 export const hero = {
   greeting: "Hi! I'm Rifda.",
   subtitle:
-    "A Product Designer dedicated to solving problems with data-informed strategy and purposeful design. Building experiences that matter.",
+    "I enjoy working across research, design, and collaboration to build products that are useful, accessible, and meaningful for the people.",
   cta1: { label: "View My Work", href: "#work" },
   cta2: { label: "Get to Know Me", href: "#about" },
   /** Replace with your own illustration filename inside public/images/ */
@@ -35,17 +35,17 @@ export const philosophies = [
   {
     title: "Design with Intention",
     description:
-      "Every pixel serves a purpose. No decorative fluff, just meaningful choices.",
+      "Understanding the why before shaping the how.",
   },
   {
-    title: "Solving Problems",
+    title: "Connect the Dots",
     description:
-      "Focusing on root user pain points rather than surface-level symptoms.",
+      "Bringing together user needs, business goals, and technical realities to solve problems and shape better solutions.",
   },
   {
-    title: "Make Impacts",
+    title: "Create Meaningful Impact",
     description:
-      "Driving measurable business metrics through strategic design solutions.",
+      "Turning insights and ideas into improvements people can actually feel.",
   },
 ];
 
@@ -408,11 +408,12 @@ export const galleryItems = [
 // --------------- ABOUT ME ---------------
 export const about = {
   /** Your profile photo filename in public/images/ */
-  avatar: "avatar.png",
+  avatar: "rifda-photo.png",
   bio: [
-    "I'm a Product Designer with over 5 years of experience crafting digital products that balance user needs with business goals. My background in psychology and data science gives me a unique perspective on human-computer interaction.",
-    "I believe great design isn't just about how things look — it's about how they work, how they feel, and how they solve real problems. I thrive in agile environments where I can collaborate closely with engineering and product management teams.",
-    "When I'm not pushing pixels, you can find me analyzing user behavioral patterns, building comprehensive design systems, or mentoring junior designers in the community.",
+    "Coming from an Agriculture background, I discovered design through curiosity, communities, and a willingness to learn by doing. What began with graphic design gradually evolved into UI/UX, where I found myself fascinated by the intersection of technology, human behavior, and problem-solving.",
+    "As I gained experience, I realized that designing interfaces alone wasn't enough. I became increasingly interested in understanding the bigger picture: Why are we building this? What problem are we solving? How do user needs, business goals, and technical constraints come together?",
+    "Those questions eventually led me to Product Design, where I found the balance between research, systems thinking, collaboration, and design craft. Today, I enjoy working across different stages of the product development process, helping teams turn complex challenges into experiences that are useful, thoughtful, and grounded in real needs.",
+    "Beyond my day-to-day work, I'm continuously learning about digital accessibility and inclusive design. Through community involvement, research, and advocacy, I'm exploring how technology can create better experiences for people with diverse abilities and contexts.",
   ],
   skills: [
     "Product Strategy",
