@@ -70,7 +70,7 @@ export const caseStudies = [
     title: "Smart Murojaah: From Personal Struggle to Product",
     description:
       "A mobile-first web app built to support independent Quran memorization through recitation validation, verse repetition, memorization progress tracking, and sambung ayat practice.",
-    tags: ["Product Strategy", "UX Design", "Vibe Coding", "Solo Build"],
+    tags: ["Product Strategy", "Vibe Coding", "Solo Build"],
     /** Cover image shown in the card grid */
     image: "smart-murojaah-banner.png",
     /** Light background behind the card image */
