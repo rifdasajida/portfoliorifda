@@ -290,6 +290,16 @@ export default function SmartMurojaahCaseStudy() {
                     another issue, especially around voice recognition. Eventually, the product became
                     stable enough for daily use.
                   </p>
+                  <figure className="my-6 rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+                    <img
+                      src={`${BASE}images/murojaah-iterasi-1.png`}
+                      alt="Smart Murojaah Iterasi 1 — Fitur Murojaah & Sambung Ayat"
+                      className="w-full h-auto block"
+                    />
+                    <figcaption className="text-center text-[13px] text-[#8591A3] py-3 px-4 bg-[#F8F9FC]">
+                      Smart Murojaah Iterasi 1 (Fitur Murojaah &amp; Sambung Ayat)
+                    </figcaption>
+                  </figure>
                   <p className="text-[15px] text-[#4A5568] leading-[1.7]">
                     It should have been enough — I built it to solve my own problem. But curiosity
                     pushed me further. I made an important decision:{" "}
@@ -364,6 +374,16 @@ export default function SmartMurojaahCaseStudy() {
                       </div>
                     ))}
                   </div>
+                  <figure className="mt-6 rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+                    <img
+                      src={`${BASE}images/murojaah-iterasi-2.png`}
+                      alt="Smart Murojaah Iterasi 2 — Fitur Murojaah & Sambung Ayat"
+                      className="w-full h-auto block"
+                    />
+                    <figcaption className="text-center text-[13px] text-[#8591A3] py-3 px-4 bg-[#F8F9FC]">
+                      Smart Murojaah Iterasi 2 (Fitur Murojaah &amp; Sambung Ayat)
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
 
@@ -396,6 +416,16 @@ export default function SmartMurojaahCaseStudy() {
                     through daily use. The more I used the product, the more opportunities I found to
                     improve it.
                   </p>
+                  <figure className="mt-6 rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+                    <img
+                      src={`${BASE}images/murojaah-testing.png`}
+                      alt="Proses Testing & Observe (Iterasi 1 dan Iterasi 2)"
+                      className="w-full h-auto block"
+                    />
+                    <figcaption className="text-center text-[13px] text-[#8591A3] py-3 px-4 bg-[#F8F9FC]">
+                      Proses Testing &amp; Observe (Iterasi 1 dan Iterasi 2)
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
 
