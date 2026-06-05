@@ -120,6 +120,13 @@ export default function EcommerceCheckoutCaseStudy() {
               existing data across Google Analytics, Mixpanel, and the Surplus Dashboard. The goal:
               understand user growth, transaction trends, funneling patterns, and merchant activation.
             </p>
+            <figure className="my-6 rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+              <img
+                src={`${BASE}images/surplus-analytics-report.png`}
+                alt="Analytics Report Customer App January - June 2023"
+                className="w-full h-auto block"
+              />
+            </figure>
             <p className="text-[#4A5568] leading-[1.7]">
               One metric immediately stood out —{" "}
               <strong className="text-[#0F1A2E] font-semibold">the high number of canceled orders</strong>.
@@ -220,29 +227,13 @@ export default function EcommerceCheckoutCaseStudy() {
               </p>
             </div>
 
-            <div className="bg-white border border-[#E4E8F0] rounded-2xl p-8 shadow-sm mb-7">
-              <div
-                className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
-              >
-                User Complaints (Translated)
-              </div>
-              {[
-                "Hungry... waiting too long",
-                "Takes too long to be delivered :(",
-                "Hasn't been delivered yet, even though the shipping method said 1-2 hours. I'm already leaving the office this afternoon",
-                "Not delivered since 3 PM!!!",
-                "I thought it would be delivered now, turns out it's at 6 PM",
-              ].map((quote, i) => (
-                <div
-                  key={i}
-                  className="py-4 border-t border-[#EEF1F7] first:border-t-0 first:pt-0 text-[15px] leading-[1.6] text-[#4A5568] italic"
-                >
-                  <span className="text-[24px] font-extrabold mr-1 not-italic" style={{ color: "#2E7D32" }}>"</span>
-                  {quote}
-                </div>
-              ))}
-            </div>
+            <figure className="mb-7 rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+              <img
+                src={`${BASE}images/surplus-user-complaints.png`}
+                alt="User complaints about long waiting time"
+                className="w-full h-auto block"
+              />
+            </figure>
 
             <p className="text-[#4A5568] leading-[1.7]">
               However, understanding this issue prompted us to delve deeper.{" "}
@@ -267,12 +258,21 @@ export default function EcommerceCheckoutCaseStudy() {
               delivery delays.
             </p>
 
-            <div className="bg-[#F0FAF5] border border-[#C9E8D7] rounded-2xl px-8 py-7 mb-7">
-              <h3 className="text-[18px] font-bold text-[#0F1A2E] mb-[10px] mt-0">The Real Discovery</h3>
-              <p className="text-[15.5px] text-[#4A5568] leading-[1.7] m-0">
-                Users were missing the "pickup time" information, leading to cancellations. They
-                weren't aware that the food they ordered wouldn't be available until hours later.
-              </p>
+            <div className="flex flex-col md:flex-row gap-5 mb-7 items-start">
+              <div className="bg-[#F0FAF5] border border-[#C9E8D7] rounded-2xl px-8 py-7 flex-1">
+                <h3 className="text-[18px] font-bold text-[#0F1A2E] mb-[10px] mt-0">The Real Discovery</h3>
+                <p className="text-[15.5px] text-[#4A5568] leading-[1.7] m-0">
+                  Users were missing the "pickup time" information, leading to cancellations. They
+                  weren't aware that the food they ordered wouldn't be available until hours later.
+                </p>
+              </div>
+              <figure className="rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm md:w-[220px] flex-shrink-0">
+                <img
+                  src={`${BASE}images/surplus-product-card.png`}
+                  alt="Product card showing pickup time"
+                  className="w-full h-auto block"
+                />
+              </figure>
             </div>
 
             <p className="text-[#4A5568] leading-[1.7] mb-5">
@@ -280,61 +280,13 @@ export default function EcommerceCheckoutCaseStudy() {
               ordered and when the merchant's pickup time was set. For example:
             </p>
 
-            {[
-              {
-                num: "EXAMPLE 1",
-                title: "Order placed at 11:44 AM",
-                beforeLabel: "User Expectation",
-                before: "Food arrives around lunchtime (12:00 - 1:00 PM)",
-                afterLabel: "Reality",
-                after: "Pickup window was 6:00 PM - 10:00 PM (dinner time)",
-              },
-              {
-                num: "EXAMPLE 2",
-                title: "Order placed at 1:19 PM",
-                beforeLabel: "User Expectation",
-                before: "Quick afternoon delivery",
-                afterLabel: "Reality",
-                after: "Pickup window was 8:30 PM - 9:30 PM (late evening)",
-              },
-            ].map((ex) => (
-              <div
-                key={ex.num}
-                className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm mb-5"
-              >
-                <div className="px-7 pt-5 pb-3 flex items-center gap-3 flex-wrap">
-                  <span
-                    className="text-[10px] font-bold tracking-[.12em] text-[#8591A3] bg-[#F0F3FA] border border-[#E0E5EF] px-[10px] py-1 rounded-full"
-                    style={{ fontFamily: "'JetBrains Mono',monospace" }}
-                  >
-                    {ex.num}
-                  </span>
-                  <span className="text-[16px] font-bold text-[#0F1A2E] tracking-[-0.01em]">{ex.title}</span>
-                </div>
-                <div className="grid md:grid-cols-2 border-t border-[#EEF1F7]">
-                  <div className="px-7 py-5 bg-[#FAFBFD] border-b md:border-b-0 md:border-r border-[#EEF1F7]">
-                    <h4
-                      className="text-[10px] font-bold tracking-[.12em] uppercase mb-[10px] flex items-center gap-1.5"
-                      style={{ fontFamily: "'JetBrains Mono',monospace", color: "#C54545" }}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#C54545] inline-block" />
-                      {ex.beforeLabel}
-                    </h4>
-                    <p className="text-[14px] leading-[1.65] text-[#4A5568] m-0">{ex.before}</p>
-                  </div>
-                  <div className="px-7 py-5">
-                    <h4
-                      className="text-[10px] font-bold tracking-[.12em] uppercase mb-[10px] flex items-center gap-1.5"
-                      style={{ fontFamily: "'JetBrains Mono',monospace", color: "#1F9B6E" }}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#1F9B6E] inline-block" />
-                      {ex.afterLabel}
-                    </h4>
-                    <p className="text-[14px] leading-[1.65] text-[#4A5568] m-0">{ex.after}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <figure className="mb-5 rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+              <img
+                src={`${BASE}images/surplus-jam-pengambilan.png`}
+                alt="Transaction data showing mismatch between order time and pickup time"
+                className="w-full h-auto block"
+              />
+            </figure>
 
             <p className="text-[#4A5568] leading-[1.7]">
               <strong className="text-[#0F1A2E] font-semibold">Note:</strong>{" "}
@@ -468,6 +420,13 @@ export default function EcommerceCheckoutCaseStudy() {
                     <p className="text-[14px] leading-[1.65] text-[#4A5568] m-0">{change.after}</p>
                   </div>
                 </div>
+                <figure className="border-t border-[#EEF1F7] overflow-hidden">
+                  <img
+                    src={`${BASE}images/surplus-merchant-page.png`}
+                    alt="Merchant page before and after redesign"
+                    className="w-full h-auto block"
+                  />
+                </figure>
               </div>
             ))}
 
@@ -502,6 +461,13 @@ export default function EcommerceCheckoutCaseStudy() {
                   </p>
                 </div>
               </div>
+              <figure className="border-t border-[#EEF1F7] overflow-hidden">
+                <img
+                  src={`${BASE}images/surplus-popup.png`}
+                  alt="Pre-checkout confirmation popup"
+                  className="w-full h-auto block"
+                />
+              </figure>
             </div>
 
             <p className="text-[#4A5568] leading-[1.7]">
