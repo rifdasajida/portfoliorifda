@@ -1,4 +1,3 @@
-
 /**
  * ============================================================
  *  PORTFOLIO CONTENT — Edit everything here
@@ -34,8 +33,7 @@ export const hero = {
 export const philosophies = [
   {
     title: "Design with Intention",
-    description:
-      "Understanding the why before shaping the how.",
+    description: "Understanding the why before shaping the how.",
   },
   {
     title: "Connect the Dots",
