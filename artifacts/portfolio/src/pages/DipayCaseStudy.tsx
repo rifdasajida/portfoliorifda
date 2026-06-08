@@ -47,7 +47,6 @@ export default function DipayCaseStudy() {
   return (
     <div className="min-h-screen bg-[#F4F6FB] font-sans">
       <Navbar />
-
       {/* Hero */}
       <div className="bg-[#EBEDF8] pt-28 pb-0">
         <div className="max-w-[760px] mx-auto px-7">
@@ -108,7 +107,6 @@ export default function DipayCaseStudy() {
           </motion.div>
         </div>
       </div>
-
       {/* Content */}
       <div className="py-[72px]">
         <div className="max-w-[760px] mx-auto px-7 space-y-16">
@@ -390,16 +388,16 @@ export default function DipayCaseStudy() {
             </div>
 
             <div className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm mt-8">
-              <div className="px-8 pt-6 pb-2">
+              <div className="px-8 pt-6 pb-2 bg-[#f2f2f2fa]">
                 <div
                   className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
                   style={{ fontFamily: "'JetBrains Mono',monospace" }}
                 >
-                  Reconciliation Dashboard
+                  Improved Reconciliation & Settlement
                 </div>
               </div>
               <img
-                src={`${BASE}images/dipay-reconciliation-table.png`}
+                src={`${BASE}images/dipay-improved-reconciliation.png`}
                 alt="Dipay transaction reconciliation table showing all transaction data with automated reconciliation results"
                 className="w-full object-cover"
               />
@@ -529,7 +527,6 @@ export default function DipayCaseStudy() {
 
         </div>
       </div>
-
       {/* Prev / Next */}
       <div className="max-w-[760px] mx-auto px-7 pb-20 pt-4">
         <div className="flex justify-between items-center border-t border-[#E4E8F0] pt-12 gap-4">
@@ -562,7 +559,6 @@ export default function DipayCaseStudy() {
           )}
         </div>
       </div>
-
       <Footer />
     </div>
   );
