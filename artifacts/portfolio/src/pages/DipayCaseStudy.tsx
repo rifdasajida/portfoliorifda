@@ -250,38 +250,20 @@ export default function DipayCaseStudy() {
               reconciliation was still heavily manual.
             </p>
 
-            <div className="bg-white border border-[#E4E8F0] rounded-2xl p-8 shadow-sm mb-6">
-              <div
-                className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-6"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
-              >
-                Manual Reconciliation Loop (Before)
-              </div>
-              {[
-                { n: "1", strong: "Download QRIS transaction reports", sub: "For every settlement cycle" },
-                { n: "2", strong: "Download mutation reports", sub: "Per merchant, one-by-one" },
-                { n: "3", strong: "Compare both datasets manually", sub: "Row-by-row validation" },
-                { n: "4", strong: "Validate settlement eligibility", sub: "Check every condition manually" },
-                { n: "5", strong: "Investigate discrepancies", sub: "If anything doesn't match" },
-                { n: "6", strong: "Repeat the process for every merchant", sub: "A single batch often contained 50-70 merchants" },
-              ].map((step, i, arr) => (
+            <div className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm mb-6">
+              <div className="px-8 pt-6 pb-2">
                 <div
-                  key={step.n}
-                  className="grid gap-4 py-3 border-t border-[#EEF1F7] first:border-t-0 items-start"
-                  style={{ gridTemplateColumns: "28px 1fr" }}
+                  className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
+                  style={{ fontFamily: "'JetBrains Mono',monospace" }}
                 >
-                  <div
-                    className="w-6 h-6 rounded-md bg-[#EBEDF8] border border-[#C8D0F0] flex items-center justify-center text-[10px] font-bold text-[#4B5FE0] flex-shrink-0 mt-0.5"
-                    style={{ fontFamily: "'JetBrains Mono',monospace" }}
-                  >
-                    {step.n}
-                  </div>
-                  <div>
-                    <strong className="text-[14px] text-[#0F1A2E] font-bold block mb-0.5">{step.strong}</strong>
-                    <span className="text-[14px] text-[#4A5568]">{step.sub}</span>
-                  </div>
+                  Manual Reconciliation Loop (Before)
                 </div>
-              ))}
+              </div>
+              <img
+                src={`${BASE}images/dipay-settlement-storyboard.png`}
+                alt="Settlement Cycle User Journey Storyboard — How Finance team manually processes settlement before any disbursement can happen"
+                className="w-full object-cover"
+              />
             </div>
 
             <p className="text-[#4A5568] leading-[1.7]">
