@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Link, useLocation } from "wouter";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+  const isHome = location === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +24,21 @@ export function Navbar() {
     { name: "About", href: "#about" },
   ];
 
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      if (isHome) {
+        e.preventDefault();
+        const id = href.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      setMobileMenuOpen(false);
+    },
+    [isHome]
+  );
+
   return (
     <header
       className={cn(
@@ -32,14 +50,18 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
-          <img 
+        <Link
+          href="/"
+          className="flex items-center gap-2 group"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <img
             src="/images/logo-rifda-new.png"
             alt="Rifda Logo"
             className="w-16 h-auto object-contain"
           />
           <span className="font-bold text-xl tracking-tight"></span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
@@ -47,7 +69,8 @@ export function Navbar() {
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
-                  href={link.href}
+                  href={isHome ? link.href : `/${link.href}`}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="hover:text-foreground transition-colors hover:underline decoration-2 underline-offset-4"
                 >
                   {link.name}
@@ -55,8 +78,13 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <a href="#contact">
-            <Button variant="default" className="h-10 px-5 text-sm">Contact</Button>
+          <a
+            href={isHome ? "#contact" : "/#contact"}
+            onClick={(e) => handleNavClick(e, "#contact")}
+          >
+            <Button variant="default" className="h-10 px-5 text-sm">
+              Contact
+            </Button>
           </a>
         </nav>
 
@@ -75,15 +103,19 @@ export function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.name}
-              href={link.href}
+              href={isHome ? link.href : `/${link.href}`}
               className="text-base font-medium text-foreground py-2 border-b border-border/50"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
             </a>
           ))}
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>
-            <Button className="w-full mt-2">Contact Me</Button>
+          <a
+            href={isHome ? "#contact" : "/#contact"}
+            className="text-base font-medium text-foreground py-2 border-b border-border/50"
+            onClick={(e) => handleNavClick(e, "#contact")}
+          >
+            Contact
           </a>
         </div>
       )}
