@@ -306,48 +306,13 @@ export default function EcommerceCheckoutCaseStudy() {
               case story illustration to understand the problem from the user's perspective.
             </p>
 
-            <div className="bg-white border border-[#E4E8F0] rounded-2xl p-8 shadow-sm mb-7">
-              <div
-                className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-6"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
-              >
-                User Journey Map
-              </div>
-              <div className="flex gap-0 overflow-x-auto pb-2">
-                {[
-                  { icon: "😊", label: "Excited to find menu", desc: "User opens app for lunch", problem: false },
-                  { icon: "👀", label: "Doesn't notice pickup time", desc: "Menu is for dinner", problem: true },
-                  { icon: "💳", label: "Makes payment", desc: "Successfully checks out", problem: false },
-                  { icon: "🤔", label: "Excited to wait", desc: "Expecting quick delivery", problem: false },
-                  { icon: "❓", label: "Questioning delay", desc: "Why is it taking so long?", problem: false },
-                  { icon: "📱", label: "Checks app", desc: "Discovers 5+ hour wait", problem: false },
-                  { icon: "😞", label: "Feels disappointed", desc: "Won't be in same place", problem: false },
-                  { icon: "❌", label: "Cancels order", desc: "Bad overall experience", problem: true },
-                ].map((step, i, arr) => (
-                  <div
-                    key={i}
-                    className="flex-1 min-w-[130px] text-center p-3 relative"
-                    style={
-                      step.problem
-                        ? { background: "#FBE4E4", borderRadius: "12px" }
-                        : {}
-                    }
-                  >
-                    {i < arr.length - 1 && (
-                      <span className="absolute right-[-9px] top-1/2 -translate-y-1/2 text-[#B8C0CC] text-lg z-10">→</span>
-                    )}
-                    <div className="text-[28px] mb-2">{step.icon}</div>
-                    <div
-                      className="text-[13px] font-semibold leading-[1.4]"
-                      style={{ color: step.problem ? "#C54545" : "#0F1A2E" }}
-                    >
-                      {step.label}
-                    </div>
-                    <div className="text-[11px] text-[#8591A3] mt-1">{step.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <figure className="mb-7 rounded-2xl overflow-hidden border border-[#E4E8F0] shadow-sm bg-white">
+              <img
+                src={`${BASE}images/surplus-case-story.png`}
+                alt="Case Story: User cancel cause missed pick up time"
+                className="w-full h-auto block"
+              />
+            </figure>
 
             <div className="bg-[#FFF9F0] border border-[#F5E4C5] rounded-2xl px-8 py-7 mb-7">
               <h3 className="text-[18px] font-bold text-[#0F1A2E] mb-[10px] mt-0">Key Questions We Raised</h3>
