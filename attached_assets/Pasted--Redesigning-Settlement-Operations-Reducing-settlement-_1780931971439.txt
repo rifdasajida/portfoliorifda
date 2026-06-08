@@ -1,0 +1,240 @@
+# Redesigning Settlement Operations
+
+*Reducing settlement delays, preventing disbursement errors, and saving 4–5 hours per settlement cycle through automated reconciliation.*
+
+[Hero Image]
+
+---
+
+## Overview
+
+Settlement is one of the most critical operational processes at Dipay. As a QRIS acquirer, Dipay is responsible for ensuring merchant funds are disbursed accurately and on time.
+
+As transaction volume continued to grow, settlement operations became increasingly difficult to manage. Settlement processing often extended beyond working hours, delaying merchant payouts and generating complaints from business partners waiting for their funds.
+
+At the same time, operational teams faced recurring risks caused by manual validation processes. Issues such as reconciliation mismatches, settlement failures, and even duplicate settlement cases required significant effort to investigate and resolve before funds could be safely disbursed.
+
+To address these challenges, I redesigned Dipay's settlement workflow by introducing automated reconciliation, exception-based reviews, structured approval flows, and settlement monitoring tools that reduced operational processing time by approximately 4–5 hours per settlement cycle.
+
+### My Role
+
+Product Designer
+
+### Collaborators
+
+PM, Backend Engineers, Finance Team, Operations Team
+
+### Impact
+
+* ↓ 4–5 hours per settlement cycle
+* Faster settlement processing
+* Reduced operational risk
+* Eliminated spreadsheet-based reconciliation workflows
+* Improved settlement visibility and control
+
+---
+
+# The Business Problem
+
+The project initially started with a business concern:
+
+> Why does settlement take so long, and why are settlement issues still occurring despite extensive operational checks?
+
+As transaction volume increased, settlement processing regularly became a bottleneck.
+
+Finance and Operations teams frequently worked late to complete settlement cycles, particularly after weekends when transaction volume accumulated significantly.
+
+The impact extended beyond internal operations.
+
+Delayed settlement meant merchants received their funds later than expected, creating complaints and increasing operational pressure from business teams.
+
+More concerningly, several settlement issues highlighted weaknesses in the existing process:
+
+* Duplicate settlement attempts
+* Settlement failures
+* Transaction mismatches
+* Inconsistent reconciliation results
+* Manual investigation efforts before disbursement
+
+Because settlement directly impacts merchant funds, even a single mistake could create financial loss, operational overhead, and trust issues.
+
+Understanding why these issues occurred became the starting point of the project.
+
+---
+
+# Investigation & Discovery
+
+Rather than immediately redesigning the dashboard, I worked with Finance and Operations teams to understand how settlement decisions were actually made.
+
+One important discovery quickly emerged:
+
+> Settlement wasn't slow because approval took too long. Settlement was slow because validation took too long.
+
+Before any settlement could happen, Finance teams first needed to perform reconciliation.
+
+---
+
+## Understanding Reconciliation
+
+As a QRIS acquirer, Dipay records transaction data internally. However, before funds can be disbursed, those records must be validated against external payment infrastructure.
+
+The Finance team performs reconciliation to ensure that transaction records stored inside Dipay match records received from switchers and bank mutation reports.
+
+This process exists to answer one critical question:
+
+> Can we confidently prove that the money being disbursed is backed by valid transaction records?
+
+Any discrepancy must be investigated before settlement can proceed.
+
+Examples include:
+
+* Missing mutation records
+* Amount mismatches
+* Invalid or missing RRN data
+* Inconsistent transaction statuses
+* Duplicate settlement attempts
+
+Only after reconciliation is completed can a transaction move forward to settlement.
+
+---
+
+## What Actually Happened Behind the Scenes
+
+Through workflow observations and discussions with Finance teams, I discovered that reconciliation was still heavily manual.
+
+For every settlement cycle, Finance teams had to:
+
+1. Download QRIS transaction reports
+2. Download mutation reports
+3. Compare both datasets manually
+4. Validate settlement eligibility
+5. Investigate discrepancies
+6. Repeat the process for every merchant
+
+A single settlement batch often contained 50–70 merchants.
+
+Most operational effort was spent preparing and validating data rather than making settlement decisions.
+
+As transaction volume increased, the process became increasingly difficult to scale.
+
+### Root Causes
+
+**Manual reconciliation**
+
+Transaction validation relied heavily on spreadsheet comparison.
+
+**Poor anomaly visibility**
+
+Problematic transactions looked identical to healthy transactions, forcing operators to review everything.
+
+**High operational effort**
+
+Large amounts of time were spent exporting reports, comparing records, and validating transactions.
+
+**Human error risk**
+
+Despite all the manual checks, settlement mistakes could still occur.
+
+At this point, the challenge became clear:
+
+> The problem wasn't simply the interface. The problem was a workflow that required humans to validate everything.
+
+---
+
+# Design Principle
+
+The key question became:
+
+> How might we reduce settlement risk without requiring Finance teams to manually review every transaction?
+
+Through discussions with engineers and settlement stakeholders, we discovered that full automation wasn't realistic.
+
+Certain edge cases still required human judgment before funds could be safely disbursed.
+
+This led to the core principle behind the redesign:
+
+> Automate high-confidence validations and escalate exceptions for human review.
+
+---
+
+# The Solution
+
+The redesigned workflow shifts Finance teams away from validating every transaction and toward reviewing only transactions that require attention.
+
+### Automated Reconciliation Engine
+
+The system automatically validates transaction data and performs reconciliation checks at scale.
+
+Instead of manually comparing reports, Finance teams immediately receive reconciliation outcomes generated by the system.
+
+[Insert Screenshot]
+
+### Two-Status Review Model
+
+Every transaction receives one of two outcomes:
+
+✓ Eligible for Settlement
+
+⚠ Requires Review
+
+This dramatically reduces review volume while maintaining financial control.
+
+[Insert Screenshot]
+
+### Exception-Based Operational Review
+
+Rather than checking everything, Finance teams focus only on flagged transactions.
+
+This allows operators to spend their time investigating genuine issues instead of performing repetitive validation work.
+
+[Insert Screenshot]
+
+### Approval & Settlement Monitoring
+
+Structured approval workflows, settlement visibility, and retry mechanisms help teams safely manage settlement operations while preventing duplicate disbursement risks.
+
+[Insert Screenshot]
+
+---
+
+# Impact
+
+The redesign transformed settlement operations from a spreadsheet-heavy validation process into an exception-based operational workflow.
+
+### Results
+
+**↓ 4–5 Hours**
+
+Reduced settlement processing time per cycle
+
+**Faster Merchant Payouts**
+
+Settlement requests can be processed more efficiently
+
+**Reduced Operational Risk**
+
+Lower likelihood of settlement mistakes and duplicate disbursement
+
+**Better Visibility**
+
+Settlement anomalies are identified immediately
+
+**Improved Scalability**
+
+Operations can support growing transaction volume without proportional increases in manual effort
+
+---
+
+# Key Learnings
+
+### Internal tools are often business-critical systems
+
+The challenge wasn't designing a dashboard. The challenge was designing a safer operational process.
+
+### Automation is most effective when paired with human judgment
+
+Financial operations require both scalability and control. The solution wasn't replacing humans—it was helping them focus on the right problems.
+
+### Root causes matter more than symptoms
+
+Settlement delays initially appeared to be an operational efficiency problem. In reality, they were the result of a reconciliation process that required humans to validate almost everything manually.
