@@ -344,6 +344,22 @@ export default function DipayCaseStudy() {
               What we built
             </p>
 
+            <div className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm mb-8">
+              <div className="px-8 pt-6 pb-2 bg-[#f2f2f2fa]">
+                <div
+                  className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
+                  style={{ fontFamily: "'JetBrains Mono',monospace" }}
+                >
+                  Improved Reconciliation & Settlement
+                </div>
+              </div>
+              <img
+                src={`${BASE}images/dipay-improved-reconciliation.png`}
+                alt="Dipay transaction reconciliation table showing all transaction data with automated reconciliation results"
+                className="w-full object-cover"
+              />
+            </div>
+
             <div className="space-y-5">
               {[
                 {
@@ -385,22 +401,6 @@ export default function DipayCaseStudy() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm mt-8">
-              <div className="px-8 pt-6 pb-2 bg-[#f2f2f2fa]">
-                <div
-                  className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
-                  style={{ fontFamily: "'JetBrains Mono',monospace" }}
-                >
-                  Improved Reconciliation & Settlement
-                </div>
-              </div>
-              <img
-                src={`${BASE}images/dipay-improved-reconciliation.png`}
-                alt="Dipay transaction reconciliation table showing all transaction data with automated reconciliation results"
-                className="w-full object-cover"
-              />
             </div>
           </Reveal>
 
