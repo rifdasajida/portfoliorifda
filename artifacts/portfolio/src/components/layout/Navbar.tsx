@@ -34,7 +34,7 @@ export function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
           <img 
-            src="/images/logo-rif.png"
+            src="/images/logo-rifda-new.png"
             alt="Rifda Logo"
             className="w-16 h-auto object-contain"
           />
