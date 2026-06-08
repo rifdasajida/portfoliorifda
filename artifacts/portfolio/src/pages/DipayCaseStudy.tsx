@@ -388,6 +388,22 @@ export default function DipayCaseStudy() {
                 </div>
               ))}
             </div>
+
+            <div className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm mt-8">
+              <div className="px-8 pt-6 pb-2">
+                <div
+                  className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
+                  style={{ fontFamily: "'JetBrains Mono',monospace" }}
+                >
+                  Reconciliation Dashboard
+                </div>
+              </div>
+              <img
+                src={`${BASE}images/dipay-reconciliation-table.png`}
+                alt="Dipay transaction reconciliation table showing all transaction data with automated reconciliation results"
+                className="w-full object-cover"
+              />
+            </div>
           </Reveal>
 
           {/* Impact */}
