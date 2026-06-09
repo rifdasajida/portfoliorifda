@@ -192,6 +192,7 @@ export const caseStudies = [
     tags: ["Data Viz", "Design System", "B2B SaaS"],
     image: "case-study-aman.png",
     color: "bg-green-50",
+    externalUrl: "https://grave-pentagon-89c.notion.site/AMAN-Dashboard-Revamp-37a2139deaac803a8288fa6ccdf2d806",
     overview:
       "A B2B SaaS client needed their analytics dashboard redesigned — their power users loved the depth, but new users churned within the first two weeks because the interface was overwhelming.",
     problem:
