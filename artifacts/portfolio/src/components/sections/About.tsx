@@ -18,7 +18,7 @@ export function About() {
 
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed mb-10">
               {about.bio.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
+                <p key={i} className="text-[#4a4646]">{paragraph}</p>
               ))}
             </div>
 

@@ -22,7 +22,6 @@ export function Hero() {
   return (
     <section className="relative flex items-center pt-28 pb-16 overflow-hidden bg-background">
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
@@ -48,7 +47,7 @@ export function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-lg"
+              className="text-lg md:text-xl leading-relaxed mb-10 max-w-lg text-[#4c5757]"
             >
               {hero.subtitle}
             </motion.p>

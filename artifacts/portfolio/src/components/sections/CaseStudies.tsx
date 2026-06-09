@@ -75,7 +75,7 @@ export function CaseStudies() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground"
+            className="text-lg text-[#4c5757]"
           >
             A collection of product journeys, from understanding the problem to
             shaping solutions that create value for users and the business.
