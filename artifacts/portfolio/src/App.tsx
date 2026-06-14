@@ -9,6 +9,7 @@ import SmartMurojaahCaseStudy from "@/pages/SmartMurojaahCaseStudy";
 import DipayCaseStudy from "@/pages/DipayCaseStudy";
 import EcommerceCheckoutCaseStudy from "@/pages/EcommerceCheckoutCaseStudy";
 import SaasAnalyticsCaseStudy from "@/pages/SaasAnalyticsCaseStudy";
+import BlogPost from "@/pages/BlogPost";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +24,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/case-study/smart-murojaah" component={SmartMurojaahCaseStudy} />
       <Route path="/case-study/dipay-settlement" component={DipayCaseStudy} />
       <Route path="/case-study/ecommerce-checkout" component={EcommerceCheckoutCaseStudy} />
