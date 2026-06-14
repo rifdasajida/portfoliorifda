@@ -21,9 +21,7 @@ export function Blog() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="text-lg text-muted-foreground"
-          >
-            Insights on design, research, and product strategy from my experience in the field.
-          </motion.p>
+          >Personal reflections and thoughts related to design, research, and product.</motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
