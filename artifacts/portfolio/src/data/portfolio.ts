@@ -21,7 +21,7 @@
 export const hero = {
   greeting: "Hi! I'm Rifda.",
   subtitle:
-    "I enjoy working across research, design, and collaboration to build products that are useful, accessible, and meaningful for the people.",
+    "I enjoy working across research, design, and collaboration to solve complex problems and build products that are useful, meaningful, and accessible for the people.",
   cta1: { label: "View My Work", href: "#work" },
   cta2: { label: "Get to Know Me", href: "#about" },
   /** Replace with your own illustration filename inside public/images/ */
