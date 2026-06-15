@@ -185,10 +185,10 @@ export default function SaasAnalyticsCaseStudy() {
             <div className="flex flex-wrap gap-2 mb-7">
               {[
                 { label: "Real Project", highlight: true },
-                { label: "B2B SaaS" },
+                { label: "Revamp" },
+                { label: "Site Map" },
                 { label: "Design System" },
-                { label: "UI Standardization" },
-                { label: "Dashboard UX" },
+                { label: "Interactive Prototyping" },
               ].map((tag) => (
                 <span
                   key={tag.label}

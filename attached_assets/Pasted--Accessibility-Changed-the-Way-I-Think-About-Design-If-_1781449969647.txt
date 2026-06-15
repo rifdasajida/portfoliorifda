@@ -8,7 +8,7 @@ But if I'm being honest, at that time accessibility was still an abstract concep
 
 That changed when I came across a video of a blind person using a smartphone with a screen reader.
 
-I don't even remember what application they were trying to use. What I remember is the feeling of watching someone struggle with something that many of us take for granted every day. The person wasn't confused because they didn't know how to use technology. They weren't struggling because they lacked experience. The problem was much simpler: the application wasn't designed in a way that worked properly with a screen reader.
+I  really remember about that feeling when I watching someone struggle with something that many of us take for granted every day. The person wasn't confused because they didn't know how to use technology. They weren't struggling because they lacked experience. The problem was much simpler: the application wasn't designed in a way that worked properly with a screen reader.
 
 As I watched the video, I found myself paying attention to things I had never thought about before. Buttons that looked perfectly normal suddenly became meaningless because they weren't announced correctly. Information that was obvious visually became difficult to understand when experienced through audio. Actions that seemed simple became frustrating obstacles.
 

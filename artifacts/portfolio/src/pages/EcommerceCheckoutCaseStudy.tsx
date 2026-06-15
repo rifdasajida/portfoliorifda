@@ -64,9 +64,10 @@ export default function EcommerceCheckoutCaseStudy() {
             <div className="flex flex-wrap gap-2 mb-7">
               {[
                 { label: "Real Project", highlight: true },
-                { label: "Data Analysis" },
-                { label: "UX Research" },
-                { label: "UI Design" },
+                { label: "Data analysis" },
+                { label: "UI/UX Audit" },
+                { label: "Storyboard" },
+                { label: "Design" },
                 { label: "Concept Testing" },
               ].map((tag) => (
                 <span

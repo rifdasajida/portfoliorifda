@@ -68,7 +68,7 @@ export const caseStudies = [
     title: "Smart Murojaah: From Personal Struggle to Product",
     description:
       "A mobile-first web app built to support independent Quran memorization through recitation validation, verse repetition, memorization progress tracking, and sambung ayat practice.",
-    tags: ["Product Strategy", "Vibe Coding", "Solo Build"],
+    tags: ["Real Project", "Solo Build", "Vibe Coding", "User Testing"],
     /** Cover image shown in the card grid */
     image: "smart-murojaah-banner.png",
     /** Light background behind the card image */
@@ -111,7 +111,7 @@ export const caseStudies = [
     title: "Dipay Settlement & Reconciliation Revamp",
     description:
       "Redesigning Dipay's internal settlement operations to eliminate manual reconciliation and save Finance teams 4–5 hours per settlement cycle.",
-    tags: ["Fintech", "Operational UX", "Internal Tool"],
+    tags: ["Real Project", "UX Audit", "User Interview", "Design Operational UX"],
     image: "dipay-settlement-banner.png",
     color: "bg-blue-50",
     overview:
@@ -150,7 +150,7 @@ export const caseStudies = [
     title: "E-commerce Checkout Optimization",
     description:
       "Redesigning the checkout flow to reduce cart abandonment rate by 24% for a mid-sized fashion retailer.",
-    tags: ["Conversion", "A/B Testing", "Mobile UI"],
+    tags: ["Real Project", "Data analysis", "UI/UX Audit", "Storyboard", "Design", "Concept Testing"],
     image: "case-study-surplus.png",
     color: "bg-orange-50",
     overview:
@@ -189,7 +189,7 @@ export const caseStudies = [
     title: "SaaS Analytics Dashboard Redesign",
     description:
       "Simplifying complex data visualization to help marketing managers make faster, more confident decisions.",
-    tags: ["Data Viz", "Design System", "B2B SaaS"],
+    tags: ["Real Project", "Revamp", "Site Map", "Design System", "Interactive Prototyping"],
     image: "case-study-aman.png",
     color: "bg-green-50",
     externalUrl: "https://grave-pentagon-89c.notion.site/AMAN-Dashboard-Revamp-37a2139deaac803a8288fa6ccdf2d806",
@@ -229,7 +229,7 @@ export const caseStudies = [
     title: "SHONIC Electronic E-Commerce",
     description:
       "Designing an end-to-end shopping experience for an electronics retailer — from product discovery to seamless checkout.",
-    tags: ["E-Commerce", "Mobile UI", "UX Research"],
+    tags: ["Real Project", "In depth interview", "Bechmarking", "UI Design", "Design System", "Usability Testing"],
     image: "shonic-banner.webp",
     color: "bg-blue-50",
     /** Opens an external URL instead of the internal case study page */
@@ -271,7 +271,7 @@ export const caseStudies = [
     title: "Water Hydration Reminder Feature",
     description:
       "Designing a smart hydration tracking feature that nudges users to drink more water through personalized reminders and progress visualization.",
-    tags: ["Health App", "Feature Design", "Mobile UI"],
+    tags: ["Exploration Project", "Desk Research", "System Model Storyboard", "UI Design", "Interaction Flow Documentation", "Prototyping"],
     image: "water-hydration-banner.webp",
     color: "bg-cyan-50",
     /** Opens an external URL instead of the internal case study page */
@@ -313,7 +313,7 @@ export const caseStudies = [
     title: "The Analog — Analog Cameras Platform",
     description:
       "Crafting a community-driven marketplace and discovery platform for analog photography enthusiasts to buy, sell, and celebrate film cameras.",
-    tags: ["Marketplace", "Community", "Web App"],
+    tags: ["Exploration Project", "Desk Research", "Affinity Mapping", "Storyboard", "Conceptual model", "Wireframe", "UI Design"],
     image: "analog-cameras-banner.webp",
     color: "bg-slate-100",
     /** Opens an external URL instead of the internal case study page */
@@ -452,7 +452,7 @@ But if I'm being honest, at that time accessibility was still an abstract concep
 
 That changed when I came across a video of a blind person using a smartphone with a screen reader.
 
-I don't even remember what application they were trying to use. What I remember is the feeling of watching someone struggle with something that many of us take for granted every day. The person wasn't confused because they didn't know how to use technology. They weren't struggling because they lacked experience. The problem was much simpler: the application wasn't designed in a way that worked properly with a screen reader.
+I  really remember about that feeling when I watching someone struggle with something that many of us take for granted every day. The person wasn't confused because they didn't know how to use technology. They weren't struggling because they lacked experience. The problem was much simpler: the application wasn't designed in a way that worked properly with a screen reader.
 
 As I watched the video, I found myself paying attention to things I had never thought about before. Buttons that looked perfectly normal suddenly became meaningless because they weren't announced correctly. Information that was obvious visually became difficult to understand when experienced through audio. Actions that seemed simple became frustrating obstacles.
 

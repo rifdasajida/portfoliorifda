@@ -46,7 +46,7 @@ export default function SmartMurojaahCaseStudy() {
             </Link>
 
             <div className="flex flex-wrap gap-2 mb-7">
-              {["Product Strategy", "UX Design", "Vibe Coding", "Solo Build"].map((tag) => (
+              {["Real Project", "Solo Build", "Vibe Coding", "User Testing"].map((tag) => (
                 <span
                   key={tag}
                   className="px-4 py-[7px] rounded-full bg-white border border-[#E0E5EF] text-xs font-semibold text-[#2B3648] shadow-sm"

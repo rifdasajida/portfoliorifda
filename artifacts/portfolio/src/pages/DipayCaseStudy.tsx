@@ -65,10 +65,9 @@ export default function DipayCaseStudy() {
             <div className="flex flex-wrap gap-2 mb-7">
               {[
                 { label: "Real Project", highlight: true },
-                { label: "Fintech" },
-                { label: "B2B" },
-                { label: "Operational UX" },
-                { label: "Internal Tool" },
+                { label: "UX Audit" },
+                { label: "User Interview" },
+                { label: "Design Operational UX" },
               ].map((tag) => (
                 <span
                   key={tag.label}
