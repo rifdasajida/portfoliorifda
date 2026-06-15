@@ -271,7 +271,7 @@ export const caseStudies = [
     title: "Water Hydration Reminder Feature",
     description:
       "Designing a smart hydration tracking feature that nudges users to drink more water through personalized reminders and progress visualization.",
-    tags: ["Exploration Project", "Desk Research", "System Model Storyboard", "UI Design", "Interaction Flow Documentation", "Prototyping"],
+    tags: ["Exploration Project", "Desk Research", "UI Design", "Interaction Flow Documentation", "Prototyping"],
     image: "water-hydration-banner.webp",
     color: "bg-cyan-50",
     /** Opens an external URL instead of the internal case study page */
