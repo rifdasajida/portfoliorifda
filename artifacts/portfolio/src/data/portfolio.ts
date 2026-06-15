@@ -65,7 +65,7 @@ export const philosophies = [
 export const caseStudies = [
   {
     slug: "smart-murojaah",
-    title: "Smart Murojaah: From Personal Struggle to Product",
+    title: "Smart Murojaah: From Personal Struggle to Shipped Product",
     description:
       "A mobile-first web app built to support independent Quran memorization through recitation validation, verse repetition, memorization progress tracking, and sambung ayat practice.",
     tags: ["Real Project", "Solo Build", "Vibe Coding", "User Testing"],
@@ -108,7 +108,7 @@ export const caseStudies = [
 
   {
     slug: "dipay-settlement",
-    title: "Dipay Settlement & Reconciliation Revamp",
+    title: "Streamlining Settlement & Reconciliation: Reducing Operational Processing Time",
     description:
       "Redesigning Dipay's internal settlement operations to eliminate manual reconciliation and save Finance teams 4–5 hours per settlement cycle.",
     tags: ["Real Project", "UX Audit", "User Interview", "Design Operational UX"],
@@ -147,7 +147,7 @@ export const caseStudies = [
 
   {
     slug: "ecommerce-checkout",
-    title: "E-commerce Checkout Optimization",
+    title: "Decrease the cancellation rate of Surplus Order",
     description:
       "Redesigning the checkout flow to reduce cart abandonment rate by 24% for a mid-sized fashion retailer.",
     tags: ["Real Project", "Data analysis", "UI/UX Audit", "Storyboard", "Design", "Concept Testing"],
@@ -186,7 +186,7 @@ export const caseStudies = [
 
   {
     slug: "saas-analytics-dashboard",
-    title: "SaaS Analytics Dashboard Redesign",
+    title: "AMAN Dashboard Revamping",
     description:
       "Simplifying complex data visualization to help marketing managers make faster, more confident decisions.",
     tags: ["Real Project", "Revamp", "Site Map", "Design System", "Interactive Prototyping"],

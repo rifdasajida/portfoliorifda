@@ -217,7 +217,7 @@ export default function SaasAnalyticsCaseStudy() {
                 color: C.ink,
               }}
             >
-              Standardizing chaos: <Italic>the AMAN Dashboard</Italic> Revamp
+              AMAN Dashboard Revamping
             </h1>
             <p
               className="max-w-[620px] mb-10"

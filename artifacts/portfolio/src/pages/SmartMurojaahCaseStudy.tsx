@@ -57,7 +57,7 @@ export default function SmartMurojaahCaseStudy() {
             </div>
 
             <h1 className="text-4xl md:text-[clamp(36px,5.5vw,56px)] font-extrabold leading-[1.1] tracking-[-0.028em] text-[#0F1A2E] mb-5 max-w-[680px]">
-              Smart Murojaah: From Personal Struggle to Product
+              Smart Murojaah: From Personal Struggle to Shipped Product
             </h1>
             <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">
               A mobile-first web app built to support independent Quran memorization through recitation

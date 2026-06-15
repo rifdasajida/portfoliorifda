@@ -85,7 +85,7 @@ export default function EcommerceCheckoutCaseStudy() {
             </div>
 
             <h1 className="text-4xl md:text-[clamp(36px,5.5vw,56px)] font-extrabold leading-[1.1] tracking-[-0.028em] text-[#0F1A2E] mb-5 max-w-[680px]">
-              Decreasing Order Cancellation Rate by 76%
+              Decrease the cancellation rate of Surplus Order
             </h1>
             <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">
               How a deep dive into analytics revealed that users weren't canceling because of slow

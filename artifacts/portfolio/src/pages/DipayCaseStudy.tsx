@@ -84,7 +84,7 @@ export default function DipayCaseStudy() {
             </div>
 
             <h1 className="text-4xl md:text-[clamp(36px,5.5vw,56px)] font-extrabold leading-[1.1] tracking-[-0.028em] text-[#0F1A2E] mb-5 max-w-[680px]">
-              Redesigning Settlement Operations
+              Streamlining Settlement & Reconciliation: Reducing Operational Processing Time
             </h1>
             <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">
               Reducing settlement delays, preventing disbursement errors, and saving 4-5 hours per
