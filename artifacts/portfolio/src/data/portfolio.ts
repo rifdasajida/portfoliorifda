@@ -313,7 +313,7 @@ export const caseStudies = [
     title: "The Analog — Analog Cameras Platform",
     description:
       "Crafting a community-driven marketplace and discovery platform for analog photography enthusiasts to buy, sell, and celebrate film cameras.",
-    tags: ["Exploration Project", "Desk Research", "Affinity Mapping", "Storyboard", "Conceptual model", "Wireframe", "UI Design"],
+    tags: ["Exploration Project", "Desk Research", "Storyboard", "Conceptual model", "Wireframe", "UI Design"],
     image: "analog-cameras-banner.webp",
     color: "bg-slate-100",
     /** Opens an external URL instead of the internal case study page */
