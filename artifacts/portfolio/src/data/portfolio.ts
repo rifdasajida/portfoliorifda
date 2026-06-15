@@ -108,7 +108,7 @@ export const caseStudies = [
 
   {
     slug: "dipay-settlement",
-    title: "Streamlining Settlement & Reconciliation: Reducing Operational Processing Time",
+    title: "Streamlining Settlement & Reconciliation Process",
     description:
       "Redesigning Dipay's internal settlement operations to eliminate manual reconciliation and save Finance teams 4–5 hours per settlement cycle.",
     tags: ["Real Project", "UX Audit", "User Interview", "Design Operational UX"],
