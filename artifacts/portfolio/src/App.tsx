@@ -1,7 +1,8 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useEffect } from "react";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import CaseStudy from "@/pages/CaseStudy";
@@ -10,6 +11,14 @@ import DipayCaseStudy from "@/pages/DipayCaseStudy";
 import EcommerceCheckoutCaseStudy from "@/pages/EcommerceCheckoutCaseStudy";
 import SaasAnalyticsCaseStudy from "@/pages/SaasAnalyticsCaseStudy";
 import BlogPost from "@/pages/BlogPost";
+
+function ScrollToTop() {
+  const [location] = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  return null;
+}
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +31,9 @@ const queryClient = new QueryClient({
 
 function Router() {
   return (
-    <Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
       <Route path="/" component={Home} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/case-study/smart-murojaah" component={SmartMurojaahCaseStudy} />
@@ -31,7 +42,8 @@ function Router() {
       <Route path="/case-study/saas-analytics-dashboard" component={SaasAnalyticsCaseStudy} />
       <Route path="/case-study/:slug" component={CaseStudy} />
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </>
   );
 }
 
