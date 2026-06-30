@@ -15,7 +15,9 @@ import BlogPost from "@/pages/BlogPost";
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
+    document.documentElement.style.scrollBehavior = "auto";
     window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = "";
   }, [location]);
   return null;
 }
@@ -34,14 +36,14 @@ function Router() {
     <>
       <ScrollToTop />
       <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/blog/:slug" component={BlogPost} />
-      <Route path="/case-study/smart-murojaah" component={SmartMurojaahCaseStudy} />
-      <Route path="/case-study/dipay-settlement" component={DipayCaseStudy} />
-      <Route path="/case-study/ecommerce-checkout" component={EcommerceCheckoutCaseStudy} />
-      <Route path="/case-study/saas-analytics-dashboard" component={SaasAnalyticsCaseStudy} />
-      <Route path="/case-study/:slug" component={CaseStudy} />
-      <Route component={NotFound} />
+        <Route path="/" component={Home} />
+        <Route path="/blog/:slug" component={BlogPost} />
+        <Route path="/case-study/smart-murojaah" component={SmartMurojaahCaseStudy} />
+        <Route path="/case-study/dipay-settlement" component={DipayCaseStudy} />
+        <Route path="/case-study/ecommerce-checkout" component={EcommerceCheckoutCaseStudy} />
+        <Route path="/case-study/saas-analytics-dashboard" component={SaasAnalyticsCaseStudy} />
+        <Route path="/case-study/:slug" component={CaseStudy} />
+        <Route component={NotFound} />
       </Switch>
     </>
   );
