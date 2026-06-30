@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
@@ -21,6 +22,12 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 export default function SmartMurojaahCaseStudy() {
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = "";
+  }, []);
+
   const study = caseStudies.find((c) => c.slug === "smart-murojaah")!;
   const currentIndex = caseStudies.findIndex((c) => c.slug === "smart-murojaah");
   const prev = caseStudies[currentIndex - 1] ?? null;

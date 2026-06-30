@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -37,6 +38,12 @@ function MetricCard({ value, label, variant = "default" }: { value: string; labe
 }
 
 export default function EcommerceCheckoutCaseStudy() {
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = "";
+  }, []);
+
   const study = caseStudies.find((c) => c.slug === "ecommerce-checkout")!;
   const currentIndex = caseStudies.findIndex((c) => c.slug === "ecommerce-checkout");
   const prev = caseStudies[currentIndex - 1] ?? null;

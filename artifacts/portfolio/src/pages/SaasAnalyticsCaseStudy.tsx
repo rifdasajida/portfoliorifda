@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -145,6 +146,12 @@ function BeforeAfter({
 }
 
 export default function SaasAnalyticsCaseStudy() {
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = "";
+  }, []);
+
   const study = caseStudies.find((c) => c.slug === "saas-analytics-dashboard")!;
   const currentIndex = caseStudies.findIndex((c) => c.slug === "saas-analytics-dashboard");
   const prev = caseStudies[currentIndex - 1] ?? null;
