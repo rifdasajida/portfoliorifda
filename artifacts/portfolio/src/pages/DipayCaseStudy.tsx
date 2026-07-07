@@ -338,7 +338,7 @@ export default function DipayCaseStudy() {
           {/* The Solution */}
           <Reveal>
             <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
-              🎨 The Solution
+              🎨 Design Solution 
             </h2>
             <p className="text-[#4A5568] leading-[1.7] mb-6">
               What we built
