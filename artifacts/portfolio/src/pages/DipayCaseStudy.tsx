@@ -315,11 +315,7 @@ export default function DipayCaseStudy() {
               How might we reduce settlement risk without requiring Finance teams to manually review
               every transaction?
             </p>
-            <p className="text-[#4A5568] leading-[1.7] mb-4">
-              Through discussions with engineers and settlement stakeholders, we discovered that full
-              automation wasn't realistic. Certain edge cases still required human judgment before
-              funds could be safely disbursed.
-            </p>
+            <p className="text-[#4A5568] leading-[1.7] mb-4">Through discussions with engineers and stakeholders, we discovered that full automation wasn't realistic. Certain edge cases still required human judgment before funds could be safely disbursed.</p>
             <div className="bg-[#EBEDF8] border border-[#C8D0F0] rounded-2xl px-8 py-7 mb-6">
               <h3 className="text-[18px] font-bold text-[#1E2D9E] mb-[10px] mt-0">
                 Automate high-confidence validations and escalate exceptions for human review.
