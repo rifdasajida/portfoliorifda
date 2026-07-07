@@ -255,7 +255,7 @@ export default function DipayCaseStudy() {
                 >Deep Dive to The Current Flow of Recontiliation and Settlement</div>
               </div>
               <img
-                src={`${BASE}images/Rekon.png`}
+                src={`${BASE}images/image-1560.png`}
                 alt="Settlement Cycle User Journey Storyboard — How Finance team manually processes settlement before any disbursement can happen"
                 className="w-full object-cover"
               />
