@@ -252,9 +252,7 @@ export default function DipayCaseStudy() {
                 <div
                   className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
                   style={{ fontFamily: "'JetBrains Mono',monospace" }}
-                >
-                  Manual Reconciliation Loop (Before)
-                </div>
+                >Deep Dive to The Current Flow of Recontiliation and Settlement</div>
               </div>
               <img
                 src={`${BASE}images/Rekon.png`}
