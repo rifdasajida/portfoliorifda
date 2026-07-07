@@ -204,10 +204,6 @@ export default function DipayCaseStudy() {
             <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
               🔍 Investigation & Discovery
             </h2>
-            <p className="text-[#4A5568] leading-[1.7] mb-4">
-              Settlement was not slow because approval took too long. It was slow because{" "}
-              <strong className="text-[#0F1A2E] font-semibold">validation</strong> took too long.
-            </p>
             <p className="text-[#4A5568] leading-[1.7] mb-4">Settlement was not slow because approval took too long. It was slow because validation took too long. Rather than immediately redesigning the dashboard, I worked with Finance and Operations teams to understand how settlement decisions were actually made.</p>
 
             <h3 className="text-[18px] font-bold text-[#0F1A2E] mt-8 mb-4 tracking-[-0.01em]">
