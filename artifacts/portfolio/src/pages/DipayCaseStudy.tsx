@@ -317,6 +317,22 @@ export default function DipayCaseStudy() {
               Finance teams away from validating every transaction and toward reviewing only
               transactions that require attention.
             </p>
+
+            <div className="bg-white border border-[#E4E8F0] rounded-2xl overflow-hidden shadow-sm mt-6">
+              <div className="px-8 pt-6 pb-2 bg-[#f2f2f2fa]">
+                <div
+                  className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
+                  style={{ fontFamily: "'JetBrains Mono',monospace" }}
+                >
+                  Ideation of Improved Flow
+                </div>
+              </div>
+              <img
+                src={`${BASE}images/business-settlement-ideation.png`}
+                alt="Business Settlement — Ideation of Improved Flow diagram"
+                className="w-full object-cover"
+              />
+            </div>
           </Reveal>
 
           {/* The Solution */}
