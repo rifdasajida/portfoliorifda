@@ -7,11 +7,7 @@ const highlights = [
     label: "Unexpected Origin",
     desc: "Agriculture → Design",
   },
-  {
-    emoji: "🎯",
-    label: "3+ Years",
-    desc: "In Product Design",
-  },
+
   {
     emoji: "♿",
     label: "Accessibility",
