@@ -308,9 +308,7 @@ export default function DipayCaseStudy() {
 
           {/* Design Principle */}
           <Reveal>
-            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
-              💡 Design Principle
-            </h2>
+            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">💡Brainstorm Ideation </h2>
             <p className="text-[#4A5568] leading-[1.7] mb-4">
               How might we reduce settlement risk without requiring Finance teams to manually review
               every transaction?
