@@ -257,7 +257,7 @@ export default function DipayCaseStudy() {
                 </div>
               </div>
               <img
-                src={`${BASE}images/dipay-settlement-storyboard.png`}
+                src={`${BASE}images/Rekon.png`}
                 alt="Settlement Cycle User Journey Storyboard — How Finance team manually processes settlement before any disbursement can happen"
                 className="w-full object-cover"
               />
