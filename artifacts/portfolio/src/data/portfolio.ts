@@ -32,13 +32,13 @@ export const hero = {
 // --------------- PHILOSOPHY STRIP ---------------
 export const philosophies = [
   {
-    title: "Design with Intention",
-    description: "Understanding the why before shaping the how.",
-  },
-  {
     title: "Connect the Dots",
     description:
       "Bringing together user needs, business goals, and technical realities to solve problems and shape better solutions.",
+  },
+  {
+    title: "Design with Intention",
+    description: "Understanding the why before shaping the how.",
   },
   {
     title: "Create Meaningful Impact",
