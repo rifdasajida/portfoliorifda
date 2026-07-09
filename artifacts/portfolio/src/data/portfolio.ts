@@ -64,6 +64,27 @@ export const philosophies = [
  */
 export const caseStudies = [
   {
+    slug: "dipay-onboarding",
+    title: "Merchant Onboarding Flow",
+    description:
+      "Turning an 8.52% merchant verification rate into a streamlined flow — by solving the three root causes that made registration fail: outlet photos, selfie+KTP, and incomplete addresses.",
+    tags: ["Real Project", "User Research", "Flow Redesign", "Mobile App", "Fraud & Ops Tradeoffs"],
+    image: "gallery-dipay-mobile.png",
+    color: "bg-blue-50",
+    overview:
+      "Dipay Bisnis drives ~95% of QRIS transactions through its Acquirer on-us model. Yet only 8.52% of registered merchants completed verification — meaning ~91.48% were lost before going live.",
+    problem:
+      "Three ops rejection reasons caused most failures: outlet photos not meeting requirements, selfie+e-KTP photos failing review, and incomplete outlet addresses.",
+    outcome:
+      "Gallery upload with GPS watermark, Liveness verification replacing selfie+KTP, and cascading address dropdowns tied to PTEN — each designed to eliminate the failure mode, not just reduce it.",
+    processSteps: [
+      { title: "Funnel Analysis", description: "Analyzed 8 months of registration data. Less than 5 in 10 merchants who began registration completed verification — a systematic failure at the most critical gate." },
+      { title: "Ops Rejection Deep-dive", description: "Mapped the three top rejection reasons from ops data and conducted user research to understand the why behind each failure pattern." },
+      { title: "Solution Design", description: "Designed three targeted fixes: gallery upload + GPS watermark for outlet photos, Liveness check for identity, and PTEN-linked dropdowns for address." },
+    ],
+    gallery: [],
+  },
+  {
     slug: "surplus-ecofriendly-cashback",
     title: "Extra Cashback Eco-friendly",
     description:

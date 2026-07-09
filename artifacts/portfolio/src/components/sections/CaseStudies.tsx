@@ -37,14 +37,7 @@ const workGroups: {
     cols: 3,
     projects: [
       caseStudies.find((c) => c.slug === "dipay-settlement")! as RealProject,
-      {
-        comingSoon: true,
-        title: "Merchant Onboarding Flow",
-        description: "Streamlining merchant registration and verification to reduce onboarding time and drop-off.",
-        image: "gallery-dipay-mobile.png",
-        color: "bg-blue-50",
-        tags: ["Real Project", "UX Design"],
-      },
+      caseStudies.find((c) => c.slug === "dipay-onboarding")! as RealProject,
       {
         comingSoon: true,
         title: "Transaction Monitoring Dashboard",
