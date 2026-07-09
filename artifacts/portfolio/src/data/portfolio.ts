@@ -69,7 +69,7 @@ export const caseStudies = [
     description:
       "A map-based discovery feature that lets Surplus users see all nearby merchant locations at a glance — eliminating the friction of opening each merchant card one by one.",
     tags: ["Real Project", "User Research", "Feature Design", "Mobile App", "Usability Testing"],
-    image: "surplus-merchant-page.png",
+    image: "surplus-map-cover.png",
     color: "bg-orange-50",
     overview:
       "In H1 2023, only 10.80% of active Surplus users completed a transaction. Research showed 31% struggled to find merchants — the highest pain point in the funnel. This feature introduced a map view so pick-up users could discover and plan purchases spatially.",

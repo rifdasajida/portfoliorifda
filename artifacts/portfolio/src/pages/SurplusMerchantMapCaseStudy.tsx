@@ -112,7 +112,7 @@ export default function SurplusMerchantMapCaseStudy() {
             </div>
 
             <h1 className="text-4xl md:text-[clamp(36px,5.5vw,56px)] font-extrabold leading-[1.1] tracking-[-0.028em] text-[#0F1A2E] mb-5 max-w-[680px]">
-              Search Merchant by Map
+              Help user find merchant easily
             </h1>
             <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">
               How a map-based discovery feature helped Surplus users find nearby merchants without opening each one — boosting adoption to 72.9% and lifting order completion rates.
@@ -126,8 +126,8 @@ export default function SurplusMerchantMapCaseStudy() {
             className="rounded-[20px] overflow-hidden shadow-2xl"
           >
             <img
-              src={`${BASE}images/${study.image}`}
-              alt="Search Merchant by Map — Surplus"
+              src={`${BASE}images/surplus-map-cover.png`}
+              alt="Help user find merchant easily — Surplus"
               className="w-full object-cover"
             />
           </motion.div>
@@ -238,12 +238,13 @@ export default function SurplusMerchantMapCaseStudy() {
               </div>
             </div>
 
-            <div className="space-y-4">
-              <Quote text="Susah mencari alamat toko saat hendak pick up — maps belum diperbarui dan harus buka satu-satu." />
-              <Quote text="Sebenernya mau buat nyoba explore brand-brand baru dan small, cuma lebih needs extra time aja buat research lokasinya, verify tentang kredibilitas merchant, dan kualitas makanannya." />
-              <Quote text="Kalau di Surplus, prioritasnya based on jarak dulu, baru menu, terus harga." />
-              <Quote text="Lokasi yang tertera pada aplikasi tidak real — resto yang tampil di list tertulis hanya beberapa KM, tapi setelah saya klik nama resto tersebut lokasinya jauh more than 10 KM." />
-            </div>
+            <figure className="rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+              <img
+                src={`${BASE}images/surplus-map-user-research.png`}
+                alt="User Problem and User Behavior — research findings"
+                className="w-full h-auto block"
+              />
+            </figure>
           </Reveal>
 
           {/* Goal */}
@@ -283,6 +284,14 @@ export default function SurplusMerchantMapCaseStudy() {
               interactive map. Users can pan, zoom, and tap merchant pins to preview details —
               all without leaving the map context.
             </p>
+
+            <figure className="rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm mb-6">
+              <img
+                src={`${BASE}images/surplus-map-solution.png`}
+                alt="Search Merchant by Map — prototype flow"
+                className="w-full h-auto block"
+              />
+            </figure>
 
             <div className="bg-white rounded-2xl border border-[#E4E8F0] p-7 shadow-sm mb-6">
               <h3 className="text-[17px] font-bold text-[#0F1A2E] mb-5">Feature Requirements</h3>
