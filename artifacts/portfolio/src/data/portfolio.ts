@@ -309,6 +309,26 @@ export const caseStudies = [
   },
 
   {
+    slug: "dearhope",
+    title: "DearHope, Bring New Hope",
+    description:
+      "Designing a mental health companion app that provides mood tracking, self-care recommendations, and a safe space for users to share their feelings.",
+    tags: ["Real Project", "UI Design", "Mental Health", "Mobile App"],
+    image: "dear-hope-banner.png",
+    color: "bg-blue-50",
+    externalUrl:
+      "https://grave-pentagon-89c.notion.site/Dear-Hope-0289acea37fe47ce9db642774af14d67",
+    overview:
+      "DearHope is a mental health companion app designed to help users track their mood, access self-care content, and connect with a supportive community.",
+    problem:
+      "Many people struggle to find accessible and non-stigmatizing mental health support in their daily lives.",
+    outcome:
+      "The app provides a safe, personalized space for users to reflect on their emotions and take proactive steps toward better mental well-being.",
+    processSteps: [],
+    gallery: [],
+  },
+
+  {
     slug: "the-analog-cameras-platform",
     title: "The Analog — Analog Cameras Platform",
     description:

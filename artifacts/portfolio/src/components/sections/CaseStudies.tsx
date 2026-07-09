@@ -98,6 +98,7 @@ const workGroups: {
       caseStudies.find((c) => c.slug === "saas-analytics-dashboard")! as RealProject,
       caseStudies.find((c) => c.slug === "shonic-ecommerce")! as RealProject,
       caseStudies.find((c) => c.slug === "water-hydration-reminder")! as RealProject,
+      caseStudies.find((c) => c.slug === "dearhope")! as RealProject,
     ],
   },
 ];
