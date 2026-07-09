@@ -21,21 +21,6 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
-function IssueCard({ icon, title, quote, source }: { icon: string; title: string; quote?: string; source?: string }) {
-  return (
-    <div className="bg-white rounded-2xl border border-[#E4E8F0] p-6 shadow-sm">
-      <div className="text-2xl mb-3">{icon}</div>
-      <div className="text-[15px] font-bold text-[#0F1A2E] mb-2">{title}</div>
-      {quote && (
-        <p className="text-[13.5px] text-[#4A5568] leading-[1.6] italic border-l-2 pl-3" style={{ borderColor: "#E07A3A" }}>
-          "{quote}"
-        </p>
-      )}
-      {source && <div className="text-[11px] text-[#8591A3] mt-2 font-medium">{source}</div>}
-    </div>
-  );
-}
-
 export default function SurplusEcofriendlyCaseStudy() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "auto";
@@ -90,7 +75,7 @@ export default function SurplusEcofriendlyCaseStudy() {
               Extra Cashback Eco-friendly
             </h1>
             <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">
-              Redesigning a broken cashback system for eco-friendly pick-up orders — fixing the flow for customers, merchants, and web admin to make a promising feature actually work.
+              Redesigning a broken cashback system for eco-friendly pick-up orders — fixing the flow for customers, merchants, and web admin so a promising feature could finally work.
             </p>
           </motion.div>
 
@@ -101,8 +86,8 @@ export default function SurplusEcofriendlyCaseStudy() {
             className="rounded-[20px] overflow-hidden shadow-2xl"
           >
             <img
-              src={`${BASE}images/${study.image}`}
-              alt="Extra Cashback Eco-friendly — Surplus"
+              src={`${BASE}images/surplus-ecofriendly-cover.png`}
+              alt="Redesigning System of Ecofriendly Cashback — Surplus"
               className="w-full object-cover"
             />
           </motion.div>
@@ -113,143 +98,143 @@ export default function SurplusEcofriendlyCaseStudy() {
       <div className="py-[72px]">
         <div className="max-w-[760px] mx-auto px-7 space-y-16">
 
-          {/* TL;DR */}
+          {/* 1. Complaints → user satisfaction */}
           <Reveal>
-            <div className="bg-white border border-[#E4E8F0] rounded-2xl p-8 shadow-sm">
+            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
+              😟 We Had a Lot of Complaints
+            </h2>
+            <p className="text-[#4A5568] leading-[1.7] mb-6">
+              The eco-friendly cashback feature was intended to reward customers who picked up their
+              Surplus orders using their own reusable bags — a win for the user's wallet and a win
+              for the environment. But in reality, it was generating frustration, not goodwill.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
               <div
-                className="text-[10px] font-bold tracking-[.15em] text-[#8591A3] uppercase mb-4"
-                style={{ fontFamily: "'JetBrains Mono',monospace" }}
+                className="rounded-2xl p-6"
+                style={{ background: "#FFF3EA", border: "1px solid #FDDBB6" }}
               >
-                TL;DR
+                <div className="text-[13px] font-bold text-[#E07A3A] uppercase tracking-wide mb-3">User Survey 2023</div>
+                <p className="text-[14.5px] text-[#4A5568] leading-[1.7] italic m-0">
+                  "Ada satu fitur yang membingungkan yaitu fitur pengambilan dengan menggunakan
+                  tempat/tas belanja dari rumah... potensi cashback yang tidak jelas dari
+                  penggunaan fitur tersebut."
+                </p>
               </div>
-              {[
-                {
-                  k: "Problem",
-                  v: "The existing eco-friendly cashback feature had a broken 3-party flow: no web admin system to validate, no manpower to review photos, and merchants didn't understand what to do — leaving users who tried the feature empty-handed.",
-                },
-                {
-                  k: "Discovery",
-                  v: "Survey data (2023) showed users who attempted the cashback were confused by unclear T&C, couldn't use vouchers at the same time (and weren't told why), and didn't receive cashback even when they followed the steps.",
-                },
-                {
-                  k: "Solution",
-                  v: "Rebuilt the end-to-end flow: renamed the feature to 'Extra Cashback Eco-friendly', automated cashback validation in web admin, added Slack notifications for the finance team, and clarified the customer, merchant, and admin app flows.",
-                },
-                {
-                  k: "Result",
-                  v: "A cohesive, automated eco-cashback system reducing manual validation steps, eliminating missed cashback cases, and clearly communicating T&C across all touchpoints.",
-                },
-              ].map((row, i) => (
-                <div
-                  key={i}
-                  className="grid gap-4 py-3 border-t border-[#EEF1F7] first:border-t-0"
-                  style={{ gridTemplateColumns: "100px 1fr" }}
-                >
-                  <div className="text-[13px] font-bold text-[#0F1A2E]">{row.k}</div>
-                  <div className="text-[14.5px] leading-[1.6] text-[#4A5568]">{row.v}</div>
-                </div>
-              ))}
+              <div
+                className="rounded-2xl p-6"
+                style={{ background: "#FFF3EA", border: "1px solid #FDDBB6" }}
+              >
+                <div className="text-[13px] font-bold text-[#E07A3A] uppercase tracking-wide mb-3">User Survey 2023</div>
+                <p className="text-[14.5px] text-[#4A5568] leading-[1.7] italic m-0">
+                  "Ketika membawa kantong belanja dan harusnya bisa mendapatkan cashback tetapi
+                  tidak mendapatkannya."
+                </p>
+              </div>
             </div>
-          </Reveal>
 
-          {/* Background */}
-          <Reveal>
-            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
-              🌿 Background
-            </h2>
-            <p className="text-[#4A5568] leading-[1.7] mb-6">
-              Surplus had an existing eco-friendly cashback feature — "Cashback Kotak Makan atau
-              Totebag" — designed to reward customers who picked up orders using their own reusable
-              containers. The concept was sound, but the execution was fragile.
-            </p>
             <p className="text-[#4A5568] leading-[1.7]">
-              The flow required three parties to coordinate: the <strong className="text-[#0F1A2E]">customer</strong> to
-              toggle the feature and enter a verification code, the <strong className="text-[#0F1A2E]">merchant</strong> to
-              photograph the customer's bag, and a <strong className="text-[#0F1A2E]">web admin validator</strong> to
-              approve or reject the photo before cashback was granted. In practice, none of the three
-              sides were ready.
+              Users were following the steps, bringing their own bags, yet never receiving the
+              promised cashback. This was eroding trust in the feature and, more broadly, in the
+              Surplus experience.
             </p>
           </Reveal>
 
-          {/* Issues */}
+          {/* 2. Understanding the current flow */}
           <Reveal>
             <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
-              ⚠️ What Was Breaking
+              🔍 Understanding the Current Flow
             </h2>
-            <div className="grid md:grid-cols-3 gap-4 mb-8">
-              <IssueCard
-                icon="🖥️"
-                title="Web admin system wasn't ready"
-                quote="ada satu fitur yang membingungkan... potensi cashback yang tidak jelas dari penggunaan fitur tersebut"
-                source="Survei 2023"
-              />
-              <IssueCard
-                icon="👤"
-                title="No manpower to validate"
-                quote="Ketika membawa kantong belanja dan harusnya bisa mendapatkan cash back tetapi tidak mendapatkannya"
-                source="Survei 2023"
-              />
-              <IssueCard
-                icon="🏪"
-                title="Merchants didn't understand the photo step"
-              />
-            </div>
+            <p className="text-[#4A5568] leading-[1.7] mb-6">
+              Before jumping to solutions, I mapped out what actually happened across the full
+              flow — from the customer toggling the feature to the moment cashback was (or wasn't)
+              received. The system involved three parties that all had to work in sequence.
+            </p>
 
-            <div
-              className="rounded-2xl px-8 py-6"
-              style={{ background: "#FFF3EA", border: "1px solid #FDDBB6" }}
-            >
-              <p className="text-[15px] text-[#4A5568] leading-[1.7] m-0">
-                Additionally, users who activated the cashback toggle were silently blocked from
-                using any voucher — a rule that was never communicated to them at the right moment,
-                causing frustration at checkout.
-              </p>
+            <div className="bg-white rounded-2xl border border-[#E4E8F0] p-7 shadow-sm">
+              <div className="text-[14px] font-bold text-[#0F1A2E] mb-5">Current Flow: 3-Party System</div>
+              <div className="grid grid-cols-3 gap-4 mb-6 text-center">
+                {[
+                  { party: "Customer", color: "#4B5FE0", steps: ["Toggle 'Bawa kotak makan'", "Read T&C", "Place order", "Pick up & hand over bag", "Input verification code", "Wait for cashback"] },
+                  { party: "Merchant", color: "#E07A3A", steps: ["Receive order", "Wait for customer pick-up", "Ask for customer's bag", "Photograph the bag", "—", "—"] },
+                  { party: "Web Admin", color: "#2B8A3E", steps: ["Receive order info", "—", "—", "Review photo", "Approve or reject", "Trigger cashback manually"] },
+                ].map((col) => (
+                  <div key={col.party}>
+                    <div
+                      className="text-[12px] font-bold uppercase tracking-wide mb-3 px-3 py-1.5 rounded-full text-white inline-block"
+                      style={{ background: col.color }}
+                    >
+                      {col.party}
+                    </div>
+                    <div className="space-y-2">
+                      {col.steps.map((step, i) => (
+                        <div
+                          key={i}
+                          className="text-[12px] text-[#4A5568] leading-[1.5] bg-[#F8F9FC] rounded-lg px-3 py-2 min-h-[40px] flex items-center justify-center text-center"
+                        >
+                          {step === "—" ? <span className="text-[#CBD5E0]">—</span> : step}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div
+                className="rounded-xl px-5 py-4 text-[13.5px] text-[#4A5568] leading-[1.7]"
+                style={{ background: "#FFF3EA", border: "1px solid #FDDBB6" }}
+              >
+                ⚠️ One hidden issue: when the cashback toggle was activated, users couldn't use
+                any voucher — but <strong className="text-[#0F1A2E]">this was never communicated to them</strong> at
+                the point of activation.
+              </div>
             </div>
           </Reveal>
 
-          {/* Improvements */}
+          {/* 3. Three main problems */}
           <Reveal>
             <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
-              🛠️ Improvements
+              ⚠️ Three Main Problems
             </h2>
             <p className="text-[#4A5568] leading-[1.7] mb-6">
-              The redesign touched all three sides of the system simultaneously — simplifying the
-              customer experience, giving merchants clear instructions, and automating the admin
-              validation process.
+              After mapping the flow end to end, it became clear the feature wasn't failing because
+              of one issue — it was broken at every layer of the system simultaneously.
             </p>
 
             <div className="space-y-4">
               {[
                 {
                   n: "01",
-                  title: "Rename & Simplify Scope",
-                  desc: "Rebranded to 'Extra Cashback Eco-friendly' and narrowed focus to eco bags, totebags, and paperbags — removing reusable food containers due to the variety of food types on Surplus that make container compatibility unpredictable.",
+                  title: "Web admin system wasn't ready",
+                  desc: "There was no dedicated validation interface for the admin team. Reviewers had to work around the system, making the approval process slow, inconsistent, and easy to miss.",
+                  color: "#C54545",
+                  bg: "#FFF5F5",
+                  border: "#F5D4D4",
                 },
                 {
                   n: "02",
-                  title: "Automated Web Admin Cashback Flow",
-                  desc: "Built a dedicated 'Cashback' section in the web admin panel. Cashback is now automatically granted after the validator approves the photo — eliminating the manual multi-step process that required no-system support.",
+                  title: "No manpower to validate",
+                  desc: "Even when photos were submitted, there was no clear ownership of the validation task — leading to cashback requests sitting unreviewed and users never hearing back.",
+                  color: "#C54545",
+                  bg: "#FFF5F5",
+                  border: "#F5D4D4",
                 },
                 {
                   n: "03",
-                  title: "Slack Notifications for Finance",
-                  desc: "Added Slack notifications whenever a cashback request comes in, so the finance team is alerted immediately — reducing latency and missed validations.",
-                },
-                {
-                  n: "04",
-                  title: "Clearer Customer App Flow",
-                  desc: "Improved wording throughout the T&C, made the voucher restriction visible before activation, and added notifications when cashback is accepted or rejected so users always know the status of their request.",
-                },
-                {
-                  n: "05",
-                  title: "Clearer Merchant App Flow",
-                  desc: "Gave merchants a step-by-step in-app guide: don't wrap the order, ask for the customer's bag at pick-up, photograph the bag with the food in it, and handle edge cases (e.g. food already in a merchant paperbag).",
+                  title: "Merchants didn't understand their role",
+                  desc: "The merchant app gave no clear instruction about when or how to photograph the bag. Many merchants skipped this step entirely without realising it blocked the cashback.",
+                  color: "#C54545",
+                  bg: "#FFF5F5",
+                  border: "#F5D4D4",
                 },
               ].map((item) => (
-                <div key={item.n} className="flex gap-5 items-start bg-white rounded-2xl border border-[#E4E8F0] p-6 shadow-sm">
+                <div
+                  key={item.n}
+                  className="flex gap-5 items-start rounded-2xl p-6"
+                  style={{ background: item.bg, border: `1px solid ${item.border}` }}
+                >
                   <div
                     className="text-[13px] font-bold flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
-                    style={{ background: "#E07A3A" }}
+                    style={{ background: item.color }}
                   >
                     {item.n}
                   </div>
@@ -262,65 +247,59 @@ export default function SurplusEcofriendlyCaseStudy() {
             </div>
           </Reveal>
 
-          {/* T&C Summary */}
+          {/* 4. Improvements */}
           <Reveal>
             <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
-              📋 Terms &amp; Conditions Redesigned
+              🛠️ Improvements
             </h2>
             <p className="text-[#4A5568] leading-[1.7] mb-6">
-              A key part of the fix was making the rules legible upfront — so users couldn't accidentally violate them and lose their cashback.
+              The redesign addressed all three failure points in parallel — simplifying the
+              customer experience, giving merchants clear step-by-step guidance, and building the
+              admin tooling that should have existed from the start.
             </p>
-            <div className="bg-white rounded-2xl border border-[#E4E8F0] p-7 shadow-sm">
-              <div className="space-y-4">
-                {[
-                  "25% cashback on total product price, maximum Rp10,000 — no minimum purchase required.",
-                  "Extra cashback cannot be combined with any voucher type.",
-                  "Cashback is granted only when the customer is validated as picking up with their own eco-friendly bag (eco bag, totebag, or paperbag).",
-                ].map((rule, i) => (
-                  <div key={i} className="flex gap-3 items-start">
-                    <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[10px] font-bold mt-0.5" style={{ background: "#2B8A3E" }}>
-                      ✓
-                    </div>
-                    <p className="text-[14.5px] text-[#4A5568] leading-[1.6] m-0">{rule}</p>
-                  </div>
-                ))}
-              </div>
 
-              <div className="mt-6 pt-6 border-t border-[#EEF1F7]">
-                <div className="text-[13px] font-bold text-[#0F1A2E] mb-3">Validator Guidelines</div>
-                <div className="grid md:grid-cols-2 gap-3">
-                  <div className="rounded-xl px-4 py-3 text-[13.5px] text-[#1F6B3E]" style={{ background: "#E8F5E9", border: "1px solid #A5D6A7" }}>
-                    <strong>✓ Accept</strong> — photo shows an eco bag, totebag, or paperbag
-                  </div>
-                  <div className="rounded-xl px-4 py-3 text-[13.5px] text-[#C54545]" style={{ background: "#FFF5F5", border: "1px solid #F5D4D4" }}>
-                    <strong>✗ Reject</strong> — plastic bag, merchant's own paperbag, or no bag visible
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Outcome */}
-          <Reveal>
-            <h2 className="text-[26px] font-extrabold text-[#0F1A2E] tracking-[-0.02em] mb-[18px]">
-              🚀 Outcome
-            </h2>
-            <p className="text-[#4A5568] leading-[1.7] mb-6">
-              The redesigned flow addressed all three failure points simultaneously — the system was
-              ready, validation was automated, and all parties had clear in-app guidance.
-            </p>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="space-y-4">
               {[
-                { value: "3", label: "Touchpoints Redesigned", sub: "Customer · Merchant · Admin" },
-                { value: "0", label: "Manual Validation Steps", sub: "Automated after photo approval" },
-                { value: "✓", label: "Slack Alerts Live", sub: "Finance team notified instantly" },
-              ].map((m) => (
-                <div key={m.value} className="bg-white border border-[#E4E8F0] rounded-2xl p-6 text-center shadow-sm">
-                  <div className="text-[36px] font-extrabold leading-none mb-1 tracking-[-0.03em]" style={{ color: "#2B8A3E" }}>
-                    {m.value}
+                {
+                  n: "01",
+                  title: "Rename & Simplify Scope",
+                  desc: "Rebranded to 'Extra Cashback Eco-friendly' and narrowed the focus to eco bags, totebags, and paperbags — removing reusable food containers due to the variety of food types on Surplus that make container compatibility unpredictable.",
+                },
+                {
+                  n: "02",
+                  title: "Automated Web Admin Cashback Flow",
+                  desc: "Built a dedicated 'Cashback' section in the web admin panel. After the validator approves the photo, cashback is granted automatically — eliminating the manual, error-prone multi-step process.",
+                },
+                {
+                  n: "03",
+                  title: "Slack Notifications for Finance",
+                  desc: "Added Slack alerts whenever a cashback request comes in, so the finance team is notified immediately — reducing latency and eliminating missed validations.",
+                },
+                {
+                  n: "04",
+                  title: "Clearer Customer App Flow",
+                  desc: "Improved wording throughout, made the voucher restriction visible before activation, and added in-app notifications so users know whether their cashback was accepted or rejected.",
+                },
+                {
+                  n: "05",
+                  title: "Clearer Merchant App Flow",
+                  desc: "Gave merchants a step-by-step in-app guide: don't pre-wrap the order, ask for the customer's bag at pick-up, photograph the bag with food inside, and follow the rules for edge cases (e.g. food that already comes in a merchant's paperbag).",
+                },
+              ].map((item) => (
+                <div
+                  key={item.n}
+                  className="flex gap-5 items-start bg-white rounded-2xl border border-[#E4E8F0] p-6 shadow-sm"
+                >
+                  <div
+                    className="text-[13px] font-bold flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white"
+                    style={{ background: "#2B8A3E" }}
+                  >
+                    {item.n}
                   </div>
-                  <div className="text-[12px] font-bold text-[#8591A3] uppercase tracking-wide mb-1">{m.label}</div>
-                  <div className="text-[11px] text-[#B0BAC9]">{m.sub}</div>
+                  <div>
+                    <div className="text-[15px] font-bold text-[#0F1A2E] mb-1">{item.title}</div>
+                    <div className="text-[14px] text-[#4A5568] leading-[1.6]">{item.desc}</div>
+                  </div>
                 </div>
               ))}
             </div>

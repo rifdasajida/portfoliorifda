@@ -69,7 +69,7 @@ export const caseStudies = [
     description:
       "Redesigning a broken eco-friendly cashback system — fixing the flow across customer app, merchant app, and web admin to make a promising sustainability feature finally work.",
     tags: ["Real Project", "UX Audit", "Flow Redesign", "Multi-Stakeholder", "Mobile App"],
-    image: "surplus-analytics-report.png",
+    image: "surplus-ecofriendly-cover.png",
     color: "bg-green-50",
     overview:
       "Surplus had an eco-friendly cashback feature that rewarded customers for using their own bags at pick-up. But the 3-party flow (customer → merchant → web admin) was broken at every step: no system, no manpower, and no clear guidance.",
