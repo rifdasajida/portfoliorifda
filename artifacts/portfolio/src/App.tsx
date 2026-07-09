@@ -10,6 +10,7 @@ import SmartMurojaahCaseStudy from "@/pages/SmartMurojaahCaseStudy";
 import DipayCaseStudy from "@/pages/DipayCaseStudy";
 import EcommerceCheckoutCaseStudy from "@/pages/EcommerceCheckoutCaseStudy";
 import SaasAnalyticsCaseStudy from "@/pages/SaasAnalyticsCaseStudy";
+import SurplusMerchantMapCaseStudy from "@/pages/SurplusMerchantMapCaseStudy";
 import BlogPost from "@/pages/BlogPost";
 
 function ScrollToTop() {
@@ -42,6 +43,7 @@ function Router() {
         <Route path="/case-study/dipay-settlement" component={DipayCaseStudy} />
         <Route path="/case-study/ecommerce-checkout" component={EcommerceCheckoutCaseStudy} />
         <Route path="/case-study/saas-analytics-dashboard" component={SaasAnalyticsCaseStudy} />
+        <Route path="/case-study/surplus-merchant-map" component={SurplusMerchantMapCaseStudy} />
         <Route path="/case-study/:slug" component={CaseStudy} />
         <Route component={NotFound} />
       </Switch>

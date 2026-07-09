@@ -66,14 +66,7 @@ const workGroups: {
     cols: 3,
     projects: [
       caseStudies.find((c) => c.slug === "ecommerce-checkout")! as RealProject,
-      {
-        comingSoon: true,
-        title: "Merchant Management System",
-        description: "A back-office tool for Surplus merchants to manage stock, pricing, and order fulfilment.",
-        image: "surplus-merchant-page.png",
-        color: "bg-orange-50",
-        tags: ["Real Project", "Internal Tool"],
-      },
+      caseStudies.find((c) => c.slug === "surplus-merchant-map")! as RealProject,
       {
         comingSoon: true,
         title: "Analytics Report Dashboard",

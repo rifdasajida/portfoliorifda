@@ -64,6 +64,44 @@ export const philosophies = [
  */
 export const caseStudies = [
   {
+    slug: "surplus-merchant-map",
+    title: "Search Merchant by Map",
+    description:
+      "A map-based discovery feature that lets Surplus users see all nearby merchant locations at a glance — eliminating the friction of opening each merchant card one by one.",
+    tags: ["Real Project", "User Research", "Feature Design", "Mobile App", "Usability Testing"],
+    image: "surplus-merchant-page.png",
+    color: "bg-orange-50",
+    overview:
+      "In H1 2023, only 10.80% of active Surplus users completed a transaction. Research showed 31% struggled to find merchants — the highest pain point in the funnel. This feature introduced a map view so pick-up users could discover and plan purchases spatially.",
+    problem:
+      "Users had to open each merchant card individually to check location. Distances shown in the list were often inaccurate, causing frustration for pick-up users who rely on proximity as their first filter.",
+    outcome:
+      "The feature achieved a 72.9% adoption rate post-launch, contributing to higher order completion rates across the Surplus platform.",
+    processSteps: [
+      {
+        title: "Data Analysis & Survey",
+        description:
+          "Analyzed Mixpanel and Google Analytics data for H1 2023. Cross-referenced with a user satisfaction survey (Survei Kepuasan) that revealed 31% of users struggled with merchant discovery.",
+      },
+      {
+        title: "User Interviews",
+        description:
+          "Conducted in-depth interviews to understand pick-up behavior. Found that location/distance was the primary consideration before menu or price, and users often planned pick-ups around existing routes.",
+      },
+      {
+        title: "Feature Design",
+        description:
+          "Designed an interactive map view showing merchants within a 20 km radius with 3 icon states (active, non-active, selected) and a swipeable bottom bar for previewing merchant details.",
+      },
+      {
+        title: "Usability Testing",
+        description:
+          "Tested a Figma prototype with 4 respondents across ease of use, speed, and helpfulness scales. All dimensions scored above 8/10 (Acceptable threshold).",
+      },
+    ],
+    gallery: [],
+  },
+  {
     slug: "smart-murojaah",
     title: "Smart Murojaah: From Personal Struggle to Shipped Product",
     description:
