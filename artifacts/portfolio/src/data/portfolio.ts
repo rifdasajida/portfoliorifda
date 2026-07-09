@@ -229,7 +229,7 @@ export const caseStudies = [
     slug: "ecommerce-checkout",
     title: "Decrease the cancellation rate of Surplus Order",
     description:
-      "Redesigning the checkout flow to reduce cart abandonment rate by 24% for a mid-sized fashion retailer.",
+      "Redesigning the end-to-end checkout flow to reduce order cancellation and improve conversion across the Surplus marketplace.",
     tags: ["Checkout Flow", "Data Analysis", "Conversion", "Mobile App"],
     image: "case-study-surplus.png",
     color: "bg-orange-50",
