@@ -64,6 +64,27 @@ export const philosophies = [
  */
 export const caseStudies = [
   {
+    slug: "surplus-ecofriendly-cashback",
+    title: "Extra Cashback Eco-friendly",
+    description:
+      "Redesigning a broken eco-friendly cashback system — fixing the flow across customer app, merchant app, and web admin to make a promising sustainability feature finally work.",
+    tags: ["Real Project", "UX Audit", "Flow Redesign", "Multi-Stakeholder", "Mobile App"],
+    image: "surplus-analytics-report.png",
+    color: "bg-green-50",
+    overview:
+      "Surplus had an eco-friendly cashback feature that rewarded customers for using their own bags at pick-up. But the 3-party flow (customer → merchant → web admin) was broken at every step: no system, no manpower, and no clear guidance.",
+    problem:
+      "Users who tried the feature didn't receive cashback. Merchants didn't know what to photograph. Web admin had no validation tool. Survey data showed users were confused and frustrated.",
+    outcome:
+      "Rebuilt the end-to-end flow with automated cashback validation, Slack notifications for finance, and clear in-app guidance for all three parties.",
+    processSteps: [
+      { title: "Survey & UX Audit", description: "Analyzed 2023 satisfaction survey data and audited the existing 3-party flow to identify the exact failure points on each side." },
+      { title: "Flow Redesign", description: "Rebuilt the customer, merchant, and web admin flows in parallel — automating validation, clarifying T&C, and adding real-time notifications." },
+      { title: "Scoping & Rules", description: "Narrowed the feature scope to eco bags/totebags/paperbags and documented clear accept/reject criteria for validators and merchants." },
+    ],
+    gallery: [],
+  },
+  {
     slug: "surplus-merchant-map",
     title: "Search Merchant by Map",
     description:

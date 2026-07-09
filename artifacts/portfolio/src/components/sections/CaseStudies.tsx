@@ -67,14 +67,7 @@ const workGroups: {
     projects: [
       caseStudies.find((c) => c.slug === "ecommerce-checkout")! as RealProject,
       caseStudies.find((c) => c.slug === "surplus-merchant-map")! as RealProject,
-      {
-        comingSoon: true,
-        title: "Analytics Report Dashboard",
-        description: "Giving merchant partners visibility into sales trends, peak hours, and buyer behaviour.",
-        image: "surplus-analytics-report.png",
-        color: "bg-amber-50",
-        tags: ["Real Project", "Data Visualization"],
-      },
+      caseStudies.find((c) => c.slug === "surplus-ecofriendly-cashback")! as RealProject,
     ],
   },
   {
