@@ -21,6 +21,7 @@ const workGroups: {
   company: string;
   logoColor: string;
   logoLetter: string;
+  logoImage?: string;
   period: string;
   description: string;
   scroll?: boolean;
@@ -31,6 +32,7 @@ const workGroups: {
     company: "Dipay",
     logoColor: "#4B5FE0",
     logoLetter: "D",
+    logoImage: "logo-dipay.png",
     period: "2024 – present",
     description:
       "Building fintech products that simplify payments, empower merchants, and improve operational efficiency.",
@@ -58,8 +60,9 @@ const workGroups: {
   {
     id: "surplus",
     company: "Surplus",
-    logoColor: "#E07A3A",
+    logoColor: "#2BB5A0",
     logoLetter: "S",
+    logoImage: "logo-surplus.png",
     period: "2023 – 2024",
     description:
       "Designing marketplace experiences that connect merchants and buyers while reducing food waste.",
@@ -185,10 +188,16 @@ export function CaseStudies() {
               {/* Company header */}
               <div className="flex items-start gap-4 mb-4">
                 <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white font-bold text-lg flex-shrink-0 shadow-sm"
+                  className="w-11 h-11 rounded-xl flex-shrink-0 shadow-sm overflow-hidden"
                   style={{ backgroundColor: group.logoColor }}
                 >
-                  {group.logoLetter}
+                  {group.logoImage ? (
+                    <img src={`${BASE}images/${group.logoImage}`} alt={`${group.company} logo`} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-white font-bold text-lg">
+                      {group.logoLetter}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <h3 className="text-[18px] font-extrabold text-foreground leading-tight">{group.company}</h3>
