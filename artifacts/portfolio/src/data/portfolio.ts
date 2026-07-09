@@ -89,7 +89,7 @@ export const caseStudies = [
     title: "Extra Cashback Eco-friendly",
     description:
       "Redesigning a broken eco-friendly cashback system — fixing the flow across customer app, merchant app, and web admin to make a promising sustainability feature finally work.",
-    tags: ["Real Project", "UX Audit", "Flow Redesign", "Multi-Stakeholder", "Mobile App"],
+    tags: ["Sustainability", "Multi-platform", "Flow Redesign", "Mobile App"],
     image: "surplus-ecofriendly-cover.png",
     color: "bg-green-50",
     overview:
@@ -110,7 +110,7 @@ export const caseStudies = [
     title: "Search Merchant by Map",
     description:
       "A map-based discovery feature that lets Surplus users see all nearby merchant locations at a glance — eliminating the friction of opening each merchant card one by one.",
-    tags: ["Real Project", "User Research", "Feature Design", "Mobile App", "Usability Testing"],
+    tags: ["Map Discovery", "User Research", "Mobile App", "Usability Testing"],
     image: "surplus-map-cover.png",
     color: "bg-orange-50",
     overview:
@@ -148,7 +148,7 @@ export const caseStudies = [
     title: "Smart Murojaah: From Personal Struggle to Shipped Product",
     description:
       "A mobile-first web app built to support independent Quran memorization through recitation validation, verse repetition, memorization progress tracking, and sambung ayat practice.",
-    tags: ["Real Project", "Solo Build", "Vibe Coding", "User Testing"],
+    tags: ["Solo Build", "Mobile Web App", "EdTech", "AI"],
     /** Cover image shown in the card grid */
     image: "smart-murojaah-banner.png",
     /** Light background behind the card image */
@@ -191,7 +191,7 @@ export const caseStudies = [
     title: "Streamlining Settlement & Reconciliation Process",
     description:
       "Redesigning Dipay's internal settlement operations to eliminate manual reconciliation and save Finance teams 4–5 hours per settlement cycle.",
-    tags: ["Real Project", "UX Audit", "User Interview", "Design Operational UX"],
+    tags: ["Operational UX", "Internal Tool", "Dashboard", "Fintech"],
     image: "dipay-settlement-banner.png",
     color: "bg-blue-50",
     overview:
@@ -230,7 +230,7 @@ export const caseStudies = [
     title: "Decrease the cancellation rate of Surplus Order",
     description:
       "Redesigning the checkout flow to reduce cart abandonment rate by 24% for a mid-sized fashion retailer.",
-    tags: ["Real Project", "Data analysis", "UI/UX Audit", "Storyboard", "Design", "Concept Testing"],
+    tags: ["Checkout Flow", "Data Analysis", "Conversion", "Mobile App"],
     image: "case-study-surplus.png",
     color: "bg-orange-50",
     overview:
@@ -269,7 +269,7 @@ export const caseStudies = [
     title: "AMAN Dashboard Revamping",
     description:
       "Simplifying complex data visualization to help marketing managers make faster, more confident decisions.",
-    tags: ["Real Project", "Revamp", "Site Map", "Design System", "Interactive Prototyping"],
+    tags: ["Dashboard", "Design System", "B2B SaaS", "Data Viz"],
     image: "case-study-aman.png",
     color: "bg-green-50",
     externalUrl: "https://grave-pentagon-89c.notion.site/AMAN-Dashboard-Revamp-37a2139deaac803a8288fa6ccdf2d806",
@@ -309,7 +309,7 @@ export const caseStudies = [
     title: "SHONIC Electronic E-Commerce",
     description:
       "Designing an end-to-end shopping experience for an electronics retailer — from product discovery to seamless checkout.",
-    tags: ["Real Project", "In depth interview", "Bechmarking", "UI Design", "Design System", "Usability Testing"],
+    tags: ["E-Commerce", "UI Design", "Design System", "Usability Testing"],
     image: "shonic-banner.webp",
     color: "bg-blue-50",
     /** Opens an external URL instead of the internal case study page */
@@ -351,7 +351,7 @@ export const caseStudies = [
     title: "Water Hydration Reminder Feature",
     description:
       "Designing a smart hydration tracking feature that nudges users to drink more water through personalized reminders and progress visualization.",
-    tags: ["Exploration Project", "Desk Research", "UI Design", "Interaction Flow Documentation", "Prototyping"],
+    tags: ["Wellness App", "Behavioral Design", "Mobile App", "Prototyping"],
     image: "water-hydration-banner.webp",
     color: "bg-cyan-50",
     /** Opens an external URL instead of the internal case study page */
@@ -393,7 +393,7 @@ export const caseStudies = [
     title: "DearHope, Bring New Hope",
     description:
       "Designing a mental health companion app that provides mood tracking, self-care recommendations, and a safe space for users to share their feelings.",
-    tags: ["Real Project", "UI Design", "Mental Health", "Mobile App"],
+    tags: ["Mental Health", "Mobile App", "UI Design"],
     image: "dear-hope-banner.png",
     color: "bg-blue-50",
     externalUrl:

@@ -45,7 +45,7 @@ const workGroups: {
         description: "Redesigning the merchant registration and verification flow to reduce drop-off and get more merchants successfully onboarded.",
         image: "dipay-merchant-conversion-cover.png",
         color: "bg-blue-50",
-        tags: ["Real Project", "User Research", "Flow Redesign"],
+        tags: ["Conversion Funnel", "Mobile App", "User Research"],
       },
       {
         comingSoon: true,
@@ -53,7 +53,7 @@ const workGroups: {
         description: "Designing the account linking flow that connects third-party platforms to Dipay via Open API — enabling seamless wallet activation and balance access across partner apps.",
         image: "dipay-open-api-cover.png",
         color: "bg-blue-50",
-        tags: ["Real Project", "Open API", "Account Linking"],
+        tags: ["Open API", "Integration UX", "Mobile App"],
       },
     ],
   },
