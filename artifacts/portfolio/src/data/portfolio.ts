@@ -634,121 +634,83 @@ And once I saw that, it became impossible to unsee.`,
     href: "/blog/user-interview-with-myself",
     content: `A few days ago, I attended a UI/UX webinar and heard a sentence that unexpectedly stayed with me long after the session ended.
 
-"We are product designers. We spend our days trying to make people's lives easier. We try to understand users' problems, needs, wants, and frustrations. But have you ever done the same thing for yourself?"
+> "We are product designers. We spend our days trying to make people's lives easier. We try to understand users' problems, needs, wants, and frustrations. But have you ever done the same thing for yourself?"
 
-At first, I laughed. It sounded like one of those reflective quotes that speakers often use near the end of a presentation. The kind of quote that makes everyone pause for a moment, nod in agreement, and then move on to the next slide.
+At first, I laughed. It sounded like one of those reflective quotes that speakers often use near the end of a presentation. The kind that makes everyone pause for a moment, nod in agreement, and then move on to the next slide.
 
 But somehow, this one followed me home.
 
-The more I thought about it, the more questions started appearing in my mind. Have I ever designed my own life the way I design products? Have I ever tried to understand myself with the same curiosity that I bring into user interviews? If I spend so much time thinking about how to create better experiences for users, am I intentionally creating a better experience for myself?
+## The Thought That Wouldn't Let Go
 
-As product designers, understanding is often where everything begins. Before proposing solutions, we spend time learning about the people we're designing for. We ask questions, observe behaviors, identify patterns, and try to understand not only what users do, but also why they do it. When users feel frustrated, we don't immediately dismiss their feelings. Instead, we become curious. We try to understand what happened, what expectation wasn't met, and what need might exist underneath that frustration.
+The more I sat with it, the more questions started appearing. Have I ever tried to understand myself with the same curiosity I bring into user interviews? If I spend so much time thinking about how to create better experiences for users, am I intentionally creating a better experience for myself?
 
-Somewhere in the middle of reflecting on all of this, I realized that I rarely offer the same curiosity to myself.
+As product designers, understanding is where everything begins. Before proposing solutions, we spend time learning about the people we're designing for. When users feel frustrated, we don't dismiss their feelings — we become curious. We try to find out what expectation wasn't met, what need exists underneath that frustration.
 
-So I imagined conducting a user interview with myself.
+Somewhere in all of this reflection, I realized I rarely offer the same curiosity to myself.
 
-The first question was simple.
+So I imagined conducting a user interview — with myself.
 
-"So, how has your experience been so far?"
+## Question 1: "How has your experience been so far?"
 
-Surprisingly, I didn't know how to answer.
+The first question was simple. And surprisingly, I didn't know how to answer.
 
-Not because the question was difficult, but because I had never really asked it before. At least not in the way I would ask a user. Most of the time, I evaluate my life through achievements, responsibilities, unfinished tasks, or goals that I haven't reached yet. I rarely stop and ask what it actually feels like to be me these days.
+Not because it was difficult, but because I had never really asked it before. Most of the time, I evaluate my life through achievements, responsibilities, and unfinished goals. I rarely stop and ask what it actually feels like to be me these days.
 
-Am I enjoying this experience?
+Am I enjoying this experience? Am I constantly rushing through it? Am I building a life that feels meaningful to me, or am I simply trying to survive one week after another?
 
-Am I constantly rushing through it?
+## Question 2: "What problems are you facing right now?"
 
-Am I building a life that feels meaningful to me, or am I simply trying to survive one week after another?
-
-Then another question came.
-
-"What problems are you facing right now?"
-
-At first, I started listing practical things—work deadlines, uncertainty, responsibilities, and all the usual challenges that come with adulthood. But the longer I sat with the question, the more I realized that some of the struggles I carry aren't really about those things.
+At first, I listed practical things — work deadlines, uncertainty, the usual challenges of adulthood. But the longer I sat with the question, the more I realized some of the struggles I carry aren't really about those things.
 
 Some of them come from not fully understanding myself.
 
-There have been moments when I felt upset but couldn't explain why. Moments when I felt disappointed but quickly convinced myself that I was overreacting. Moments when I adapted so much to other people's expectations that I slowly lost sight of what I actually wanted.
+There have been moments when I felt upset but couldn't explain why. Moments when I felt disappointed but quickly convinced myself I was overreacting. Moments when I adapted so much to other people's expectations that I slowly lost sight of what I actually wanted.
+
+## Question 3: "What do you need?"
 
 And then came the question that stopped me completely.
 
-"What do you need?"
+I wish I could say I had an answer ready. I didn't.
 
-I wish I could say I had an answer ready.
+What surprised me wasn't the question itself — it was how uncomfortable it felt. There was nobody judging me. Nobody waiting to reject my answer. It was just me. And yet, I still struggled to answer.
 
-I didn't.
+> Perhaps expressing our needs isn't only difficult when talking to other people. Sometimes we haven't even admitted those needs to ourselves.
 
-What surprised me wasn't the question itself. What surprised me was how uncomfortable it felt.
+We become so focused on being adaptable, understanding, and accommodating that we stop checking in with what we actually need. Maybe that's why certain frustrations keep showing up.
 
-There was nobody judging me. Nobody waiting to reject my answer. Nobody telling me that my needs were unreasonable.
+## Frustration as a Signal
 
-It was just me.
-
-And yet, I still struggled to answer.
-
-The more I reflected on it, the more I realized that perhaps expressing our needs isn't only difficult when talking to other people. Sometimes we haven't even admitted those needs to ourselves. We become so focused on being adaptable, understanding, and accommodating that we stop checking in with what we actually need.
-
-Maybe that's why certain frustrations keep showing up.
-
-For a long time, I treated frustration as something to eliminate. If I felt disappointed, annoyed, hurt, or resentful, my instinct was to move on as quickly as possible. I wanted to be mature. I wanted to be understanding. I wanted to avoid creating problems.
+For a long time, I treated frustration as something to eliminate. If I felt disappointed or resentful, my instinct was to move on as quickly as possible. I wanted to be mature. I wanted to avoid creating problems.
 
 But lately, I've been wondering if frustration is trying to tell us something.
 
-After all, when users feel frustrated with a product, we don't tell them that their frustration is wrong. We investigate it. We know that frustration is often a signal that something isn't working as expected. An expectation wasn't met. A need wasn't fulfilled. A problem remains unsolved.
+When users feel frustrated with a product, we don't tell them their frustration is wrong — we investigate it. Frustration is often a signal that something isn't working as expected. An expectation wasn't met. A need wasn't fulfilled. A problem remains unsolved.
 
-What if our emotions work the same way?
+> What if our emotions work the same way? What if some of the frustrations we carry are not signs of weakness, but signals that deserve our attention?
 
-What if some of the frustrations we carry are not signs of weakness, immaturity, or ingratitude, but signals that deserve our attention?
+Maybe there is a need that has been ignored. Maybe there is a value that has been compromised. Maybe there is a boundary that has quietly been crossed.
 
-Maybe there is a need that has been ignored.
+I think that's what makes self-awareness more difficult than it sounds. The moment we become honest about our needs, we can no longer pretend they don't exist. We have to decide what to do with that knowledge — what to communicate, what boundaries to protect.
 
-Maybe there is a value that has been compromised.
+## Design Begins With Understanding
 
-Maybe there is a boundary that has quietly been crossed.
+Looking back, I think the reason that webinar quote stayed with me wasn't because it offered a life-changing realization. It stayed because it quietly challenged something I already believed as a designer.
 
-Recently, I came across an idea that resonated deeply with me: when something repeatedly bothers us, it may be pointing toward a boundary that has been violated.
-
-That doesn't automatically mean someone else is wrong, and it doesn't automatically mean someone else is responsible for fixing it. But it does mean there is something worth understanding.
-
-I think that's what makes self-awareness more difficult than it sounds. The moment we become honest about our needs, we can no longer pretend they don't exist. We have to decide what to do with that knowledge. We have to consider what is within our responsibility, what needs to be communicated, and what boundaries need to be protected.
-
-Understanding ourselves is not only about identifying what hurts. It's also about understanding what matters to us, what we value, what we need, and what kind of life we are trying to build.
-
-Looking back, I think the reason that webinar quote stayed with me wasn't because it offered a new framework or a life-changing realization. It stayed with me because it quietly challenged something I already believed as a designer.
-
-For a long time, I thought design was primarily about creating solutions—making products easier to use, reducing friction, solving problems, and improving experiences.
-
-And while all of those things are true, they only happen after something else comes first.
-
-Understanding.
-
-Every design process I have ever been part of begins there. Before sketches, wireframes, prototypes, or interfaces, there is always an attempt to understand. We try to understand what people are experiencing, what they need, what frustrates them, and what matters to them. We know that without understanding, even the most beautiful solution can end up solving the wrong problem.
+Every design process I've been part of begins with understanding. Before sketches, wireframes, or prototypes, there is always an attempt to understand what people are experiencing, what they need, and what frustrates them. Without understanding, even the most beautiful solution can end up solving the wrong problem.
 
 What surprised me is how rarely I apply the same principle to myself.
 
-When I feel frustrated, I often focus on getting rid of the feeling instead of understanding it. When something feels off, my first instinct is usually to adapt, endure, or minimize it rather than becoming curious about what it might be telling me.
-
-Yet if a user came to me with those same frustrations, I would probably spend hours trying to understand them. I would ask questions. I would look for patterns. I would try to uncover the unmet need behind the frustration. I would treat their experience as something worth understanding.
+When I feel frustrated, I focus on getting rid of the feeling instead of understanding it. Yet if a user came to me with those same frustrations, I would spend hours trying to understand them — asking questions, looking for patterns, uncovering the unmet need. I would treat their experience as something worth understanding.
 
 So why is it sometimes easier to offer that empathy to others than to ourselves?
 
-Maybe that's what I've learned from that webinar.
+## A Practice Worth Starting
 
-Design isn't only about screens, features, or products.
-
-At its core, design is about understanding experiences.
-
-And perhaps one of the most overlooked experiences is our own.
-
-Maybe we should occasionally become researchers of our own lives. Maybe we should interview ourselves with the same empathy we offer users. Maybe we should investigate our frustrations before dismissing them. Maybe we should become curious about our needs instead of feeling ashamed of them.
+Maybe we should occasionally become researchers of our own lives. Interview ourselves with the same empathy we offer users. Investigate our frustrations before dismissing them. Become curious about our needs instead of feeling ashamed of them.
 
 Not because every frustration needs to be fixed, and not because every need can be fulfilled immediately.
 
-But because understanding has always been the first step of good design.
-
-And if we believe that people deserve products designed with empathy and understanding, perhaps we deserve that too.
+> But because understanding has always been the first step of good design. And if we believe people deserve products designed with empathy, perhaps we deserve that too.
 
 After all, before we can create better experiences for others, we also deserve to understand the experience we're living ourselves.`,
   },
