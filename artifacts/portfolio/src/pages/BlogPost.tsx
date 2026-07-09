@@ -89,34 +89,39 @@ export default function BlogPost() {
           </Reveal>
 
           {/* Content */}
-          <div className="prose prose-lg max-w-none">
+          <div className="max-w-none">
             {paragraphs.map((paragraph, index) => {
-              const isQuote = paragraph.startsWith('"') && paragraph.includes('"') && paragraph.length < 300;
-              const isHeading = paragraph.length < 60 && !paragraph.includes(".") && !paragraph.includes("?");
-
-              if (isHeading && paragraph !== post.title) {
+              // ## Section heading
+              if (paragraph.startsWith("## ")) {
+                const text = paragraph.slice(3).trim();
                 return (
-                  <Reveal key={index} delay={index * 0.03}>
-                    <h3 className="text-xl font-bold text-[#0A1628] mt-10 mb-4">
-                      {paragraph}
-                    </h3>
+                  <Reveal key={index} delay={index * 0.02}>
+                    <div className="mt-12 mb-5">
+                      <div className="flex items-center gap-3">
+                        <div className="w-1 h-6 rounded-full bg-[#4B5FE0]" />
+                        <h2 className="text-[19px] font-extrabold text-[#0A1628] tracking-[-0.01em]">{text}</h2>
+                      </div>
+                    </div>
                   </Reveal>
                 );
               }
 
-              if (isQuote) {
+              // > Blockquote
+              if (paragraph.startsWith("> ")) {
+                const text = paragraph.slice(2).trim();
                 return (
-                  <Reveal key={index} delay={index * 0.03}>
-                    <blockquote className="border-l-4 border-[#4B5FE0] pl-6 italic text-[#0A1628]/80 my-8 text-lg">
-                      {paragraph}
-                    </blockquote>
+                  <Reveal key={index} delay={index * 0.02}>
+                    <div className="my-8 rounded-xl px-6 py-5" style={{ background: "#EEF0FD", borderLeft: "4px solid #4B5FE0" }}>
+                      <p className="text-[16px] italic font-medium text-[#0A1628] leading-[1.7] m-0">{text}</p>
+                    </div>
                   </Reveal>
                 );
               }
 
+              // Regular paragraph
               return (
-                <Reveal key={index} delay={index * 0.03}>
-                  <p className="text-[#0A1628]/80 leading-relaxed mb-5">
+                <Reveal key={index} delay={index * 0.02}>
+                  <p className="text-[15.5px] text-[#0A1628]/75 leading-[1.85] mb-5">
                     {paragraph}
                   </p>
                 </Reveal>
