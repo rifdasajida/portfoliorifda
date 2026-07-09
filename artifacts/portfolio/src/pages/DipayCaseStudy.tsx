@@ -148,7 +148,7 @@ export default function DipayCaseStudy() {
               </div>
               {[
                 { k: "My Role", v: "Product Designer" },
-                { k: "Collaborators", v: "PM, Backend Engineers, Finance Team, Operations Team" },
+                { k: "Collaborators", v: "PM, Developers, Finance Team, Operations Team" },
                 { k: "Impact", v: "4-5 hours saved per settlement cycle, faster payouts, reduced operational risk, eliminated spreadsheet workflows, improved visibility and control" },
               ].map((row, i) => (
                 <div
