@@ -165,10 +165,10 @@ export function CaseStudies() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 max-w-2xl"
+          className="mb-16 w-full"
         >
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Work</h2>
-          <p className="text-lg text-[#4c5757]">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 max-w-2xl">Work</h2>
+          <p className="text-lg text-[#4c5757] w-full">
             A selection of products I've helped shape, from uncovering user problems to delivering measurable business impact.
           </p>
         </motion.div>
