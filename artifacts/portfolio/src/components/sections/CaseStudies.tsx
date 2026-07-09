@@ -23,7 +23,7 @@ const workGroups: {
   logoLetter: string;
   period: string;
   description: string;
-  cols: number;
+  scroll?: boolean;
   projects: Project[];
 }[] = [
   {
@@ -92,7 +92,7 @@ const workGroups: {
     period: "",
     description:
       "A mix of real-world projects and self-initiated explorations — each tackling a unique design problem from research to final UI.",
-    cols: 4,
+    scroll: true,
     projects: [
       caseStudies.find((c) => c.slug === "smart-murojaah")! as RealProject,
       caseStudies.find((c) => c.slug === "saas-analytics-dashboard")! as RealProject,
@@ -219,26 +219,40 @@ export function CaseStudies() {
               </p>
 
               {/* Project cards */}
-              <div
-                className={`grid gap-5 ${
-                  group.cols === 4
-                    ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
-                    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-                }`}
-              >
-                {group.projects.map((project, pi) => (
-                  <motion.div
-                    key={project.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: pi * 0.08 }}
-                    className="flex flex-col"
-                  >
-                    <ProjectCard project={project} />
-                  </motion.div>
-                ))}
-              </div>
+              {group.scroll ? (
+                <div className="overflow-x-auto -mx-6 px-6 pb-4">
+                  <div className="flex gap-5" style={{ width: "max-content" }}>
+                    {group.projects.map((project, pi) => (
+                      <motion.div
+                        key={project.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: pi * 0.08 }}
+                        style={{ width: "calc((100vw - 96px) / 3)" }}
+                        className="flex flex-col min-w-[280px] max-w-[380px]"
+                      >
+                        <ProjectCard project={project} />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.projects.map((project, pi) => (
+                    <motion.div
+                      key={project.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: pi * 0.08 }}
+                      className="flex flex-col"
+                    >
+                      <ProjectCard project={project} />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
