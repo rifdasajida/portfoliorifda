@@ -132,7 +132,7 @@ export default function DipayCaseStudy() {
                 automated reconciliation, exception-based reviews, structured approval flows, and
                 settlement monitoring tools
               </strong>{" "}
-              that reduced operational processing time by approximately 4-5 hours per settlement cycle.
+              that reduced operational processing time by approximately 4-5 hours.
             </p>
 
             {/* TL;DR */}
