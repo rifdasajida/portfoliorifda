@@ -31,9 +31,9 @@ const workGroups: {
     company: "Dipay",
     logoColor: "#4B5FE0",
     logoLetter: "D",
-    period: "2023 – 2024",
+    period: "2024 – present",
     description:
-      "Dipay is a QRIS acquirer handling payment settlement for hundreds of merchants. I led the end-to-end UX of internal operational tools used by Finance and Operations teams.",
+      "Building fintech products that simplify payments, empower merchants, and improve operational efficiency.",
     cols: 3,
     projects: [
       caseStudies.find((c) => c.slug === "dipay-settlement")! as RealProject,
@@ -60,9 +60,9 @@ const workGroups: {
     company: "Surplus",
     logoColor: "#E07A3A",
     logoLetter: "S",
-    period: "2022 – 2023",
+    period: "2023 – 2024",
     description:
-      "Surplus is a food surplus marketplace connecting merchants with buyers to reduce food waste. I designed key product flows spanning the buyer experience, merchant tools, and analytics.",
+      "Designing marketplace experiences that connect merchants and buyers while reducing food waste.",
     cols: 3,
     projects: [
       caseStudies.find((c) => c.slug === "ecommerce-checkout")! as RealProject,
@@ -75,9 +75,9 @@ const workGroups: {
     company: "Other Projects",
     logoColor: "#2B8A3E",
     logoLetter: "✦",
-    period: "",
+    period: "Still active",
     description:
-      "A mix of real-world projects and self-initiated explorations — each tackling a unique design problem from research to final UI.",
+      "Experiments, side projects, and freelance work exploring accessibility, AI, and emerging product opportunities.",
     scroll: true,
     projects: [
       caseStudies.find((c) => c.slug === "smart-murojaah")! as RealProject,
@@ -169,7 +169,7 @@ export function CaseStudies() {
         >
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Work</h2>
           <p className="text-lg text-[#4c5757]">
-            A collection of product journeys — from understanding the problem to shaping solutions that create real impact.
+            A selection of products I've helped shape, from uncovering user problems to delivering measurable business impact.
           </p>
         </motion.div>
 
@@ -191,17 +191,15 @@ export function CaseStudies() {
                   {group.logoLetter}
                 </div>
                 <div>
-                  <div className="flex items-baseline gap-3">
-                    <h3 className="text-[18px] font-extrabold text-foreground">{group.company}</h3>
-                    {group.period && (
-                      <span className="text-[13px] text-muted-foreground font-medium">{group.period}</span>
-                    )}
-                  </div>
+                  <h3 className="text-[18px] font-extrabold text-foreground leading-tight">{group.company}</h3>
+                  {group.period && (
+                    <span className="text-[13px] text-muted-foreground font-medium">{group.period}</span>
+                  )}
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-[14.5px] text-[#4c5757] leading-relaxed mb-7 max-w-3xl">
+              <p className="text-[14.5px] text-[#4c5757] leading-relaxed mb-7 w-full">
                 {group.description}
               </p>
 
