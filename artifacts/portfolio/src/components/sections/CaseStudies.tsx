@@ -37,7 +37,14 @@ const workGroups: {
     cols: 3,
     projects: [
       caseStudies.find((c) => c.slug === "dipay-settlement")! as RealProject,
-      caseStudies.find((c) => c.slug === "dipay-onboarding")! as RealProject,
+      {
+        comingSoon: true,
+        title: "Increasing Verified Merchant Conversion",
+        description: "Redesigning the merchant registration and verification flow to reduce drop-off and get more merchants successfully onboarded.",
+        image: "dipay-merchant-conversion-cover.png",
+        color: "bg-blue-50",
+        tags: ["Real Project", "User Research", "Flow Redesign"],
+      },
       {
         comingSoon: true,
         title: "Transaction Monitoring Dashboard",
