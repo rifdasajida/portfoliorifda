@@ -208,7 +208,7 @@ export function CaseStudies() {
               </div>
 
               {/* Description */}
-              <p className="text-[14.5px] text-[#4c5757] leading-relaxed mb-7 w-full">
+              <p className="text-[#4c5757] mb-7 w-full text-[16px]">
                 {group.description}
               </p>
 
