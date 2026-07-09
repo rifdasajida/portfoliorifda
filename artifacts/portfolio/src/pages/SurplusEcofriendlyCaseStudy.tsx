@@ -151,43 +151,20 @@ export default function SurplusEcofriendlyCaseStudy() {
               received. The system involved three parties that all had to work in sequence.
             </p>
 
-            <div className="bg-white rounded-2xl border border-[#E4E8F0] p-7 shadow-sm">
-              <div className="text-[14px] font-bold text-[#0F1A2E] mb-5">Current Flow: 3-Party System</div>
-              <div className="grid grid-cols-3 gap-4 mb-6 text-center">
-                {[
-                  { party: "Customer", color: "#4B5FE0", steps: ["Toggle 'Bawa kotak makan'", "Read T&C", "Place order", "Pick up & hand over bag", "Input verification code", "Wait for cashback"] },
-                  { party: "Merchant", color: "#E07A3A", steps: ["Receive order", "Wait for customer pick-up", "Ask for customer's bag", "Photograph the bag", "—", "—"] },
-                  { party: "Web Admin", color: "#2B8A3E", steps: ["Receive order info", "—", "—", "Review photo", "Approve or reject", "Trigger cashback manually"] },
-                ].map((col) => (
-                  <div key={col.party}>
-                    <div
-                      className="text-[12px] font-bold uppercase tracking-wide mb-3 px-3 py-1.5 rounded-full text-white inline-block"
-                      style={{ background: col.color }}
-                    >
-                      {col.party}
-                    </div>
-                    <div className="space-y-2">
-                      {col.steps.map((step, i) => (
-                        <div
-                          key={i}
-                          className="text-[12px] text-[#4A5568] leading-[1.5] bg-[#F8F9FC] rounded-lg px-3 py-2 min-h-[40px] flex items-center justify-center text-center"
-                        >
-                          {step === "—" ? <span className="text-[#CBD5E0]">—</span> : step}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div
-                className="rounded-xl px-5 py-4 text-[13.5px] text-[#4A5568] leading-[1.7]"
-                style={{ background: "#FFF3EA", border: "1px solid #FDDBB6" }}
-              >
-                ⚠️ One hidden issue: when the cashback toggle was activated, users couldn't use
-                any voucher — but <strong className="text-[#0F1A2E]">this was never communicated to them</strong> at
-                the point of activation.
-              </div>
-            </div>
+            <figure className="rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm mb-5">
+              <img
+                src={`${BASE}images/ecofriendly-current-flow.png`}
+                alt="Current Flow — 3-party system diagram"
+                className="w-full h-auto block"
+              />
+            </figure>
+            <figure className="rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm">
+              <img
+                src={`${BASE}images/ecofriendly-current-system.png`}
+                alt="Current System — Cashback Kotak Makan atau Totebag screenshots"
+                className="w-full h-auto block"
+              />
+            </figure>
           </Reveal>
 
           {/* 3. Three main problems */}
@@ -258,6 +235,14 @@ export default function SurplusEcofriendlyCaseStudy() {
               admin tooling that should have existed from the start.
             </p>
 
+            <figure className="rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm mb-6">
+              <img
+                src={`${BASE}images/ecofriendly-new-flow.png`}
+                alt="Redesigned cashback flow diagram"
+                className="w-full h-auto block"
+              />
+            </figure>
+
             <div className="space-y-4">
               {[
                 {
@@ -303,6 +288,14 @@ export default function SurplusEcofriendlyCaseStudy() {
                 </div>
               ))}
             </div>
+
+            <figure className="rounded-xl overflow-hidden border border-[#E4E8F0] shadow-sm mt-6">
+              <img
+                src={`${BASE}images/ecofriendly-improvement-screens.png`}
+                alt="Improvement screens — Merchant App, Customer App, and Web Admin"
+                className="w-full h-auto block"
+              />
+            </figure>
           </Reveal>
 
         </div>
