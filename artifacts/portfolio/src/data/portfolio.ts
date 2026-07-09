@@ -550,47 +550,41 @@ I knew accessibility mattered. I knew products should be usable by as many peopl
 
 But if I'm being honest, at that time accessibility was still an abstract concept to me. I understood the idea, but I had never really felt the impact of it.
 
+## The Video That Changed Everything
+
 That changed when I came across a video of a blind person using a smartphone with a screen reader.
 
-I  really remember about that feeling when I watching someone struggle with something that many of us take for granted every day. The person wasn't confused because they didn't know how to use technology. They weren't struggling because they lacked experience. The problem was much simpler: the application wasn't designed in a way that worked properly with a screen reader.
+I really remember that feeling — watching someone struggle with something that many of us take for granted every day. The person wasn't confused because they didn't know how to use technology. They weren't struggling because they lacked experience. The problem was much simpler: the application wasn't designed in a way that worked properly with a screen reader.
 
 As I watched the video, I found myself paying attention to things I had never thought about before. Buttons that looked perfectly normal suddenly became meaningless because they weren't announced correctly. Information that was obvious visually became difficult to understand when experienced through audio. Actions that seemed simple became frustrating obstacles.
 
 For the first time, accessibility stopped being a concept and became a real experience.
 
-I remember thinking, "Wow, this is a problem I have never truly considered."
+> "Wow, this is a problem I have never truly considered."
 
-That curiosity led me to learn more, but it also led me to something much more uncomfortable.
+## Testing My Own Work
 
-I started wondering what would happen if I tried using some of the products I had worked on with a screen reader.
+That curiosity led me somewhere more uncomfortable.
 
-So I turned on TalkBack and began exploring.
+I started wondering what would happen if I tried using some of the products I had worked on with a screen reader. So I turned on TalkBack and began exploring.
 
 To be honest, I expected a few issues. Maybe some minor things that could be improved. What I didn't expect was how quickly I would realize that many parts of the experience weren't accessible at all.
 
 Some elements weren't announced properly. Some interactions felt confusing. Information that seemed clear on the screen became difficult to navigate through audio alone.
 
-The more I tested, the more uncomfortable I felt.
-
-These weren't random products.
-
-These were products that I had helped design.
+These weren't random products. These were products that I had helped design.
 
 And for the first time, I wasn't evaluating them as a designer looking at layouts, flows, or visual consistency. I was trying to experience them from a completely different perspective.
 
-That experience left me with an unexpected feeling: guilt.
+## The Uncomfortable Feeling
 
-Not because I intentionally ignored accessibility.
+That experience left me with something unexpected: guilt.
 
-Not because I didn't care.
-
-But because I realized there was a gap between what I believed I was designing and what some users were actually experiencing.
+Not because I intentionally ignored accessibility. Not because I didn't care. But because I realized there was a gap between what I believed I was designing and what some users were actually experiencing.
 
 As designers, we often say that our job is to make things easier for people. We talk about solving problems, reducing friction, and creating better experiences. Yet here I was, looking at products that were meant to help people, while realizing that some people might struggle to use them in the first place.
 
-That realization stayed with me for a long time.
-
-It also changed the way I approached learning accessibility.
+## How Big the Topic Really Is
 
 At first, I thought the solution would be relatively straightforward. Maybe I just needed to learn a few guidelines, understand color contrast requirements, or remember to add proper labels. I assumed accessibility was another design skill that I could gradually master.
 
@@ -598,33 +592,27 @@ The deeper I went, the more I realized how much bigger the topic actually was.
 
 Accessibility isn't only about colors, typography, or screen readers. It affects how information is structured, how interactions are designed, how content is written, and even how components are implemented in code. Many accessibility issues can't be solved by designers alone, just as many can't be solved by developers alone.
 
-The more I learned, the more I understood that accessibility isn't a feature that can simply be added at the end of a project. It's something that needs to be considered throughout the entire process.
+> Accessibility isn't a feature that can simply be added at the end of a project. It's something that needs to be considered throughout the entire process.
 
-And honestly, that realization felt overwhelming at first.
+As designers, it's comforting to believe that we can solve problems through better design. Accessibility taught me that some challenges require much broader collaboration — designers, developers, product teams, content writers, researchers, and stakeholders all need to care about the same thing.
 
-As designers, it's comforting to believe that we can solve problems through better design. Accessibility taught me that some challenges require much broader collaboration. They require designers, developers, product teams, content writers, researchers, and stakeholders to care about the same thing.
-
-In many ways, accessibility made me realize how limited my own perspective had been.
+## The Biggest Shift: Thinking Differently
 
 Before learning about accessibility, I often assumed that if something felt easy to use for me, it would probably feel easy for most people. I rarely questioned that assumption because it felt natural. After all, we all tend to use our own experiences as a reference point.
 
-Accessibility challenged that mindset.
-
-It reminded me that people don't experience products the same way I do.
+Accessibility challenged that mindset completely.
 
 Something that feels intuitive to me might be confusing for someone else. Something that feels effortless to me might require significant effort from another person. The experience I consider "normal" is only one of many possible experiences.
-
-Looking back, I think that was the most valuable lesson I learned.
 
 Accessibility didn't just teach me how to design differently. It taught me how to think differently.
 
 It made me more aware of the assumptions hidden inside my design decisions. It made me more curious about experiences that are different from my own. Most importantly, it reminded me that good design is not about creating experiences that work well for people like me.
 
-It's about recognizing that people are different, and that those differences deserve consideration.
+> It's about recognizing that people are different, and that those differences deserve consideration.
 
-I still make mistakes.
+## Where I Am Now
 
-There are still accessibility issues that I miss. There are still things I don't know. Sometimes the more I learn, the more I realize how much there is left to learn.
+I still make mistakes. There are still accessibility issues that I miss. There are still things I don't know. Sometimes the more I learn, the more I realize how much there is left to learn.
 
 But that's okay.
 

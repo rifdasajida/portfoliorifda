@@ -73,7 +73,6 @@ export default function SurplusMerchantMapCaseStudy() {
   return (
     <div className="min-h-screen bg-[#F4F6FB] font-sans">
       <Navbar />
-
       {/* ── Hero ── */}
       <div className="pt-28 pb-0" style={{ background: "#FFF3EA" }}>
         <div className="max-w-[760px] mx-auto px-7">
@@ -114,9 +113,7 @@ export default function SurplusMerchantMapCaseStudy() {
             <h1 className="text-4xl md:text-[clamp(36px,5.5vw,56px)] font-extrabold leading-[1.1] tracking-[-0.028em] text-[#0F1A2E] mb-5 max-w-[680px]">
               Help user find merchant easily
             </h1>
-            <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">
-              How a map-based discovery feature helped Surplus users find nearby merchants without opening each one — boosting adoption to 72.9% and lifting order completion rates.
-            </p>
+            <p className="text-lg text-[#4A5568] max-w-[620px] mb-10 leading-[1.55]">How a map-based discovery feature helped Surplus users find nearby merchants without opening each one</p>
           </motion.div>
 
           <motion.div
@@ -133,7 +130,6 @@ export default function SurplusMerchantMapCaseStudy() {
           </motion.div>
         </div>
       </div>
-
       {/* ── Content ── */}
       <div className="py-[72px]">
         <div className="max-w-[760px] mx-auto px-7 space-y-16">
@@ -399,7 +395,6 @@ export default function SurplusMerchantMapCaseStudy() {
 
         </div>
       </div>
-
       {/* ── Back link ── */}
       <div className="pb-20 max-w-[760px] mx-auto px-7">
         <Link
@@ -409,7 +404,6 @@ export default function SurplusMerchantMapCaseStudy() {
           <ArrowLeft className="w-4 h-4" /> Back to Portfolio
         </Link>
       </div>
-
       <Footer />
     </div>
   );
